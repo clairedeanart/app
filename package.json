@@ -5,7 +5,8 @@
   "main": "express.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "gulp dev & nodemon"
+    "dev": "gulp dev & nodemon",
+    "start": "node express.js"
   },
   "keywords": [],
   "author": "",
