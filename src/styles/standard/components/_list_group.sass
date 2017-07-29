@@ -1,0 +1,73 @@
+.list-group
+  +shadow()
+  border: 1px solid $border-color
+  border-radius: $border-radius
+  overflow: hidden
+  background: white
+
+.list-group__header
+  display: flex
+  justify-content: space-between
+  align-items: center
+  font-weight: 600
+  margin: ms(2) 0 ms(-2)
+
+.list-item
+  position: relative
+  display: block
+  padding: ms(0)
+  font-size: ms(1)
+  box-shadow: none
+  &:not(:last-child)
+    border-bottom: 1px solid $border-color
+  &:hover .list-item__hover
+    opacity: 1.0
+
+a.list-item:hover
+  background: $secondary
+  cursor: pointer
+
+.list-item--faded
+  opacity: 0.4
+
+.list-item--highlighted
+  padding-left: ms(-4) + ms(-3) * 2
+  &::after
+    content: " "
+    background: $primary-pop
+    position: absolute
+    top: ms(-3)
+    left: ms(-3)
+    bottom: ms(-3)
+    width: ms(-4)
+    border-radius: $border-radius
+
+.list-item__row
+  &:not(:last-child)
+    margin-bottom: ms(-4)
+
+.list-item__content, .list-item__tags
+  display: flex
+  flex-direction: row
+  justify-content: space-between
+  margin-bottom: ms(-4) * -1
+  > *
+    margin-bottom: ms(-4)
+
+.list-item__content
+  flex-wrap: wrap
+  &.list-item__content--centered
+    align-items: center
+
+.list-item__settings
+  align-self: flex-end
+
+.list-item__context
+  display: flex
+  align-items: center
+  margin: ms(-6) * -1
+  > *
+    margin: ms(-6)
+
+.list-item__title
+  font-weight: 600

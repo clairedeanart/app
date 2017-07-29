@@ -1,0 +1,83 @@
+$alignment: center left right
+
+@each $target, $size in $targets
+  @each $v in $alignment
+    .#{$v}-text-#{$target}
+      +target($target)
+        &, *
+          text-align: $v
+
+h1, h2, h3, h4, h5, h6, p, ul, ol, li
+  margin-top: 0
+  margin-bottom: $base-margin
+  &:empty
+    display: none
+
+// h1, h2
+//   line-height: 1.1
+
+h1
+  &, *
+    font-size: ms(4)
+    font-weight: 600
+
+h2
+  &, *
+    font-size: ms(3)
+    font-weight: 600
+
+h3
+  &, *
+    font-size: ms(2)
+    font-weight: 600
+
+h4
+  &, *
+    font-size: ms(1)
+    font-weight: 600
+
+h5, h6
+  &, *
+    font-size: ms(0)
+    font-weight: 600
+
+p
+  margin-bottom: ms(0)
+  &, *
+    font-size: ms(0)
+    font-weight: 400
+
+p, li, a, span
+  &.small
+    font-size: ms(0)
+  &.wee
+    // Fuck it
+    font-size: 11px
+    line-height: ms(0)
+a
+  text-decoration: none
+  color: $tertiary
+
+h1, h2, h3, h4, h5, h6, p, li, a, span
+  margin: 0
+  &.fade
+    &, *
+      color: transparentize($text-color, 0.8)
+
+// a
+//   cursor: pointer
+//   text-decoration: none
+//   display: inline
+//   box-shadow: inset 0 $border-width * -1 0 $primary-pop
+//   &:hover
+//     color: $primary-pop
+//     box-shadow: inset 0 $border-width * -1 0 transparent
+//   transition: all $transition-length
+
+samp
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace
+  font-size: ms(0)
+  line-height: ms(1)
+
+ul
+  padding-left: 1.2em

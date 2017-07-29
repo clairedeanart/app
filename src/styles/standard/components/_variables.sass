@@ -1,0 +1,74 @@
+// Colors
+$primary: #051F33
+$primary-10: rgba($primary, 0.9)
+$primary-20: rgba($primary, 0.8)
+$primary-40: rgba($primary, 0.6)
+$primary-85: rgba($primary, 0.15)
+$primary-90: rgba($primary, 0.1)
+
+$secondary: #F8FCFF
+$secondary-darker: darken($secondary, 2%)
+
+$primary-pop: #1A96FC
+$secondary-pop: #EE3690
+$tertiary-pop: #171AB2
+$quaternary-pop: #FEC61E
+$quinary-pop: #1BC98E
+
+$white: #FFFFFF
+
+$error: $secondary-pop
+$success: $quinary-pop
+$info: $tertiary-pop
+$warning: $quaternary-pop
+
+$error-80: rgba($error, 0.2)
+$success-80: rgba($success, 0.2)
+$info-80: rgba($info, 0.2)
+$warning-80: rgba($warning, 0.2)
+
+$text-color: $primary
+$primary-btn-color: $primary-pop
+$border-color: darken($secondary, 10%)
+
+// Z-Index
+$z-index--overlay-loader: 100
+$z-index--address-autocomplete: 99
+$z-index--modal: 98
+$z-index--header-loader: 97
+$z-index--navigation: 96
+$z-index--timeline__circle: 95
+$z-index--timeline__line: 94
+$z-index--inactive: -100
+
+// Radius
+$border-radius: 3px
+$border-width: 2px
+$transition-length: 0.3s
+
+// Modular Scale
+$ms-base: 20px, 16px !default
+$ms-ratio: $golden
+
+// Grid
+$container-width: ms(17) !default
+$container-side-padding: ms(1)
+$container-top-btm-padding: ms(3)
+
+// Spacing
+$base-margin: ms(1)
+
+// Inputs
+$input-height: ms(1) + (2 * ms(-3)) + 4px
+
+// Typography
+$font-family: Calibre, sans-serif !default
+
+// Mixin for responding to different sizes
+$targets: xs 12, sm 14, md 16, lg 18, xl 20
+
+@mixin target($target)
+  @each $candidate in $targets
+    @if $target == nth($candidate, 1)
+      @media screen and (min-width: #{ms(nth($candidate, 2))})
+        @content

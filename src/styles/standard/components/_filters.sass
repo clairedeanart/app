@@ -1,0 +1,37 @@
+$arrow-size: ms(-6)
+
+.filter-group
+  display: flex
+
+.filter-item
+  padding: ms(0)
+  cursor: pointer
+  user-select: none
+  position: relative
+  &:hover
+    background: $secondary
+
+.filter-item__title
+  display: flex
+  align-items: center
+  color: $primary-40
+  &:after
+    content: ""
+    width: 0
+    height: 0
+    border-left: $arrow-size solid transparent
+    border-right: $arrow-size solid transparent
+    border-top: $arrow-size solid $primary-40
+    margin-left: ms(-4)
+  &.filter-item__title--clear
+    &:after
+      content: "x"
+      border: 0 solid transparent
+      width: initial
+      height: initial
+
+
+  .filter-item--active &
+    color: $tertiary-pop
+    &:after
+      border-top-color: $tertiary-pop

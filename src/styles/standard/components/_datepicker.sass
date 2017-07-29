@@ -1,0 +1,93 @@
+.rd-container
+  +shadow()
+  transition: none
+  display: none
+  border-radius: $border-radius
+  background-color: $white
+  padding: ms(-5)
+  text-align: center
+  margin-top: ms(-6)
+  z-index: 90000
+  overflow: visible
+
+  table
+    border: none
+
+  td, th
+    background: $white
+    padding: ms(-7)
+    font-size: ms(-1)
+
+.rd-time-selected
+  padding: ms(-7)
+  font-weight: bold
+  cursor: pointer
+
+.rd-time-list
+  display: none
+  overflow-y: scroll
+  max-height: ms(7)
+  left: 0
+  right: 0
+
+.rd-time-option
+  padding: ms(-7)
+  cursor: pointer
+
+.rd-container-attachment
+  position: absolute
+
+.rd-month-label
+  margin-bottom: ms(-5)
+
+.rd-month
+  display: inline-block
+  margin-right: ms(0)
+  &:last-child
+    margin-right: 0
+
+.rd-back, .rd-next
+  cursor: pointer
+  border: none
+  outline: none
+  background: none
+  padding: 0
+  margin: 0
+
+.rd-back[disabled], .rd-next[disabled]
+  cursor: default
+
+.rd-back
+  float: left
+
+.rd-next
+  float: right
+
+.rd-back:before
+  display: block
+  content: '\2190'
+
+.rd-next:before
+  display: block
+  content: '\2192'
+
+.rd-day-body
+  cursor: pointer
+  text-align: center !important
+
+td
+  &.rd-day-selected, &.rd-time-selected, &.rd-time-option:hover
+    cursor: pointer
+    background-color: $primary-pop
+    color: $white
+    border-radius: $border-radius
+
+.rd-day-prev-month, .rd-day-next-month
+  color: $primary-pop
+
+.rd-day-disabled
+  cursor: default
+  color: rgba($primary-pop, 0.40)
+
+.rd-day-concealed
+  visibility: hidden

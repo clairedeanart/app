@@ -1,0 +1,124 @@
+$tooltip-padding: ms(-2)
+$tooltip-arrow-size: ms(-4)
+
+[data-tooltip-content]:not(a)
+  cursor: help
+  position: relative
+  &:after
+    content: " "
+    border-bottom: 1px dashed $border-color
+    display: block
+    position: absolute
+    bottom: -1px
+    left: 0
+    right: 0
+
+.tooltip-element,
+.tooltip-element:after,
+.tooltip-element:before,
+.tooltip-element *,
+.tooltip-element *:after,
+.tooltip-element *:before
+  box-sizing: border-box
+
+.tooltip-element
+  position: absolute
+  display: none
+  pointer-events: none
+  max-width: 100%
+  max-height: 100%
+  &.tooltip-open
+    display: block
+  .tooltip-content
+    border-radius: $border-radius
+    position: relative
+    font-family: inherit
+    background: $primary
+    color: white
+    padding: $tooltip-padding
+    font-size: ms(-1)
+    &:before
+      content: ""
+      display: block
+      position: absolute
+      width: 0
+      height: 0
+      border-color: transparent
+      border-width: $tooltip-arrow-size
+      border-style: solid
+  &.tooltip-element-attached-bottom.tooltip-element-attached-center .tooltip-content
+    margin-bottom: $tooltip-arrow-size
+    &:before
+      top: 100%
+      left: 50%
+      margin-left: -$tooltip-arrow-size
+      border-top-color: $primary
+  &.tooltip-element-attached-top.tooltip-element-attached-center .tooltip-content
+    margin-top: $tooltip-arrow-size
+    &:before
+      bottom: 100%
+      left: 50%
+      margin-left: -$tooltip-arrow-size
+      border-bottom-color: $primary
+  &.tooltip-element-attached-right.tooltip-element-attached-middle .tooltip-content
+    margin-right: $tooltip-arrow-size
+    &:before
+      left: 100%
+      top: 50%
+      margin-top: -$tooltip-arrow-size
+      border-left-color: $primary
+  &.tooltip-element-attached-left.tooltip-element-attached-middle .tooltip-content
+    margin-left: $tooltip-arrow-size
+    &:before
+      right: 100%
+      top: 50%
+      margin-top: -$tooltip-arrow-size
+      border-right-color: $primary
+  &.tooltip-element-attached-top.tooltip-element-attached-left.tooltip-target-attached-bottom .tooltip-content
+    margin-top: $tooltip-arrow-size
+    &:before
+      bottom: 100%
+      left: $tooltip-arrow-size
+      border-bottom-color: $primary
+  &.tooltip-element-attached-top.tooltip-element-attached-right.tooltip-target-attached-bottom .tooltip-content
+    margin-top: $tooltip-arrow-size
+    &:before
+      bottom: 100%
+      right: $tooltip-arrow-size
+      border-bottom-color: $primary
+  &.tooltip-element-attached-bottom.tooltip-element-attached-left.tooltip-target-attached-top .tooltip-content
+    margin-bottom: $tooltip-arrow-size
+    &:before
+      top: 100%
+      left: $tooltip-arrow-size
+      border-top-color: $primary
+  &.tooltip-element-attached-bottom.tooltip-element-attached-right.tooltip-target-attached-top .tooltip-content
+    margin-bottom: $tooltip-arrow-size
+    &:before
+      top: 100%
+      right: $tooltip-arrow-size
+      border-top-color: $primary
+  &.tooltip-element-attached-top.tooltip-element-attached-right.tooltip-target-attached-left .tooltip-content
+    margin-right: $tooltip-arrow-size
+    &:before
+      top: $tooltip-arrow-size
+      left: 100%
+      border-left-color: $primary
+  &.tooltip-element-attached-top.tooltip-element-attached-left.tooltip-target-attached-right .tooltip-content
+    margin-left: $tooltip-arrow-size
+    &:before
+      top: $tooltip-arrow-size
+      right: 100%
+      border-right-color: $primary
+  &.tooltip-element-attached-bottom.tooltip-element-attached-right.tooltip-target-attached-left .tooltip-content
+    margin-right: $tooltip-arrow-size
+    &:before
+      bottom: $tooltip-arrow-size
+      left: 100%
+      border-left-color: $primary
+  &.tooltip-element-attached-bottom.tooltip-element-attached-left.tooltip-target-attached-right .tooltip-content
+    margin-left: $tooltip-arrow-size
+    &:before
+      bottom: $tooltip-arrow-size
+      right: 100%
+      border-right-color: $primary

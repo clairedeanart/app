@@ -1,0 +1,54 @@
+$slider-size: ms(2)
+$range-size: ms(-3)
+$margin: ($range-size - $slider-size) / 2
+
+.ui-slider
+  position: relative
+  text-align: left
+  background: $secondary-darker
+  border-radius: $border-radius
+  margin: $margin * -1 $slider-size / 2
+  .ui-slider-handle
+    position: absolute
+    z-index: 2
+    width: $slider-size
+    height: $slider-size
+    cursor: pointer
+    background: $primary-pop
+    border-radius: 100%
+  .ui-slider-range
+    background: $border-color
+    position: absolute
+    z-index: 1
+    font-size: .7em
+    display: block
+    border: 0
+    background-position: 0 0
+
+.ui-slider-horizontal
+  height: $range-size
+  .ui-slider-handle
+    top: $margin
+    margin-left: $slider-size * -0.5
+  .ui-slider-range
+    top: 0
+    height: 100%
+  .ui-slider-range-min
+    left: 0
+  .ui-slider-range-max
+    right: 0
+
+.ui-slider-vertical
+  width: $range-size
+  height: ms(10)
+  .ui-slider-handle
+    left: $margin
+    margin-left: 0
+    margin-bottom: $margin
+  .ui-slider-range
+    left: 0
+    width: 100%
+  .ui-slider-range-min
+    bottom: 0
+  .ui-slider-range-max
+    top: 0

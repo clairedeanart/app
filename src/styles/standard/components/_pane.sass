@@ -1,0 +1,57 @@
+.pane
+  &:not(.pane--flat)
+    +shadow()
+  border-radius: $border-radius
+  border: 1px solid $border-color
+  background: white
+  position: relative
+  &.pane--collapsable
+    margin-top: ms(-2)
+    margin-bottom: ms(-2)
+    .pane__content
+      overflow: hidden
+      max-height: 9999px
+      transition: max-height 220ms ease-in-out
+    &.pane--collapse
+      margin-top: ms(-5)
+      margin-bottom: ms(-5)
+      .pane__content
+        max-height: 0
+        padding: 0
+        transition: padding 20ms ease-in-out
+
+
+.pane > .list-group
+  border-radius: 0
+  box-shadow: none
+  border: none
+  border-bottom: 1px solid $border-color
+
+.pane__content
+  padding: ms(0)
+
+.pane__content--height-constrained
+  max-height: ms(14)
+  overflow-y: scroll
+
+.pane__header
+  border-bottom: 1px solid $border-color
+  padding: ms(0)
+
+.pane__navigation
+  display: flex
+  align-items: flex-end
+  justify-content: space-between
+  border-bottom: 1px solid $border-color
+  padding: ms(-4)
+  .tabs
+    margin: ms(-4) * -1
+  &.pane__navigation--clickable
+    cursor: pointer
+    user-select: none
+    &:hover
+      background-color: $border-color
+
+.pane__footer
+  border-top: 1px solid $border-color
+  padding: ms(0)

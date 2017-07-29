@@ -1,0 +1,91 @@
+@import icons/fontello
+@import icons/fontello-codes
+@import icons/fontello-embedded
+@import icons/fontello-ie7-codes
+@import icons/fontello-ie7
+@import icons/animation
+
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web')
+@import modularscale
+
+$text-color: #080507
+$text-white: #F3F3F3
+$white: #F3F3F3
+$primary: #513F65
+$primary-pop: #513F65
+$secondary: #60712F
+$secondary-pop: #60712F
+$tertiary: #808038
+$tertiary-pop: #808038
+$quaternary: #9E715A
+$quaternary-pop: #9E715A
+$quinary: #F3F3F3
+$quinary-pop: #F3F3F3
+
+$border-color: darken($white, 20%)
+
+$dark-purple: #1B1118
+$purple: #4A3A5C
+$medium-purple: #7B1FA2
+$light-purple: #C3BAD7
+$accent-pink: #c16e86
+$natural-green: #386147
+$light-green: #578e53
+$succulent: #679894
+$rock-tan: #be8860
+
+$swift-out: cubic-bezier(0.4, 0.0, 0.2, 1)
+$ease-out: cubic-bezier(0.0, 0.0, 0.2, 1)
+$ease-in: cubic-bezier(0.4, 0.0, 1, 1)
+$sharp: cubic-bezier(0.4, 0.0, 0.6, 1)
+$smooth: cubic-bezier(.25,.8,.25,1)
+
+$menu-shadow: 0 -1px 2px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24)
+$gen-shadow: 0 1px 3px rgba(0,0,0,0.22), 0 1px 2px rgba(0,0,0,0.34)
+$gen-shadow-hover: 2px 5px 10px 2px rgba(0, 0, 0, 0.12), 0px 2px 5px 2px rgba(0, 0, 0, 0.24)
+
+// Modular Scale
+$ms-base: 20px, 16px !default
+$ms-ratio: 1.33
+
+$container-width: ms(17) !default
+$container-side-padding: ms(1)
+$container-top-btm-padding: ms(3)
+
+// Spacing
+$base-margin: ms(1)
+$border-width: ms(-10)
+
+// Inputs
+$input-height: ms(1) + (2 * ms(-3)) + ms(-7)
+
+// Typography
+$font-family: Calibre, sans-serif !default
+
+// Mixin for responding to different sizes
+$targets: xs 12, sm 14, md 16, lg 18, xl 20
+
+$border-radius: ms(-6)
+
+@mixin target($target)
+  @each $candidate in $targets
+    @if $target == nth($candidate, 1)
+      @media screen and (min-width: #{ms(nth($candidate, 2))})
+        @content
+
+body
+  top: 0
+  bottom: 0
+  right: 0
+  left: 0
+  height: 100vh
+  width: 100vw
+*
+  font-family: 'Titillium Web', sans-serif
+
+@import standard/base/grid
+@import standard/base/reset
+@import standard/base/spacing
+@import standard/base/typography
+@import standard/components/buttons
+@import components/navigation

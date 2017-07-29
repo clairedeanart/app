@@ -1,0 +1,191 @@
+.container
+  max-width: $container-width
+  margin-right: auto
+  margin-left: auto
+  padding: 0 ms(3)
+
+.row
+  box-sizing: border-box
+  display: flex
+  flex: 0 1 auto
+  flex-direction: row
+  flex-wrap: wrap
+  margin-right: ms(3) / -2
+  margin-left: ms(3) / -2
+  &.reverse
+    flex-direction: row-reverse
+
+// ???
+.col.reverse
+  flex-direction: column-reverse
+
+@mixin grid-size($name, $size)
+  @media only screen and (min-width: $size)
+    .col-#{$name},
+    .col-#{$name}-1,
+    .col-#{$name}-2,
+    .col-#{$name}-3,
+    .col-#{$name}-4,
+    .col-#{$name}-5,
+    .col-#{$name}-6,
+    .col-#{$name}-7,
+    .col-#{$name}-8,
+    .col-#{$name}-9,
+    .col-#{$name}-10,
+    .col-#{$name}-11,
+    .col-#{$name}-12,
+    .col-#{$name}-offset-0,
+    .col-#{$name}-offset-1,
+    .col-#{$name}-offset-2,
+    .col-#{$name}-offset-3,
+    .col-#{$name}-offset-4,
+    .col-#{$name}-offset-5,
+    .col-#{$name}-offset-6,
+    .col-#{$name}-offset-7,
+    .col-#{$name}-offset-8,
+    .col-#{$name}-offset-9,
+    .col-#{$name}-offset-10,
+    .col-#{$name}-offset-11,
+    .col-#{$name}-offset-12
+      box-sizing: border-box
+      flex: 0 0 auto
+      padding-right: ms(3) / 2
+      padding-left: ms(3) / 2
+
+      &.top-#{$name}
+        align-self: flex-start
+
+      &.middle-#{$name}
+        align-self: center
+
+      &.bottom-#{$name}
+        align-self: flex-end
+
+    .col-#{$name}
+      flex-grow: 1
+      flex-basis: 0
+      max-width: 100%
+
+    .col-#{$name}-1
+      flex-basis: percentage(1/12)
+      max-width: percentage(1/12)
+
+    .col-#{$name}-2
+      flex-basis: percentage(2/12)
+      max-width: percentage(2/12)
+
+    .col-#{$name}-3
+      flex-basis: percentage(3/12)
+      max-width: percentage(3/12)
+
+    .col-#{$name}-4
+      flex-basis: percentage(4/12)
+      max-width: percentage(4/12)
+
+    .col-#{$name}-5
+      flex-basis: percentage(5/12)
+      max-width: percentage(5/12)
+
+    .col-#{$name}-6
+      flex-basis: percentage(6/12)
+      max-width: percentage(6/12)
+
+    .col-#{$name}-7
+      flex-basis: percentage(7/12)
+      max-width: percentage(7/12)
+
+    .col-#{$name}-8
+      flex-basis: percentage(8/12)
+      max-width: percentage(8/12)
+
+    .col-#{$name}-9
+      flex-basis: percentage(9/12)
+      max-width: percentage(9/12)
+
+    .col-#{$name}-10
+      flex-basis: percentage(10/12)
+      max-width: percentage(10/12)
+
+    .col-#{$name}-11
+      flex-basis: percentage(11/12)
+      max-width: percentage(11/12)
+
+    .col-#{$name}-12
+      flex-basis: percentage(12/12)
+      max-width: percentage(12/12)
+
+    .col-#{$name}-offset-0
+      margin-left: 0
+
+    .col-#{$name}-offset-1
+      margin-left: percentage(1/12)
+
+    .col-#{$name}-offset-2
+      margin-left: percentage(2/12)
+
+    .col-#{$name}-offset-3
+      margin-left: percentage(3/12)
+
+    .col-#{$name}-offset-4
+      margin-left: percentage(4/12)
+
+    .col-#{$name}-offset-5
+      margin-left: percentage(5/12)
+
+    .col-#{$name}-offset-6
+      margin-left: percentage(6/12)
+
+    .col-#{$name}-offset-7
+      margin-left: percentage(7/12)
+
+    .col-#{$name}-offset-8
+      margin-left: percentage(8/12)
+
+    .col-#{$name}-offset-9
+      margin-left: percentage(9/12)
+
+    .col-#{$name}-offset-10
+      margin-left: percentage(10/12)
+
+    .col-#{$name}-offset-11
+      margin-left: percentage(11/12)
+
+    .start-#{$name}
+      justify-content: flex-start
+      text-align: start
+
+    .center-#{$name}
+      justify-content: center
+      text-align: center
+
+    .end-#{$name}
+      justify-content: flex-end
+      text-align: end
+
+    .row
+      &.top-#{$name}
+        align-items: flex-start
+
+      &.middle-#{$name}
+        align-items: center
+
+      &.bottom-#{$name}
+        align-items: flex-end
+
+      &.stretch-#{$name}
+        align-items: stretch
+
+    .around-#{$name}
+      justify-content: space-around
+
+    .between-#{$name}
+      justify-content: space-between
+
+    .first-#{$name}
+      order: -1
+
+    .last-#{$name}
+      order: 1
+
+@each $target in $targets
+  +grid-size(nth($target, 1), ms(nth($target, 2)))

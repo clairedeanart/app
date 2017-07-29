@@ -1,0 +1,53 @@
+$directions: ("t" : "top", "b" : "bottom", "l" : "left", "r" : "right")
+
+@each $target, $size in $targets
+  /* #{$target} */
+  @for $i from 0 through 4
+    @each $v, $k in $directions
+      .m-#{$v}-#{$target}-#{$i}
+        +target($target)
+          @if $i == 0
+            margin-#{$k}: 0 !important
+          @else
+            margin-#{$k}: ms($i) !important
+
+@each $target, $size in $targets
+  /* #{$target} */
+  @for $i from 0 through 8
+    @each $v, $k in $directions
+      .p-#{$v}-#{$target}-#{$i}
+        +target($target)
+          @if $i == 0
+            margin-#{$k}: 0 !important
+          @else
+            padding-#{$k}: ms($i) !important
+
+.d-inline-block
+  display: inline-block
+
+.d-flex__flex-grow
+  flex-grow: 1
+
+.d-flex
+  display: flex
+  &.d-flex--align-start
+    align-items: flex-start
+  &.d-flex--align-middle
+    align-items: center
+  &.d-flex--align-end
+    align-items: flex-end
+  &.d-flex--align-stretch
+    align-items: stretch
+  &.d-flex--space-around
+    justify-content: space-around
+  &.d-flex--space-between
+    justify-content: space-between
+  &.d-flex--justify-end
+    justify-content: flex-end
+  &.d-flex--justify-start
+    justify-content: flex-start
+  &.d-flex--column
+    flex-direction: column
+
+.d-none
+  display: none

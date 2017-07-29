@@ -1,0 +1,224 @@
+input[type=button],
+input[type=submit]
+  -webkit-appearance: none
+  -webkit-border-radius: 0
+  +btn()
+
+input[type=text],
+input[type=password],
+input[type=email],
+input[type=search],
+input[type=url],
+input[type=tel],
+input[type=number],
+textarea,
+select
+  font-size: ms(0)
+  background: rgba($primary, 0.05)
+  border: $border-width solid transparent
+  border-radius: $border-radius
+  line-height: ms(1)
+  padding-top: ms(-3)
+  padding-bottom: ms(-3)
+  padding-left: ms(-2)
+  &:not(select)
+    padding-right: ms(-2)
+  transition: background 0.3s, border 0.3s
+  box-sizing: border-box
+  -webkit-appearance: none
+  &.input-md
+    font-size: ms(1)
+    line-height: ms(2)
+    padding: ms(-2) ms(-1)
+    &::placeholder
+      font-size: ms(1)
+  &::placeholder
+    font-size: ms(-1)
+    color: rgba($primary, 0.30)
+  &:focus
+    background-color: $white
+    border: $border-width solid rgba($primary, 0.10)
+    &::placeholder
+      color: rgba($primary, 0.10)
+  .form-item &
+    display: block
+    width: 100%
+  .form-item--sm &
+    padding-top: ms(-6)
+    padding-bottom: ms(-6)
+    padding-left: ms(-3)
+    &:not(select)
+      padding-right: ms(-3)
+    line-height: ms(0)
+    height: ms(0) + (2 * ms(-6)) + 4px
+  .form-item--error &
+    border: $border-width solid $error
+  .form-item--icon &
+    padding-left: ms(3)
+
+select
+  height: $input-height
+  padding-right: $arrow-size * 4
+  background-image: linear-gradient(45deg, transparent 50%, $primary-40 50%), linear-gradient(135deg, $primary-40 50%, transparent 50%)
+  background-position: calc(100% - (#{$arrow-size} * 2)) center, calc(100% - #{$arrow-size}) center
+  background-size: $arrow-size $arrow-size, $arrow-size $arrow-size
+  background-repeat: no-repeat
+
+input[type=file]
+  font-size: ms(-1)
+  height: ms(3)
+  .btn &, .btn-outlined &
+    display: none
+
+input[type=checkbox],
+input[type=radio]
+  cursor: pointer
+
+textarea
+  resize: vertical
+  min-height: ms(8)
+
+.textarea--tall
+  min-height: ms(10)
+
+.form-item
+  margin-bottom: ms(1)
+  position: relative
+
+  input, textarea, select
+    margin-bottom: ms(-4)
+
+  label
+    display: inline-block
+    margin-bottom: ms(-3)
+    font-size: ms(-1)
+    input
+      margin-right: ms(-4)
+      margin-bottom: 0
+
+  > span
+    font-size: ms(-1)
+    display: block
+
+  &.form-item--required
+    label
+      position: relative
+    label:not(.custom-radio &):not(.custom-checkbox &)::after,
+      content: " "
+      display: block
+      width: ms(-6)
+      height: ms(-6)
+      border-radius: 100%
+      background-color: $secondary-pop
+      position: absolute
+      right: ms(-6) * -2
+      top: 0
+  &.form-item--error
+    label, span
+      color: $error
+    .selectize-input
+      border-color: $error
+  &.form-item--icon
+    label
+      position: relative
+      &:last-of-type
+        margin: 0
+    img
+      position: absolute
+      top: ($input-height - ms(0)) / 2
+      left: ms(-3)
+      height: ms(0)
+      width: ms(0)
+      opacity: 0.50
+  .form-item-group
+    display: flex
+    align-items: center
+    span
+      line-height: ms(3)
+      &.start
+        padding: 0 ms(-2) 0 0
+      &.end
+        padding: 0 0 0 ms(-2)
+
+.form-item__help-text
+  color: $primary-40
+  &:empty
+    display: none
+
+.form-item__secondary-label
+  position: absolute
+  top: 0
+  right: 0
+
+.form-group
+  border: 1px solid $border-color
+  border-radius: $border-radius
+  padding: ms(0)
+  margin-bottom: ms(0)
+  position: relative
+
+// Custom checkboxes and radio
+
+$custom-icon-size: ms(2)
+$dot-size: floor($custom-icon-size / 2)
+
+.custom-radio-group, .custom-checkbox-group
+  margin-bottom: ms(-3) * -1
+  > *:not(:last-child)
+    margin-right: ms(0)
+
+.custom-radio, .custom-checkbox
+  display: inline-block
+  position: relative
+  user-select: none
+  *
+    cursor: pointer
+  span
+    display: inline-block
+    padding-left: $custom-icon-size + ms(-3)
+    z-index: 10000
+    height: $custom-icon-size
+    line-height: $custom-icon-size
+
+  input[type="checkbox"],
+  input[type="radio"]
+    display: none
+    &:checked + *
+      background-color: $info
+      border-color: $info
+      &:after
+        opacity: 1
+
+.custom-radio__icon,
+.custom-checkbox__icon
+  box-sizing: border-box
+  background-color: $white
+  border: $border-width solid $border-color
+  cursor: pointer
+  height: $custom-icon-size
+  left: 0
+  position: absolute
+  top: 0
+  width: $custom-icon-size
+  &::after
+    background: $white
+    content: ""
+    left: ($custom-icon-size - $dot-size) / 2 - $border-width
+    top: ($custom-icon-size - $dot-size) / 2 - $border-width
+    width: $dot-size
+    height: $dot-size
+    opacity: 0
+    position: absolute
+
+.custom-checkbox__icon
+  border-radius: $border-radius
+  &::after
+    border-radius: $border-radius / 2
+
+.custom-radio__icon
+  border-radius: 50%
+  &::after
+    border-radius: 50%
+
+.pac-container
+  z-index: $z-index--address-autocomplete

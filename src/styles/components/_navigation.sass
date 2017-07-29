@@ -1,0 +1,34 @@
+.main-content__navigation
+  overflow: hidden
+  border-bottom: solid 1px $border-color
+  display: flex
+  justify-content: space-between
+  box-shadow: $menu-shadow
+  position: fixed
+  bottom: 0
+  left: 0
+  right: 0
+  padding-top: ms(-5)
+  padding-bottom: ms(-5)
+
+  .navigation__logo
+    display: flex
+    align-items: center
+    justify-content: center
+    img
+      height: ms(4)
+
+  .navigation__menu
+    list-style: none
+    display: flex
+    flex-direction: row
+    padding: ms(-3)
+    margin: 0
+    align-items: center
+    .navigation__menu__item
+      margin-left: ms(1)
+      cursor: pointer
+      transition: all 220ms ease
+      p
+        color: $secondary
+        font-size: ms(1)

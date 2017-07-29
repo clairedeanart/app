@@ -1,0 +1,226 @@
+$text-color: $text-color
+$selectize-color-border: rgba($primary, 0.10) !default
+$selectize-color-highlight: rgba(125,168,208,0.2) !default
+$selectize-color-input: white !default
+$selectize-color-input-full: $selectize-color-input !default
+$selectize-color-disabled: #fafafa !default
+$selectize-color-item: $tertiary-pop
+$selectize-color-item-text: white
+$selectize-color-item-border: #d0d0d0 !default
+$selectize-color-item-active: #e8e8e8 !default
+$selectize-color-item-active-text: $text-color !default
+$selectize-color-item-active-border: #cacaca !default
+$selectize-color-dropdown: white !default
+$selectize-color-dropdown-border: $selectize-color-border !default
+$selectize-color-dropdown-border-top: #f0f0f0 !default
+$selectize-color-dropdown-item-active: #f5fafd !default
+$selectize-color-dropdown-item-active-text: #495c68 !default
+$selectize-color-dropdown-item-create-text: rgba(red($text-color), green($text-color), blue($text-color), 0.5) !default
+$selectize-color-dropdown-item-create-active-text: $selectize-color-dropdown-item-active-text !default
+$selectize-color-optgroup: $selectize-color-dropdown !default
+$selectize-color-optgroup-text: $text-color !default
+
+$selectize-lighten-disabled-item: 30% !default
+$selectize-lighten-disabled-item-text: 30% !default
+$selectize-lighten-disabled-item-border: 30% !default
+$selectize-opacity-disabled: 0.5 !default
+
+$selectize-shadow-input: inset 0 1px 1px rgba(black, 0.1) !default
+$selectize-shadow-input-focus: inset 0 1px $border-width rgba(black, 0.15) !default
+$selectize-border: $border-width solid $selectize-color-border !default
+$selectize-dropdown-border: 1px solid $selectize-color-dropdown-border !default
+
+$selectize-width-item-border: 0 !default
+$selectize-max-height-dropdown: 200px !default
+
+$selectize-padding-item-x: ms(-2)
+$selectize-padding-item-y: 0
+$padding: ($input-height - ms(2) - $border-width * 2) / 2
+$selectize-padding-x: $padding
+$selectize-padding-y: $padding
+$selectize-padding-dropdown-item-x: $selectize-padding-x
+$selectize-padding-dropdown-item-y: $selectize-padding-y
+$selectize-margin-item-x: ms(-6)
+$selectize-margin-item-y: ms(-6)
+
+$selectize-arrow-size: 5px !default
+$selectize-arrow-color: #808080 !default
+$selectize-arrow-offset: 15px !default
+
+$selectize-caret-margin: 0 $border-width 0 0 !default
+$selectize-caret-margin-rtl: 0 4px 0 $border-width * -1 !default
+
+.selectize-control
+  position: relative
+  &.single
+    height: $input-height
+
+.selectize-input, .selectize-control.single .selectize-input.input-active
+  text-align: left
+  background: $selectize-color-input
+  cursor: text
+  display: inline-block
+
+.selectize-input
+  border: $border-width solid rgba(0, 0, 0, 0)
+  padding: ms(-3) ms(-2)
+  display: inline-block
+  width: 100%
+  overflow: hidden
+  position: relative
+  z-index: 1
+  box-sizing: border-box
+  border-radius: $border-radius
+  background: rgba($primary, 0.05)
+
+  .selectize-control.multi &.has-items
+    $padding-x: $selectize-padding-x
+    $padding-top: $selectize-padding-y - $selectize-padding-item-y - $selectize-width-item-border
+    $padding-bottom: $selectize-padding-y - $selectize-padding-item-y - $selectize-margin-item-y - $selectize-width-item-border
+    padding: $padding-top $padding-x $padding-bottom $padding-x
+
+  &.disabled, &.disabled *
+    cursor: default !important
+
+  &.focus
+    background: white
+    border: $selectize-border
+
+  > *
+    vertical-align: baseline
+    display: -moz-inline-stack
+    display: inline-block
+    zoom: 1
+
+  .selectize-control.single & > div
+    line-height: 1
+    font-size: ms(0)
+    img
+      display: inline-block
+      width: ms(1)
+      vertical-align: middle
+      margin-right: ms(-4)
+
+  .selectize-control.multi & > div
+    cursor: pointer
+    margin: 0 $selectize-margin-item-x $selectize-margin-item-y 0
+    padding: $selectize-padding-item-y $selectize-padding-item-x
+    background: $selectize-color-item
+    color: $selectize-color-item-text
+    border: $selectize-width-item-border solid $selectize-color-item-border
+    border-radius: $border-radius
+    line-height: ms(2)
+    font-size: ms(0)
+    display: inline-block
+
+    img
+      width: ms(1)
+      height: ms(1)
+      display: inline-block
+      vertical-align: top
+      margin-right: ms(-4)
+      margin-left: ms(-6) * -1
+
+    &.active
+      background: $selectize-color-item-active
+      color: $selectize-color-item-active-text
+      border: $selectize-width-item-border solid $selectize-color-item-active-border
+
+  .selectize-control.multi &.disabled > div
+    &, &.active
+      color: lighten(desaturate($selectize-color-item-text, 100%), $selectize-lighten-disabled-item-text)
+      background: lighten(desaturate($selectize-color-item, 100%), $selectize-lighten-disabled-item)
+      border: $selectize-width-item-border solid lighten(desaturate($selectize-color-item-border, 100%), $selectize-lighten-disabled-item-border)
+
+  > input
+    &::-ms-clear
+      display: none
+
+    transition-property: none !important
+    display: inline-block !important
+    padding: 0 !important
+    min-height: 0 !important
+    max-height: none !important
+    max-width: 100% !important
+    margin: $selectize-caret-margin !important
+    text-indent: 0 !important
+    border: 0 none !important
+    background: none !important
+    line-height: inherit !important
+    user-select: auto !important
+    box-shadow: none !important
+    &:focus
+      outline: none !important
+
+.selectize-input::after
+  content: ' '
+  display: block
+  clear: left
+
+// Dropdown
+
+.selectize-dropdown
+  position: absolute
+  z-index: 1000
+  text-align: left
+  background: white
+  margin: ms(-6) 0 0 0
+  box-sizing: border-box
+  border-radius: $border-radius
+  border: 1px solid $border-color
+  +shadow
+  [data-selectable]
+    cursor: pointer
+    overflow: hidden
+    .highlight
+      background: $selectize-color-highlight
+      border-radius: 1px
+    img
+      width: ms(1)
+      height: ms(1)
+      display: inline-block
+      vertical-align: top
+      margin-right: ms(-4)
+      margin-left: ms(-6) * -1
+  [data-selectable], .optgroup-header
+    padding: ms(-4) ms(-2)
+  .optgroup:first-child .optgroup-header
+    border-top: 0 none
+  .optgroup-header
+    color: $selectize-color-optgroup-text
+    background: $selectize-color-optgroup
+    cursor: default
+  .active
+    background: $secondary
+    color: $selectize-color-dropdown-item-active-text
+    &.create
+      color: $selectize-color-dropdown-item-create-active-text
+  .create
+    color: $selectize-color-dropdown-item-create-text
+
+.selectize-dropdown-content
+  overflow-y: auto
+  overflow-x: hidden
+  max-height: $selectize-max-height-dropdown
+
+.selectize-control.single .selectize-input
+  &, input
+    cursor: pointer
+  &.input-active, &.input-active input
+    cursor: text
+
+.selectize-control.rtl
+  &.single .selectize-input:after
+    left: $selectize-arrow-offset
+    right: auto
+
+  .selectize-input > input
+    margin: $selectize-caret-margin-rtl !important
+
+.selectize-control .selectize-input.disabled
+  opacity: $selectize-opacity-disabled
+  background-color: $selectize-color-disabled
+
+.selectize-dropdown-content.multiselect
+  .option
+    text-align: center

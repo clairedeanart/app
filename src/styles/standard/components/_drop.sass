@@ -1,0 +1,39 @@
+.drop-element, .drop-element:after, .drop-element:before, .drop-element *, .drop-element *:after, .drop-element *:before
+  box-sizing: border-box
+
+.drop-element
+  position: absolute
+  display: none
+  max-width: 100%
+  max-height: 100%
+  z-index: 1000
+  &.drop-open
+    display: block
+  .drop-content
+    +shadow()
+    border-radius: $border-radius
+    border: 1px solid $border-color
+    background: white
+    max-height: ms(15)
+    overflow: scroll
+    a
+      box-shadow: none
+      padding: ms(-4) ms(-1)
+      display: block
+      &:hover
+        background: $secondary
+      &.drop-content--active
+        background: $tertiary-pop
+        color: $white
+    ul
+      list-style: none
+      margin: 0
+      padding: ms(-4) 0
+    li
+      cursor: pointer
+      margin-bottom: 0
+
+.drop-toggle--active
+  .drop-toggle__title, .filter-item__title
+    font-weight: bold
+    color: $tertiary-pop

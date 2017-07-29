@@ -1,0 +1,36 @@
+ul.tabs
+  text-align: center
+  list-style: none
+  margin: 0
+  padding: 0
+  li
+    position: relative
+    display: inline-block
+    margin: 0
+    padding: 0
+    cursor: pointer
+    &.active
+      a
+        border-color: $primary-pop
+        &, *
+          color: $primary-pop
+        &:hover
+          border-color: $primary-pop
+    a
+      &:hover
+        border-color: transparentize($primary-pop, 0.6)
+      border-bottom: $border-width solid transparent
+      display: flex
+      align-items: center
+      margin: 0 ms(-6)
+      padding: ms(-3) ms(-4)
+      user-select: none
+      text-decoration: none
+      box-shadow: none
+      height: ms(0)
+      &, *
+        font-size: ms(0)
+        line-height: ms(0)
+        color: $text-color
+    p
+      display: inline-block
