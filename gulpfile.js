@@ -73,26 +73,26 @@ gulp.task('sass', function() {
     .pipe(autoprefixer({ browsers: ['last 2 version'] }))
     .pipe(gulp.dest(CSS_BUILD_DIR))
     .pipe(bs.stream());
-})
-
-
+});
 
 gulp.task('build-production', function() {
   return runSequence('fonts', 'production', 'complete');
 });
 
-// gulp.task('minifyjs', function() {
-//     return gulp.src('./public/js/bundle.js')
-//         .pipe(uglify())
-//         .pipe(gulp.dest('./public/js'));
-// });
-
 gulp.task('production', function() {
-  return gulp.src([CSS_SOURCE_DIR])
-    .pipe(sass())
+  return gulp.src(CSS_SOURCE_DIR)
+    .pipe(cache('style'))
+    .pipe(progeny({extensionsList: ['scss', 'sass']}))
+    .pipe(sass({
+      indentedSyntax: true, // Enable .sass syntax!
+      imagePath: '/images', // Used by the image-url helper
+      includePaths: [ 'node_modules/modularscale-sass/stylesheets' ]
+    }))
     .on('error', function(err) {
-      gutil.log("[production]", err.toString());
+        gutil.log("[sass]", err.toString());
+        this.emit('end');
     })
+    .pipe(autoprefixer({ browsers: ['last 2 version'] }))
     .pipe(minifycss())
     .pipe(gulp.dest(CSS_BUILD_DIR));
 });

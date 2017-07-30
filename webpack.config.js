@@ -1,3 +1,5 @@
+var webpack = require('webpack');
+
 module.exports = {
     entry: "./src/scripts/app.js",
     output: {
@@ -8,5 +10,13 @@ module.exports = {
         loaders: [
             { test: /\.css$/, loader: "style!css" }
         ]
-    }
+    },
+    plugins: [
+      new webpack.optimize.UglifyJsPlugin({
+        compress: {
+            warnings: false
+        }
+      })
+    ],
+
 };
