@@ -5,7 +5,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack --watch & gulp dev & nodemon",
-    "start": "node express.js"
+    "start": "node express.js",
+    "postinstall": "gulp build-production && webpack"
   },
   "keywords": [],
   "author": "",
