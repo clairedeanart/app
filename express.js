@@ -4,6 +4,7 @@ const app = express();
 const path = require('path');
 const request = require('superagent');
 const port = process.env.PORT || 4000;
+
 console.log(port)
 Promise = require('bluebird');
 
@@ -19,7 +20,7 @@ app.use(function(req, res, next) {
 });
 
 app.get('/', function(req, res, next) {
-  request.get(`http://localhost:4000/images`)
+  request.get(`${res.metadata.API_URL}/images`)
   .then((response => {
     var images = response.body;
     res.render('pages/index',
