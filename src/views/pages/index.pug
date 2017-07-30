@@ -1,15 +1,16 @@
 include ../components/menu
+include ../components/router
 
-doctype html
-
-head
-  link(rel="stylesheet" href="./css/base.css")
-body
-  .container
+doctype 
+html(data-server-url=API_URL)
+  include ../components/head
+  body
+    .container
+      +router(page)
+      +menu()
+  include ../components/foot
     
-  +menu()
   
-script(src="./js/app.js")
   
   
   

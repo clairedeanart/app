@@ -1,17 +1,17 @@
 {
   "name": "claire-dean-art-app",
   "version": "1.0.0",
-  "description": "",
   "main": "express.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "gulp dev & nodemon",
+    "dev": "webpack --watch & gulp dev & nodemon",
     "start": "node express.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bluebird": "^3.5.0",
     "browser-sync": "^2.18.8",
     "del": "^2.2.2",
     "dotenv": "^4.0.0",
@@ -26,10 +26,24 @@
     "gulp-sass": "^3.1.0",
     "gulp-uglify": "^2.1.2",
     "gulp-util": "^3.0.8",
+    "isotope-layout": "^3.0.4",
+    "masonry": "0.0.2",
     "modular-scale": "^4.4.1",
     "modularscale-sass": "^3.0.3",
     "morgan": "^1.8.1",
     "pug": "^2.0.0-beta.12",
-    "run-sequence": "^1.2.2"
-  }
+    "run-sequence": "^1.2.2",
+    "superagent": "^3.5.2",
+    "webpack": "^3.4.1"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/clairedeanart/app.git"
+  },
+  "bugs": {
+    "url": "https://github.com/clairedeanart/app/issues"
+  },
+  "homepage": "https://github.com/clairedeanart/app#readme",
+  "description": ""
 }

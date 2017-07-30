@@ -1,0 +1,8 @@
+mixin router(page)
+  if page === 'home'
+    include ../pages/home
+  else if page === 'about'
+    include ../pages/about
+  else if page === 'contact'
+    include ../pages/contact
+  
