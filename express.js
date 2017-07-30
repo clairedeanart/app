@@ -3,6 +3,8 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const request = require('superagent');
+const port = process.env.PORT || 4000;
+console.log(port)
 Promise = require('bluebird');
 
 app.use(express.static(path.resolve(__dirname, './public')))
@@ -45,7 +47,6 @@ app.get('/contact', function(req, res, next) {
   );
 });
 
-const port = process.env.PORT || 4040;
 app.listen(port, function() {
   console.log("Listening on", port);
 });
