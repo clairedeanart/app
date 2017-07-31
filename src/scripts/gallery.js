@@ -1,6 +1,6 @@
 function loadImages() {
+  // FIXME: Create loading state and limit query to only display 5-10 images
   var grid = document.querySelector('.gallery__grid');
-
   var iso = new Isotope( grid, {
     itemSelector: '.grid__item',
     percentPosition: true,
@@ -12,8 +12,9 @@ function loadImages() {
     }
   });
 
+  iso.layout();
+
   imagesLoaded( grid ).on( 'progress', function() {
-    // layout Isotope after each image loads
     iso.layout();
   });
 }

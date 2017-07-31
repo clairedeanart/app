@@ -2,8 +2,14 @@
 
   .grid-sizer,
   .grid__item
-    width: calc(25% - 10px)
     margin-bottom: 10px
+    width: calc(100%)
+    +target(sm)
+      width: calc(50% - 10px)
+    +target(md)
+      width: calc(33.333% - 10px)
+    +target(lg)
+      width: calc(25% - 10px)
 
   .grid__item
     float: left
