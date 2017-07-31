@@ -7,10 +7,12 @@
 
 @import url('https://fonts.googleapis.com/css?family=Titillium+Web')
 @import modularscale
+// Mixin for responding to different sizes
+$targets: xs 10, sm 12, md 14, lg 16, xl 18
 
 $text-color: #080507
 $text-white: #F3F3F3
-$white: #F3F3F3
+$white: lighten(#F3F3F3, 15%)
 $primary: #513F65
 $primary-pop: #513F65
 $secondary: #60712F
@@ -62,9 +64,6 @@ $input-height: ms(1) + (2 * ms(-3)) + ms(-7)
 // Typography
 $font-family: Calibre, sans-serif !default
 
-// Mixin for responding to different sizes
-$targets: xs 12, sm 14, md 16, lg 18, xl 20
-
 $border-radius: ms(-6)
 
 @mixin target($target)
@@ -72,6 +71,15 @@ $border-radius: ms(-6)
     @if $target == nth($candidate, 1)
       @media screen and (min-width: #{ms(nth($candidate, 2))})
         @content
+
+@mixin breakpoint($point)
+  @if $point == desktop
+    @media (min-width: 70em)
+      @content
+  @else if $point == laptop
+    @media (min-width: 70em)
+      @content
+
 
 body
   top: 0

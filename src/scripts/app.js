@@ -1,33 +1,21 @@
 
 var gallery = require('./gallery');
-// var Masonry = require('masonry');
-// var Isotope = require('isotope-layout');
+var about = require('./about');
 
 window.onload = function() {
-  var grid = document.querySelector('.gallery__grid');
+  // gallery.loadImages();
 
-  var iso = new Isotope( grid, {
-    itemSelector: '.grid__item',
-    percentPosition: true,
-    layoutMode: 'masonry',
-    masonry: {
-      columnWidth: '.grid-sizer',
-      gutter: 10,
-      transitionDuration: '0.2s',
-    }
-  });
+  // Menu
+  var navigationIcon = document.body.querySelector('.js-navigation-icon');
+  var mobileMenuContainer = document.body.querySelector('.js-menu-container');
+  console.log(navigationIcon)
+  navigationIcon.onclick = function(e) {
+    navigationIcon.classList.toggle('navigation-icon--open');
 
-  imagesLoaded( grid ).on( 'progress', function() {
-    // layout Isotope after each image loads
-    iso.layout();
-  });
+    mobileMenuContainer.classList.toggle('mobile-menu--open');
+  };
 
-  // gallery.fetchImages();
-  // var elem = document.querySelector('.gallery__grid');
-  // var grid = new Isotope( elem, {
-  //   // options
-  //   itemSelector: '.grid__item',
-  //   layoutMode: 'fitRows'
-  // });
+
+
 
 }

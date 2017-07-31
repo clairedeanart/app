@@ -3,6 +3,12 @@
   margin-right: auto
   margin-left: auto
   padding: 0 ms(3)
+  .container--mobile
+    padding: 0 ms(-1)
+    +target(sm)
+      padding: 0 ms(2)
+    +target(md)
+      padding: 0 ms(3)
 
 .row
   box-sizing: border-box

@@ -27,7 +27,7 @@ gulp.task('dev', function() {
     open: true,
     notify: true,
   });
-  runSequence('fonts', 'sass', 'watch');
+  runSequence(['fonts', 'sass', 'watch']);
 });
 
 gulp.task('watch', function() {
@@ -58,6 +58,7 @@ gulp.task('fonts', function() {
 });
 
 gulp.task('sass', function() {
+  console.log('sass!')
   return gulp.src(CSS_SOURCE_DIR)
     .pipe(cache('style'))
     .pipe(progeny({extensionsList: ['scss', 'sass']}))
