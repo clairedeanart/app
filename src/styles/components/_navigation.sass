@@ -1,4 +1,4 @@
-$speed: 300ms
+$speed: 440ms
 
 .main-content__navigation
   position: relative
@@ -13,11 +13,14 @@ $speed: 300ms
   right: 0
   padding-top: ms(-5)
   padding-bottom: ms(-5)
+  z-index: 100
 
   .navigation__logo
     display: flex
     align-items: center
     justify-content: center
+    z-index: 500
+    background-color: $white
     img
       height: ms(4)
 
@@ -32,38 +35,42 @@ $speed: 300ms
       p
         font-size: ms(1)
 
+  .mobile-menu
+    background-color: $white
+    height: 60vh
+    width: 100vw
+    max-height: 0px
+    transition: all $speed cubic-bezier(.96,-.25,0,1.15)
+    position: fixed
+    bottom: 0
+    left: 0
+    right: 0
+    box-shadow: $menu-shadow
+    // padding-top: ms(1)
+    // padding-bottom: ms(1)
+    .navigation__menu__item
+      margin: 0
+      cursor: pointer
+      p
+        color: $secondary
+        font-size: ms(2)
+    .navigation__menu
+      display: flex
+      flex-direction: column
+      justify-content: space-between
+      align-items: flex-start
+      height: ms(9)
+      padding: ms(-3)
+      padding-left: ms(-1)
+    &.mobile-menu--open
+      max-height: ms(10)
+
 .navigation__menu
   list-style: none
   align-items: center
   margin: 0
   padding: 0
   text-align: center
-  .navigation__menu__item
-    margin: 0
-    cursor: pointer
-    p
-      color: $secondary
-      font-size: ms(3)
-
-.mobile-menu
-  background-color: $white
-  height: 50vh
-  width: 100vw
-  max-height: 0px
-  transition: all $speed cubic-bezier(0.96, -0.65, 0, 1.65)
-  position: fixed
-  bottom: 0
-  left: 0
-  right: 0
-  box-shadow: $menu-shadow
-  .navigation__menu
-    display: flex
-    flex-direction: column
-    justify-content: space-between
-    height: ms(9)
-    padding: ms(-3)
-  &.mobile-menu--open
-    max-height: ms(10)
 
 .navigation-icon
   height: ms(1)

@@ -1,21 +1,21 @@
 mixin menu()
-  .navigation-icon.js-navigation-icon
-    .navigation-icon__bar
-    .navigation-icon__bar
-    .navigation-icon__bar
-  .mobile-menu.js-menu-container
-    .container
-      ul.navigation__menu
-        li.navigation__menu__item 
-          a(href="/") 
-            p Gallery
-        li.navigation__menu__item 
-          a(href="/about") 
-            p About
-        li.navigation__menu__item 
-          a(href="/contact") 
-            p Contact
   .main-content__navigation.container.container--mobile.js-navigation-container
+    .navigation-icon.js-navigation-icon
+      .navigation-icon__bar
+      .navigation-icon__bar
+      .navigation-icon__bar
+    .mobile-menu.js-menu-container
+      .container.container--mobile
+        ul.navigation__menu
+          li.navigation__menu__item 
+            a(href="/") 
+              p Gallery
+          li.navigation__menu__item 
+            a(href="/about") 
+              p About
+          li.navigation__menu__item 
+            a(href="/contact") 
+              p Contact
     .navigation__logo
       img(src="/assets/logos/black/png/black_large_flat.png")
     ul.navigation__menu
