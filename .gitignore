@@ -1,2 +1,7 @@
 .env
 node_modules
+
+*.eot
+node_modules
+public/js/*
+public/src

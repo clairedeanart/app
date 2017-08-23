@@ -1,4 +1,4 @@
 .gallery__grid
   .grid-sizer
   each image in images
-    img.grid__item(src=image.location)
+    img.grid__item.js-image(src=image.location data-data=image)
