@@ -75,11 +75,11 @@ Lightbox.prototype.animateImage = function animateImage(direction) {
 }
 
 Lightbox.prototype.mount = function () {
+  document.body.style.overflow = 'hidden';
   setTimeout(function() {
     this.animateLightbox('in');
     this.animateImage('in');
-    document.body.style.overflow = 'hidden';
-  }.bind(this), 100);
+  }.bind(this), 10);
 };
 
 Lightbox.prototype.unmount = function () {
@@ -87,24 +87,23 @@ Lightbox.prototype.unmount = function () {
   this.animateImage('out');
   this.animateLightbox('out');
   setTimeout(function() {
-
     this.destroy();
   }.bind(this), 300);
 };
 
 Lightbox.prototype.destroy = function destroy() {
+  document.body.style.overflow = 'initial';
   setTimeout(function() {
     this.lightbox.remove();
-    document.body.style.overflow = 'initial';
-  }.bind(this), 300);
+  }.bind(this), 10);
 }
 
 Lightbox.prototype.handleClick = function handleClick(e) {
   if (this.unmounting) return;
-  // if (e.target.classList.contains('lightbox__backdrop')) {
   // this.goRight(e);
-
-  // }
+  if (e.target.classList.contains('lightbox__backdrop')) {
+    this.unmount();
+  }
 };
 
 Lightbox.prototype.goRight = function goRight(e) {

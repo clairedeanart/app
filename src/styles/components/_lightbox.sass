@@ -9,7 +9,6 @@ $bounce: cubic-bezier(.96,-.25,0,1.15)
   left: 0
   right: 0
   z-index: 100
-  transform: 300ms $bounce
 
   .lightbox__close-icon__wrapper
     z-index: 101
@@ -37,29 +36,36 @@ $bounce: cubic-bezier(.96,-.25,0,1.15)
   .lightbox__backdrop
     height: 100%
     width: 100%
-    background-color: rgba(0,0,0,0.55)
+    background-color: rgba(0,0,0,0)
     display: flex
     justify-content: center
     align-items: center
-    opacity: 0
-    transform: 500ms $bounce
-    // -webkit-transform 300ms $bounce
 
-  & .lightbox__backdrop, .lightbox__close-icon__wrapper
-    transition: all 500ms $bounce 100ms
+  .lightbox__backdrop
+    cursor: zoom-out
+  .lightbox__image__wrapper
+    cursor: initial
+
+  .lightbox__backdrop
+    transition: all 500ms ease
+  .lightbox__close-icon__wrapper
+    transition: all 600ms $bounce
+  .lightbox__image__wrapper
+    transition: all 440ms $bounce
+  .lightbox__image
+    transition: transform 440ms $bounce 100ms
+
   &.lightbox--fade-in
     .lightbox__backdrop, .lightbox__close-icon__wrapper
       opacity: 1
+      background-color: rgba(0,0,0,0.55)
 
   .lightbox__image__wrapper
     height: 100vh
     display: flex
     flex-direction: row
-    transition: all 440ms $bounce
 
     .lightbox__image
-      // height: 100vh
-      transition: transform 440ms $bounce 100ms
 
   .lightbox__new-image
     // position: fixed

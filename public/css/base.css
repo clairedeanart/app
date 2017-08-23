@@ -3183,8 +3183,7 @@ ul {
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 100;
-  transform: 300ms cubic-bezier(0.96, -0.25, 0, 1.15); }
+  z-index: 100; }
   .lightbox .lightbox__close-icon__wrapper {
     z-index: 101;
     bottom: 15px;
@@ -3215,27 +3214,33 @@ ul {
   .lightbox .lightbox__backdrop {
     height: 100%;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.55);
+    background-color: transparent;
     display: -ms-flexbox;
     display: flex;
     -ms-flex-pack: center;
         justify-content: center;
     -ms-flex-align: center;
-        align-items: center;
-    opacity: 0;
-    transform: 500ms cubic-bezier(0.96, -0.25, 0, 1.15); }
-  .lightbox .lightbox__backdrop, .lightbox .lightbox__close-icon__wrapper {
-    transition: all 500ms cubic-bezier(0.96, -0.25, 0, 1.15) 100ms; }
+        align-items: center; }
+  .lightbox .lightbox__backdrop {
+    cursor: zoom-out; }
+  .lightbox .lightbox__image__wrapper {
+    cursor: initial; }
+  .lightbox .lightbox__backdrop {
+    transition: all 500ms ease; }
+  .lightbox .lightbox__close-icon__wrapper {
+    transition: all 600ms cubic-bezier(0.96, -0.25, 0, 1.15); }
+  .lightbox .lightbox__image__wrapper {
+    transition: all 440ms cubic-bezier(0.96, -0.25, 0, 1.15); }
+  .lightbox .lightbox__image {
+    transition: transform 440ms cubic-bezier(0.96, -0.25, 0, 1.15) 100ms; }
   .lightbox.lightbox--fade-in .lightbox__backdrop, .lightbox.lightbox--fade-in .lightbox__close-icon__wrapper {
-    opacity: 1; }
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.55); }
   .lightbox .lightbox__image__wrapper {
     height: 100vh;
     display: -ms-flexbox;
     display: flex;
     -ms-flex-direction: row;
-        flex-direction: row;
-    transition: all 440ms cubic-bezier(0.96, -0.25, 0, 1.15); }
-    .lightbox .lightbox__image__wrapper .lightbox__image {
-      transition: transform 440ms cubic-bezier(0.96, -0.25, 0, 1.15) 100ms; }
+        flex-direction: row; }
   .lightbox .lightbox__new-image {
     transition: all 500ms ease-out; }
