@@ -118,7 +118,11 @@ Lightbox.prototype.goRight = function goRight(e) {
   // newImageWrapper.className = 'lightbox__new-image__wrapper';
   this.lightboxImage.className = 'lightbox__new-image';
   this.lightboxImage.src = nextImage.src;
-  this.lightboxImage.height = this.win.height;
+  if (this.win.height > this.win.width) {
+    this.lightboxImage.height = this.win.height;
+  } else {
+    this.lightboxImage.width = this.win.width;
+  }
 
   // this.lightboxImageWrapper.className = 'lightbox__image__wrapper';
   // this.lightboxImage.className = 'lightbox__image';
