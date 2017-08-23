@@ -208,7 +208,8 @@ body {
   right: 0;
   left: 0;
   height: 100vh;
-  width: 100vw; }
+  width: 100vw;
+  background-color: #1B1118; }
 
 * {
   font-family: 'Titillium Web', sans-serif; }
@@ -3148,29 +3149,29 @@ ul {
   .navigation-icon.navigation-icon--open .navigation-icon__bar:nth-child(2) {
     transform: translateX(200px); }
 
-.gallery__grid .grid-sizer,
-.gallery__grid .grid__item {
-  margin-bottom: 10px;
-  width: calc(100%); }
-  @media screen and (min-width: 30.63513em) {
-    .gallery__grid .grid-sizer,
-    .gallery__grid .grid__item {
-      width: calc(50% - 10px); } }
-  @media screen and (min-width: 54.19048em) {
-    .gallery__grid .grid-sizer,
-    .gallery__grid .grid__item {
-      width: calc(33.333% - 10px); } }
-  @media screen and (min-width: 95.85753em) {
-    .gallery__grid .grid-sizer,
-    .gallery__grid .grid__item {
-      width: calc(25% - 10px); } }
-
-.gallery__grid .grid__item {
-  float: left; }
-
-.gallery__grid .grid__item img {
-  display: block;
-  max-width: 100%; }
+.gallery__grid {
+  margin-bottom: 65px; }
+  .gallery__grid .grid-sizer,
+  .gallery__grid .grid__item {
+    margin-bottom: 5px;
+    width: calc(100%); }
+    @media screen and (min-width: 30.63513em) {
+      .gallery__grid .grid-sizer,
+      .gallery__grid .grid__item {
+        width: calc(50% - 5px); } }
+    @media screen and (min-width: 54.19048em) {
+      .gallery__grid .grid-sizer,
+      .gallery__grid .grid__item {
+        width: calc(25% - 5px); } }
+    @media screen and (min-width: 95.85753em) {
+      .gallery__grid .grid-sizer,
+      .gallery__grid .grid__item {
+        width: calc(25% - 5px); } }
+  .gallery__grid .grid__item {
+    float: left; }
+  .gallery__grid .grid__item img {
+    display: block;
+    max-width: 100%; }
 
 .grid__item {
   cursor: zoom-in; }
@@ -3241,6 +3242,10 @@ ul {
     display: -ms-flexbox;
     display: flex;
     -ms-flex-direction: row;
-        flex-direction: row; }
+        flex-direction: row;
+    -ms-flex-pack: center;
+        justify-content: center;
+    -ms-flex-align: center;
+        align-items: center; }
   .lightbox .lightbox__new-image {
     transition: all 500ms ease-out; }

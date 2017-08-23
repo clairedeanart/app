@@ -10,7 +10,7 @@ function loadImages(grid) {
     layoutMode: 'masonry',
     masonry: {
       columnWidth: '.grid-sizer',
-      gutter: 10,
+      gutter: 5,
       transitionDuration: '0.2s',
     }
   });

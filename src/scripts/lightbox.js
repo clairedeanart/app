@@ -5,6 +5,7 @@ function Lightbox(images, event) {
   this.lightboxCloseIcon = null;
   this.lightboxImageWrapper = null;
   this.lightboxImage = null;
+  this.metaDataWrapper = null;
   this.event = event;
   this.image = event.target;
   this.images = images;
@@ -25,6 +26,7 @@ Lightbox.prototype.layout = function layout() {
   this.lightboxCloseIcon = document.createElement('p');
   this.lightboxImageWrapper = document.createElement('div');
   this.lightboxImage = document.createElement('img');
+  this.metaDataWrapper = document.createElement('div');
 
   this.lightbox.onclick = this.handleClick.bind(this);
   this.lightboxCloseIconWrapper.onclick = this.unmount.bind(this);
@@ -37,9 +39,29 @@ Lightbox.prototype.layout = function layout() {
   this.lightboxCloseIcon.className = 'lightbox__close-icon';
   this.lightboxCloseIconWrapper.className = 'js-close-icon lightbox__close-icon__wrapper';
 
-  this.lightboxImage.style.transform = 'translateY('+ this.win.height + 'px';
+  if (this.image.height > this.image.width) {
+    var ratio = this.image.width / this.image.height;
+    var width = this.win.height * ratio;
+    // Vertical image
+    this.lightboxImage.width = width;
+    this.lightboxImage.height = this.win.height;
+  } else if (this.image.height < this.image.width) {
+    // Horizontal image
+    var ratio = this.image.height / this.image.width;
+    var height = this.win.width * ratio;
+    this.lightboxImage.height = height;
+    this.lightboxImage.width = this.win.width;
+  } else {
+    var ratio = this.image.width / this.image.height;
+    var width = this.win.height * ratio;
+    // Vertical image
+    this.lightboxImage.width = width;
+    this.lightboxImage.height = this.win.height;
+  }
+
+  var below = Math.max(this.win.height, this.lightboxImage.height);
+  this.lightboxImage.style.transform = 'translateY('+ below + 'px';
   this.lightboxImage.src = this.image.getAttribute('src');
-  this.lightboxImage.height = this.win.height;
 
   this.lightboxCloseIcon.innerHTML = 'X';
 
@@ -74,11 +96,21 @@ Lightbox.prototype.animateImage = function animateImage(direction) {
   }
 }
 
+Lightbox.prototype.animateMetaData = function animateMetaData(direction) {
+  if (direction === 'in') {
+    this.metaDataWrapper.style.transform = 'translateY(0px)';
+  }
+  else {
+    this.metaDataWrapper.style.transform = 'translateY('+ this.win.height + 'px)';
+  }
+}
+
 Lightbox.prototype.mount = function () {
   document.body.style.overflow = 'hidden';
   setTimeout(function() {
     this.animateLightbox('in');
     this.animateImage('in');
+    this.animateMetaData('in');
   }.bind(this), 10);
 };
 
