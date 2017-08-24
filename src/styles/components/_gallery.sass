@@ -1,15 +1,15 @@
 .gallery__grid
-
+  margin-bottom: 65px
   .grid-sizer,
   .grid__item
-    margin-bottom: 10px
+    margin-bottom: 5px
     width: calc(100%)
     +target(sm)
-      width: calc(50% - 10px)
+      width: calc(50% - 5px)
     +target(md)
-      width: calc(33.333% - 10px)
+      width: calc(25% - 5px)
     +target(lg)
-      width: calc(25% - 10px)
+      width: calc(25% - 5px)
 
   .grid__item
     float: left
@@ -17,6 +17,7 @@
   .grid__item img
     display: block
     max-width: 100%
+
 
 .grid__item
   cursor: zoom-in
