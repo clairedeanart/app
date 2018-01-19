@@ -2638,6 +2638,22 @@ input[type="reset"], input[type="button"], input[type="submit"] {
 .d-none {
   display: none; }
 
+.space-1 {
+  width: 100%;
+  margin: 1.31em 0; }
+
+.space-2 {
+  width: 100%;
+  margin: 1.7161em 0; }
+
+.space-3 {
+  width: 100%;
+  margin: 2.24809em 0; }
+
+.space-4 {
+  width: 100%;
+  margin: 2.945em 0; }
+
 @media screen and (min-width: 14.88377em) {
   .center-text-xs, .center-text-xs * {
     text-align: center; } }

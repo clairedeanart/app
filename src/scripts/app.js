@@ -1,5 +1,5 @@
 // var Flickity = require('flickity');
-var autosize = require('autosize');
+// var autosize = require('autosize');
 
 var gallery = require('./gallery');
 var about = require('./about');
@@ -31,6 +31,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
   // Contact page
   if (window.location.pathname === '/contact') {
     contact.setup();
-    autosize(document.querySelectorAll('textarea'));
+    // autosize(document.querySelectorAll('textarea'));
   }
 });
