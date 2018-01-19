@@ -80,7 +80,9 @@ function clearInputs() {
 
 function send() {
   if (validate(true)) {
-    console.log('sending', contactForm)
+    btn = document.querySelector('.btn')
+    btn.classList.add('btn-disabled')
+    btn.innerHTML = "Sending message..."
     serverUrl = document.documentElement.dataset.serverUrl
     request
       .post(serverUrl + "/messages")
