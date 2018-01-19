@@ -1,8 +1,8 @@
 mixin router(page)
-  if page === 'home'
-    include ../pages/home
-  else if page === 'about'
-    include ../pages/about
-  else if page === 'contact'
-    include ../pages/contact
+  case page
+    when 'home': include ../pages/home
+    when 'teaching': include ../pages/teaching
+    when 'about': include ../pages/about
+    when 'contact': include ../pages/contact
+    when 'contact-success': include ../pages/contact-success
   

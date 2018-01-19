@@ -1,1 +1,41 @@
-h1 Contact page!
+.page-header
+  .page-header-background.page-header--contact
+  .page-header-title
+    h1 Contact
+.page-body
+  .container
+    .row
+      .col-md-3.col-xs-12
+      .col-md-9.col-xs-12.m-b-xs-1.m-b-md-0
+        h4 Fill out the form below to get in touch!
+        h5 If you would like to view my resume or read about my adventures in teaching, please click 
+          span #[a(href="/teaching") here.]
+    .row
+      .col-md-3.col-xs-12
+        .profile-image
+      .col-md-9.col-xs-12
+        .form-box
+          .row.m-b-xs-1
+            .col-md-8.col-xs-12
+              .input-group.input-group--sm
+                input(name="fromName" type="text")
+                label Name
+                .bar
+                .help-text.js-validation-fromName
+          .row.m-b-xs-1
+            .col-md-8.col-xs-12
+              .input-group.input-group--sm
+                input(name="fromEmail" type="email")
+                label Email Address
+                .bar
+                .help-text.js-validation-fromEmail
+          .row.m-b-xs-1
+            .col-md-8.col-xs-12
+              .input-group.input-group--sm
+                textarea(name="text")
+                label Your Message
+                .bar
+                .help-text.js-validation-text
+          .row
+            .col-md-8.col-xs-12
+              .btn.btn-disabled.m-t-xs-1.js-send Send Message

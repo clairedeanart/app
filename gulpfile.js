@@ -24,6 +24,9 @@ gulp.task('dev', function() {
   bs.init(null, {
     proxy: "http://localhost:4040",
     port: 4444,
+    ui: {
+      port: 8080
+    },
     open: true,
     notify: true,
   });

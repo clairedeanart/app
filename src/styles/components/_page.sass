@@ -1,0 +1,51 @@
+$page-height: ms(10)
+
+.page-header
+  position: fixed
+  top: 0
+  left: 0
+  width: 100%
+  min-height: $page-height
+  .page-header-background
+    position: absolute
+    background-size: cover
+    background-position: center
+    background-repeat: no-repeat
+    width: 100%
+    height: 100%
+    min-height: ms(9)
+    -webkit-filter: blur(1px)
+    -moz-filter: blur(1px)
+    -o-filter: blur(1px)
+    -ms-filter: blur(1px)
+    filter: blur(1px)
+    &:after
+      content: ''
+      position: absolute
+      left: 0
+      top: 0
+      width: 100%
+      height: 100%
+      background-color: rgba(0,0,0,0.5)
+    &.page-header--contact
+      background-image: url("/assets/cda-profile-2.jpg")
+      background-position: left
+    &.page-header--teach
+      background-image: url("/assets/cda-profile-header.jpg")
+  .page-header-title
+    height: 100%
+    min-height: $page-height
+    display: flex
+    position: relative
+    z-index: 100
+    color: white
+    align-items: flex-end
+    justify-content: flex-start
+    margin: 0 ms(0)
+
+.page-body
+  position: relative
+  top: $page-height
+  background-color: $white
+  padding: ms(1) 0
+  margin-bottom: ms(5)

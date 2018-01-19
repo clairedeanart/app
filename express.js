@@ -27,9 +27,18 @@ app.get('/', function(req, res, next) {
       Object.assign(res.metadata, {
         images,
         page: 'home',
+        // gallery: true
       })
     );
   }))
+});
+
+app.get('/teaching', function(req, res, next) {
+  res.render('pages/index',
+    Object.assign(res.metadata, {
+      page: 'teaching',
+    })
+  );
 });
 
 app.get('/about', function(req, res, next) {
@@ -44,6 +53,13 @@ app.get('/contact', function(req, res, next) {
   res.render('pages/index',
     Object.assign(res.metadata, {
       page: 'contact',
+    })
+  );
+});
+app.get('/success', function(req, res, next) {
+  res.render('pages/index',
+    Object.assign(res.metadata, {
+      page: 'contact-success',
     })
   );
 });

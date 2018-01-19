@@ -4,10 +4,9 @@ include ../components/router
 doctype 
 html(data-server-url=API_URL)
   include ../components/head
-  body
-    .container
-      +router(page)
-      +menu()
+  body(class=gallery ? 'body--dark' : 'body--light')
+    +router(page)
+    +menu()
   include ../components/foot
     
   

@@ -50,7 +50,7 @@ $bounce: cubic-bezier(.96,-.25,0,1.15)
     opacity: 1
     transition: all $speed $bounce
     .navigation__menu__item
-      margin: 0
+      margin: 0 0 ms(0) 0
       cursor: pointer
       p
         color: $secondary
@@ -58,7 +58,7 @@ $bounce: cubic-bezier(.96,-.25,0,1.15)
     .navigation__menu
       display: flex
       flex-direction: column
-      justify-content: space-between
+      // justify-content: space-between
       align-items: flex-start
       height: ms(9)
       padding: ms(-3)
@@ -68,7 +68,6 @@ $bounce: cubic-bezier(.96,-.25,0,1.15)
       transition: all $speed $bounce
       transform: translateY(ms(6))
       opacity: 1
-
 
 .navigation__menu
   list-style: none
@@ -82,13 +81,15 @@ $bounce: cubic-bezier(.96,-.25,0,1.15)
   width: ms(2)
   position: fixed
   bottom: 0
-  right: ms(-2)
+  right: ms(-1)
+  bottom: ms(-6)
   margin: ms(-1)
   display: flex
   flex-direction: column
   z-index: 1000
   padding-top: ms(-6)
   padding-bottom: ms(-6)
+  transition: all 300ms ease
   +target(sm)
     display: none
   .navigation-icon__bar
@@ -97,8 +98,9 @@ $bounce: cubic-bezier(.96,-.25,0,1.15)
     height: 0
     margin-bottom: ms(-2)
     width: 100%
-    transition: all 500ms ease
+    transition: all 300ms ease
   &.navigation-icon--open
+    transform: translateX(ms(0))
     .navigation-icon__bar
       &:first-child
         transform: rotate(-45deg) translate(-(0.95em))
