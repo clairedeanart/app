@@ -20,7 +20,7 @@ module.exports = {
           warnings: false
       }
     }),
-    new RefreshBrowserPlugin()
+    // new RefreshBrowserPlugin()
   ],
 
 };

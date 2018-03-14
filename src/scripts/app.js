@@ -32,14 +32,13 @@ var togglerWidth = '8.67302em',
     anchors:['top', 'teaching', 'contact'],
     scrollingSpeed: 800,
     menu: '.page-menu',
-    continuousVertical: true,
+    // continuousVertical: true,
     // normalScrollElements: ['.normal-scroll-element'],
     // dragAndMove: true,
     easingcss3: 'ease-in-out',
     // parallax: true,
 		// parallaxOptions: {type: 'reveal', percentage: 62, property: 'translate'},
     onLeave: function(e) {
-      console.log('isSmallDevice', isSmallDevice())
       if (isSmallDevice()) { $('.js-page-toggler').velocity({scale: smallToggleBubbleScale}) }
     }
   },
