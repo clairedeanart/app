@@ -1,51 +1,116 @@
 $page-height: ms(10)
+$goofy-radius: 43px 26px / 58px 13px
+
+.hero-header
+  top: 35%
+  +target(sm)
+    top: 25%
+  +target(md)
+    top: 0%
+  position: absolute
+  align-items: center
+  justify-content: center
+  display: flex
+  flex-direction: column
+  width: 100%
+  left: 0
+
+.page-wrapper
+  position: relative
+  min-height: 100vh
+  background-color: $quinary-pop
+  padding: ms(1)
+  // margin: ms(-1)
+  &.page-wrapper--primary
+    background-color: $primary
+    // color: $white
+  &.page-wrapper--secondary
+  background-color: $secondary
+
+.heading-image--large
+  max-width: 90vw
+  width: 80%
+  // position: relative
+  // left: -(ms(3))
+
+.center-button-wrapper
+  display: flex
+  justify-content: flex-start
+  align-items: flex-start
+
+.image-column
+  display: none
+  +target(lg)
+    display: block
+
+.fixed-page-toggler
+  display: flex
+  align-items: center
+  justify-content: center
+  height: 100vh
+  width: 100vw
+  position: fixed
+  right: 0
+  bottom: 0
+  background-color: $dark-purple
+  border-radius: ms(100)
+  color: white
+  cursor: pointer
+  transform: scale(1.5)
+  border-radius: $goofy-radius
+  .toggler-text
+    position: absolute
+    text-align: center
+    transform: translateY(30px)
+    opacity: 0
+  .toggler-text-image
+    height: ms(5)
+    width: ms(7)
+    transform: translateY(-10px)
+
+.page-menu
+  display: none
+  +target(md)
+    list-style: none
+    position: fixed
+    top: 3%
+    left: ms(2)
+    z-index: 100
 
 .page-header
-  position: fixed
-  top: 0
-  left: 0
-  width: 100%
-  min-height: $page-height
-  .page-header-background
-    position: absolute
-    background-size: cover
-    background-position: center
-    background-repeat: no-repeat
-    width: 100%
-    height: 100%
-    min-height: ms(9)
-    -webkit-filter: blur(1px)
-    -moz-filter: blur(1px)
-    -o-filter: blur(1px)
-    -ms-filter: blur(1px)
-    filter: blur(1px)
-    &:after
-      content: ''
-      position: absolute
-      left: 0
-      top: 0
-      width: 100%
-      height: 100%
-      background-color: rgba(0,0,0,0.5)
-    &.page-header--contact
-      background-image: url("/assets/cda-profile-2.jpg")
-      background-position: left
-    &.page-header--teach
-      background-image: url("/assets/cda-profile-header.jpg")
-  .page-header-title
-    height: 100%
-    min-height: $page-height
-    display: flex
-    position: relative
-    z-index: 100
-    color: white
-    align-items: flex-end
-    justify-content: flex-start
-    margin: 0 ms(0)
+  margin-top: ms(-1)
+  +target(xs)
+    font-size: ms(3)
+    width: 48%
+  +target(md)
+    font-size: ms(4)
+    width: 78%
 
 .page-body
   position: relative
-  top: $page-height
-  background-color: $white
   padding: ms(1) 0
-  margin-bottom: ms(5)
+  margin-top: ms(1)
+  +target(xs)
+    width: 100%
+  // +target(sm)
+  //   width: 80%
+  +target(md)
+    width: 86%
+
+.center-button-wrapper
+  display: flex
+
+.teaching-card
+  border-radius: $border-radius
+  height: ms(9)
+  width: 100%
+  border: solid ms(-10) transparentize($primary-pop, 0.8)
+  color: $dark-purple
+  display: flex
+  align-items: center
+  justify-content: center
+  box-shadow: $gen-shadow
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1)
+  background-color: $white
+  &:hover
+    box-shadow: $gen-shadow-hover

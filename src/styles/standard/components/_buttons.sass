@@ -1,7 +1,7 @@
 
 
 @mixin btn-shadow
-  box-shadow: 0 ms(-6) ms(-5) btransparentize($text-color, 0.8)
+  box-shadow: 0 ms(-6) ms(-5) btransparentize($text-color, 0.1)
 
 @mixin btn-size($size: md)
   @if $size == sm
@@ -20,17 +20,18 @@
     line-height: ms(1)
     padding: ms(-6) ms(-3)
 
-@mixin btn-color($color: $primary-pop, $outlined: false, $text-color: $white)
+@mixin btn-color($color: $secondary-pop, $outlined: false, $text-color: $white)
   border: $border-width solid $color
   @if $outlined
+
     .btn__icon
       fill: $color
     &, *
       color: $color
       &:hover, &:active
-        color: $color
+        color: $text-color
     &:hover, &:active
-      background: rgba($color, 0.10)
+      background: rgba($color, 1)
   @else
     color: $text-color
     background: $color

@@ -4,9 +4,15 @@ include ../components/router
 doctype 
 html(data-server-url=API_URL)
   include ../components/head
-  body(class=gallery ? 'body--dark' : 'body--light')
-    +router(page)
-    +menu()
+  body(class=dark ? 'body--dark' : 'body--light')
+    #barba-wrapper
+      .barba-container(data-namespace="transitioner")
+        +router(page)      
+    a.fixed-page-toggler.js-page-toggler
+      p.toggler-text.js-toggler-text.js-toggler-text-gallery Gallery
+      p.toggler-text.js-toggler-text.js-toggler-text-portfolio Portfolio
+      img.js-toggler-image.toggler-text-image(src="/assets/logos/White/Png/claire-dean_logo_white_small-V2.png")
+    //- +menu()
   include ../components/foot
     
   

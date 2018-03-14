@@ -1,5 +1,21 @@
-.container
-  .gallery__grid
-    .grid-sizer
-    each image in images
-      img.grid__item.js-image(src=image.location data-data=image)
+.js-pages-container
+  ul.page-menu
+    li.page-menu-item(data-menuanchor="top")
+      a(href="#top") Top
+    li.page-menu-item(data-menuanchor="teaching")
+      a(href="#teaching") Teaching
+    li.page-menu-item(data-menuanchor="things")
+      a(href="#things") Contact
+  .page-wrapper.section.container(href="top")
+    .hero-header
+      img.heading-image--large(src="/assets/logos/White/Png/claire-dean_logo_white_large-CD-stacked.png")
+      //- .center-button-wrapper.container
+      //-   .btn-outlined #[a(href="#teaching") Teaching]
+      //-   .btn-outlined.m-l-xs-1 #[a(href="#contact") Contact]
+  .container.page-wrapper.page-wrapper--primary.section(href="teaching")
+    include ../pages/teaching
+  .container.page-wrapper.page-wrapper--secondary.section(href="contact")
+    include ../pages/contact
+  //- .page-wrapper.section(href="contactform")
+  //-   include ../pages/contact_form
+      

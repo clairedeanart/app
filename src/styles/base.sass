@@ -28,7 +28,7 @@ $quinary-pop: #F3F3F3
 
 $border-color: darken($white, 20%)
 
-$dark-purple: #1B1118
+$dark-purple: #2A1A25
 $purple: #4A3A5C
 $medium-purple: #7B1FA2
 $light-purple: #C3BAD7
@@ -44,9 +44,11 @@ $ease-in: cubic-bezier(0.4, 0.0, 1, 1)
 $sharp: cubic-bezier(0.4, 0.0, 0.6, 1)
 $smooth: cubic-bezier(.25,.8,.25,1)
 
+$border-radius: 43px 26px / 58px 13px
+
 $menu-shadow: 0 -1px 2px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24)
-$gen-shadow: 0 1px 3px rgba(0,0,0,0.22), 0 1px 2px rgba(0,0,0,0.34)
-$gen-shadow-hover: 2px 5px 10px 2px rgba(0, 0, 0, 0.12), 0px 2px 5px 2px rgba(0, 0, 0, 0.24)
+$gen-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)
+$gen-shadow-hover: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 
 // Modular Scale
 $ms-base: 20px, 16px !default
@@ -66,7 +68,7 @@ $input-height: ms(1) + (2 * ms(-3)) + ms(-7)
 // Typography
 $font-family: Calibre, sans-serif !default
 
-$border-radius: ms(-6)
+$border-radius: ms(-7)
 
 @mixin target($target)
   @each $candidate in $targets
@@ -90,14 +92,14 @@ body
   left: 0
   height: 100vh
   width: 100vw
-  background-color: $dark-purple
-  color: $white
-  &.body--dark
-    background-color: $dark-purple
-    color: $white
-  &.body--light
-    background-color: $white
-    color: $dark-purple
+  // background-color: $dark-purple
+  // color: $white
+  // &.body--dark
+  //   background-color: $dark-purple
+  //   color: $white
+  // &.body--light
+  background-color: $white
+  color: $dark-purple
 *
   font-family: 'Titillium Web', sans-serif
 
@@ -115,7 +117,9 @@ body
 
 // Move outta here
 .clear-link
-  text-decoration: underline
+  text-decoration: none
   transition: all 100ms ease-in-out
-  &:hover
-    color: $succulent
+  color: $white
+
+  // &:hover
+  //   color: $succulent

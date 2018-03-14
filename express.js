@@ -20,50 +20,61 @@ app.use(function(req, res, next) {
 });
 
 app.get('/', function(req, res, next) {
+  res.render('pages/index',
+    Object.assign(res.metadata, {
+      page: 'home',
+    })
+  );
+});
+
+app.get('/gallery', function(req, res, next) {
   request.get(`${res.metadata.API_URL}/images`)
   .then((response => {
     var images = response.body;
     res.render('pages/index',
       Object.assign(res.metadata, {
         images,
-        page: 'home',
-        // gallery: true
+        page: 'gallery',
+        dark: true
       })
     );
   }))
 });
 
-app.get('/teaching', function(req, res, next) {
-  res.render('pages/index',
-    Object.assign(res.metadata, {
-      page: 'teaching',
-    })
-  );
-});
-
-app.get('/about', function(req, res, next) {
-  res.render('pages/index',
-    Object.assign(res.metadata, {
-      page: 'about',
-    })
-  );
-});
-
-app.get('/contact', function(req, res, next) {
-  res.render('pages/index',
-    Object.assign(res.metadata, {
-      page: 'contact',
-    })
-  );
-});
-app.get('/success', function(req, res, next) {
-  res.render('pages/index',
-    Object.assign(res.metadata, {
-      page: 'contact-success',
-    })
-  );
-});
-
+// app.get('/teaching', function(req, res, next) {
+//   res.render('pages/index',
+//     Object.assign(res.metadata, {
+//       page: 'teaching',
+//     })
+//   );
+// });
+//
+// app.get('/about', function(req, res, next) {
+//   res.render('pages/index',
+//     Object.assign(res.metadata, {
+//       page: 'about',
+//     })
+//   );
+// });
+//
+// app.get('/contact', function(req, res, next) {
+//   res.render('pages/index',
+//     Object.assign(res.metadata, {
+//       page: 'contact',
+//     })
+//   );
+// });
+// app.get('/success', function(req, res, next) {
+//   res.render('pages/index',
+//     Object.assign(res.metadata, {
+//       page: 'contact-success',
+//     })
+//   );
+// });
+// app.use('*', function(req, res, next) {
+//   res.redirect('/')
+// });
+//
 app.listen(port, function() {
   console.log("Listening on", port);
 });
