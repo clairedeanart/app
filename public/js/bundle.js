@@ -10474,6 +10474,7 @@ delete window.$;
 var gallery = __webpack_require__(7);
 var about = __webpack_require__(9);
 var contact = __webpack_require__(10);
+var disableScrollPager = true;
 var togglerWidth = '8.67302em',
   togglerHeight = '7.67302em',
   togglerLocation = '1.31em',
@@ -10493,6 +10494,8 @@ var togglerWidth = '8.67302em',
     anchors:['top', 'teaching', 'contact'],
     scrollingSpeed: 800,
     menu: '.page-menu',
+    continuousVertical: true,
+    // normalScrollElements: ['.normal-scroll-element'],
     // dragAndMove: true,
     easingcss3: 'ease-in-out',
     // parallax: true,
@@ -10608,7 +10611,7 @@ function initializeContact() {
 }
 
 function setupPager() {
-  return
+  if (disableScrollPager) return
   if ($.fn.fullpage) {
     $('.js-pages-container').fullpage(fullPageDefaults);
   }
