@@ -3,6 +3,7 @@
 var Barba = require('barba.js');
 var $ = require('jquery');
 var assign = require('object-assign');
+var ScrollReveal = require('scrollreveal');
 window.jQuery = window.$ = $;
 require('velocity-animate');
 require('fullpage.js');
@@ -13,6 +14,7 @@ var gallery = require('./gallery');
 var about = require('./about');
 var contact = require('./contact');
 var disableScrollPager = true;
+var disableScrollReveal = true;
 var togglerWidth = '8.67302em',
   togglerHeight = '7.67302em',
   togglerLocation = '1.31em',
@@ -41,6 +43,10 @@ var togglerWidth = '8.67302em',
     onLeave: function(e) {
       if (isSmallDevice()) { $('.js-page-toggler').velocity({scale: smallToggleBubbleScale}) }
     }
+  },
+  scrollRevealDefaults = {
+     duration: 300,
+     delay: 250
   },
   FadeTransition = {
     start: function() {
@@ -154,6 +160,14 @@ function setupPager() {
   }
 }
 
+function setupScollReveal() {
+  if (disableScrollReveal) return
+  window.sr = ScrollReveal({ reset: true });
+  // Customizing a reveal set
+  sr.reveal('.heading-image--large', scrollRevealDefaults);
+  sr.reveal('.teaching-card', scrollRevealDefaults);
+}
+
 function destroyPager() {
   $.fn.fullpage && isFunction($.fn.fullpage.destroy) && $.fn.fullpage.destroy('all');
 }
@@ -165,6 +179,7 @@ function initializePage() {
   if (!isGallery()) {
     if (hasMounted) destroyPager()
     setupPager()
+    setupScollReveal()
   } else if (destroyPager()) {}
 }
 

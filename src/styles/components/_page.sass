@@ -20,14 +20,40 @@ $goofy-radius: 43px 26px / 58px 13px
   min-height: 100vh
   background-color: $white
   padding: ms(1)
+  z-index: 10
   // margin: ms(-1)
+  &:before
+    content: ''
+    position: absolute
+    left: 0
+    background: $white
+    top: -(ms(7))
+    height: ms(9)
+    margin: ms(2) 0 ms(3) 0
+    width: 100%
+    transform: skew(0deg, 3deg)
+    z-index: -1
   &.page-wrapper--secondary
     background-color: $secondary-pop
-    color: $white
+    // color: $white
+    &:before
+      background: $secondary-pop
+      transform: skew(0deg, -2deg)
   &.page-wrapper--tertiary
-    background-color: $tertiary-pop
+    // background-color: $tertiary-pop
   &.page-wrapper--quaternary
-    background-color: $tertiary-pop
+  &.page-wrapper--plain
+    &:before
+      content: none
+
+    // background-color: $tertiary-pop
+
+.page-wrapper--wave
+  display: inline-block
+  position: absolute
+  top: 0
+  left: 0
+  width: 100%
 
 .heading-image--large
   max-width: 90vw
@@ -40,10 +66,10 @@ $goofy-radius: 43px 26px / 58px 13px
   justify-content: flex-start
   align-items: flex-start
 
-.image-column
-  display: none
-  +target(lg)
-    display: block
+// .image-column
+//   display: none
+//   +target(lg)
+//     display: block
 
 .fixed-page-toggler
   display: flex
@@ -60,6 +86,7 @@ $goofy-radius: 43px 26px / 58px 13px
   cursor: pointer
   transform: scale(1.5)
   border-radius: $goofy-radius
+  z-index: 1000
   .toggler-text
     position: absolute
     text-align: center
@@ -80,6 +107,7 @@ $goofy-radius: 43px 26px / 58px 13px
     z-index: 100
 
 .page-header
+  z-index: 15
   margin-top: ms(-1)
   +target(xs)
     font-size: ms(3)
@@ -106,7 +134,6 @@ $goofy-radius: 43px 26px / 58px 13px
   border-radius: $border-radius
   height: ms(9)
   width: 100%
-  border: solid ms(-10) transparentize($primary-pop, 0.8)
   color: $dark-purple
   display: flex
   align-items: center
@@ -114,5 +141,9 @@ $goofy-radius: 43px 26px / 58px 13px
   box-shadow: $gen-shadow
   transition: all 0.3s cubic-bezier(.25,.8,.25,1)
   background-color: $white
+  // background: linear-gradient(to bottom, $secondary, rgba(221, 238, 255, 0) 80%, rgba(255, 255, 255, 0.5))
+  overflow: hidden
+  position: relative
+
   &:hover
     box-shadow: $gen-shadow-hover
