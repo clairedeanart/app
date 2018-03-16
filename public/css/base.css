@@ -3435,3 +3435,9 @@ input:focus, textarea:focus {
   background-color: white;
   padding: 1.31em 0;
   margin-bottom: 3.85795em; }
+
+.clear-link {
+  text-decoration: underline;
+  transition: all 100ms ease-in-out; }
+  .clear-link:hover {
+    color: #679894; }
