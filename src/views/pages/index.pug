@@ -4,9 +4,17 @@ include ../components/router
 doctype 
 html(data-server-url=API_URL)
   include ../components/head
-  body(class=gallery ? 'body--dark' : 'body--light')
-    +router(page)
-    +menu()
+  body(class=dark ? 'body--dark' : 'body--light')
+    #barba-wrapper
+      .barba-container(data-namespace="transitioner")
+        +router(page)      
+    a.fixed-page-toggler.js-page-toggler
+      p.toggler-text.js-toggler-text(data-path="/") Home
+      p.toggler-text.js-toggler-text(data-path="/gallery") Gallery
+      p.toggler-text.js-toggler-text(data-path="/lessons") Lessons
+      p.toggler-text.js-toggler-text(data-path="/tws") Teacher Work Sample
+      img.js-toggler-image.toggler-text-image(src="/assets/logos/black/png/small-v2.png")
+    //- +menu()
   include ../components/foot
     
   

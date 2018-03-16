@@ -1,51 +1,171 @@
 $page-height: ms(10)
+$goofy-radius: 43px 26px / 58px 13px
+$diagonalSkew: 3.5deg
 
-.page-header
-  position: fixed
+.hero-header
+  // top: 35%
+  // +target(sm)
+  top: 20%
+  +target(md)
+    top: 0%
+  position: absolute
+  align-items: center
+  justify-content: center
+  display: flex
+  flex-direction: column
+  width: 100%
+  left: 0
+
+.page-wrapper
+  position: relative
+  background-color: $white
+  padding: ms(1)
+  z-index: 10
+  // margin: ms(-1)
+  &:before
+    content: ''
+    position: absolute
+    left: 0
+    background: $white
+    top: -(ms(7))
+    height: ms(9)
+    margin: ms(2) 0 ms(3) 0
+    width: 100%
+    transform: skew(0deg, $diagonalSkew)
+    z-index: -1
+  &.page-wrapper--min-full
+    min-height: 100vh
+  &.page-wrapper--secondary
+    background-color: $secondary-pop
+    // color: $white
+    &:before
+      background: $secondary-pop
+      transform: skew(0deg, -$diagonalSkew)
+  &.page-wrapper--tertiary
+    // background-color: $tertiary-pop
+  &.page-wrapper--quaternary
+  &.page-wrapper--plain
+    &:before
+      content: none
+
+.page-wrapper--background
+  background: url('/assets/pencils.jpg')
+  background-size: cover
+  position: absolute
+  top: -(ms(8))
+  left: 0
+  bottom: ms(6)
+  width: 100%
+  height: 120vh
+
+.page-wrapper--wave
+  display: inline-block
+  position: absolute
   top: 0
   left: 0
   width: 100%
-  min-height: $page-height
-  .page-header-background
+
+.heading-image--large
+  // max-width: 90vw
+  // width: 80%
+  max-height: ms(8)
+  max-width: 90vw
+  // position: absolute
+  // // left: -(ms(3))
+  // top: 10px
+  // left: 10px
+
+.center-button-wrapper
+  display: flex
+  justify-content: flex-start
+  align-items: flex-start
+
+// .image-column
+//   display: none
+//   +target(lg)
+//     display: block
+
+.resume-image
+  max-width: 100%
+  box-shadow: $gen-shadow
+
+.fixed-page-toggler
+  position: fixed
+  display: flex
+  align-items: center
+  justify-content: center
+  height: 100vh
+  width: 100vw
+  right: 0
+  bottom: 0
+  z-index: 100
+  background-color: $light-grey
+  color: $dark-purple
+  cursor: pointer
+  transform: scale(1.5)
+  box-shadow: $gen-shadow
+  border-radius: $goofy-radius
+  white-space: nowrap
+  overflow: hidden
+  text-overflow: ellipsis
+  // padding: ms(1)
+  transition: box-shadow 200ms ease-in-out
+  &.page-toggler--open
+    transition: box-shadow 0ms ease-in-out
+    box-shadow: 0 0 0 transparent
+  &:hover
+    box-shadow: $gen-shadow-hover
+    &.page-toggler--open
+      box-shadow: 0 0 0 transparent
+  .toggler-text
     position: absolute
-    background-size: cover
-    background-position: center
-    background-repeat: no-repeat
-    width: 100%
-    height: 100%
-    min-height: ms(9)
-    -webkit-filter: blur(1px)
-    -moz-filter: blur(1px)
-    -o-filter: blur(1px)
-    -ms-filter: blur(1px)
-    filter: blur(1px)
-    &:after
-      content: ''
-      position: absolute
-      left: 0
-      top: 0
-      width: 100%
-      height: 100%
-      background-color: rgba(0,0,0,0.5)
-    &.page-header--contact
-      background-image: url("/assets/cda-profile-2.jpg")
-      background-position: left
-    &.page-header--teach
-      background-image: url("/assets/cda-profile-header.jpg")
-  .page-header-title
-    height: 100%
-    min-height: $page-height
-    display: flex
-    position: relative
+    text-align: center
+    transform: translateY(30px)
+    opacity: 0
+.toggler-text-image
+  height: ms(5)
+  width: ms(7)
+  transform: translateY(0px)
+
+.page-menu
+  display: none
+  +target(md)
+    list-style: none
+    position: fixed
+    top: 3%
+    left: ms(2)
     z-index: 100
-    color: white
-    align-items: flex-end
-    justify-content: flex-start
-    margin: 0 ms(0)
+
+.page-header
+  z-index: 15
+  top: -(ms(-4))
+  position: relative
+  &.page-header--light
+    color: $white
 
 .page-body
   position: relative
-  top: $page-height
+  padding: ms(2) 0
+  // margin-top: ms(5)
+  margin-bottom: ms(4)
+
+.center-button-wrapper
+  display: flex
+
+.teaching-card
+  border-radius: $border-radius
+  height: ms(9)
+  width: 100%
+  color: $dark-purple
+  display: flex
+  align-items: center
+  justify-content: center
+  box-shadow: $gen-shadow
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1)
   background-color: $white
-  padding: ms(1) 0
-  margin-bottom: ms(5)
+  // background: linear-gradient(to bottom, $secondary, rgba(221, 238, 255, 0) 80%, rgba(255, 255, 255, 0.5))
+  overflow: hidden
+  position: relative
+
+  &:hover
+    box-shadow: $gen-shadow-hover

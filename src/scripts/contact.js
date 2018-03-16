@@ -22,14 +22,14 @@ var validationText = {
 }
 
 function setup() {
+  if (window.location.pathname !== '/') return;
+  // TODO: Convert to jquery since I'm using that now
   inputs = document.querySelectorAll('input')
   textareas = document.querySelectorAll('textarea')
   inputs.forEach(handleInputChanges);
   textareas.forEach(handleInputChanges);
-
   sendButton = document.querySelector('.js-send')
   sendButton.addEventListener('click', send.bind(this, contactForm))
-
 }
 
 function handleInputChanges(elem) {
@@ -38,7 +38,6 @@ function handleInputChanges(elem) {
 }
 
 function handleLabelMovement(e) {
-  console.log('blur', e.target)
   if (e.target.value && e.target.parentNode) e.target.parentNode.classList.add('dirty')
   else e.target.parentNode.classList.remove('dirty')
   validateItem(true, e.target.name)

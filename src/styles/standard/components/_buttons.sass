@@ -1,7 +1,7 @@
 
 
 @mixin btn-shadow
-  box-shadow: 0 ms(-6) ms(-5) btransparentize($text-color, 0.8)
+  box-shadow: $gen-shadow
 
 @mixin btn-size($size: md)
   @if $size == sm
@@ -11,26 +11,27 @@
     padding: ms(-8) ms(-5)
   @else if $size == lg
     &, *
-      font-size: ms(2)
-    line-height: ms(2)
-    padding: ms(-3) ms(-1)
+      font-size: ms(1)
+    line-height: ms(1)
+    padding: ms(-2) ms(-1)
   @else
     &, *
       font-size: ms(1)
     line-height: ms(1)
     padding: ms(-6) ms(-3)
 
-@mixin btn-color($color: $primary-pop, $outlined: false, $text-color: $white)
+@mixin btn-color($color: $secondary-pop, $outlined: false, $text-color: $white)
   border: $border-width solid $color
   @if $outlined
     .btn__icon
       fill: $color
     &, *
       color: $color
+      background: $white
       &:hover, &:active
-        color: $color
+        color: $text-color
     &:hover, &:active
-      background: rgba($color, 0.10)
+      background: rgba($color, 0.9)
   @else
     color: $text-color
     background: $color
@@ -49,7 +50,7 @@
       background: darken($color, 5%)
       border-color: darken($color, 5%)
 
-@mixin btn($color: $primary-pop, $size: md, $outlined: false, $text-color: $white)
+@mixin btn($color: $secondary-pop, $size: md, $outlined: false, $text-color: $white)
   +btn-color($color, $outlined, $text-color)
   +btn-size($size)
   +btn-shadow
@@ -82,7 +83,7 @@
     box-shadow: $gen-shadow
 
 .btn-outlined
-  +btn($primary-pop, md, true)
+  +btn($secondary-pop, md, true)
   &.btn-secondary
     +btn-color($secondary-pop, md, true)
   &.btn-tertiary

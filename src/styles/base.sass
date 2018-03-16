@@ -6,29 +6,30 @@
 @import icons/animation
 
 @import url('https://fonts.googleapis.com/css?family=Titillium+Web')
-// @import url('https://fonts.googleapis.com/css?family=Neucha')
+// @import url('https://fonts.googleapis..com/css?family=Neucha')
 @import url('https://fonts.googleapis.com/css?family=Permanent+Marker')
 @import modularscale
 // Mixin for responding to different sizes
 $targets: xs 10, sm 12, md 14, lg 16, xl 18
 
 $text-color: #080507
-$text-white: #F3F3F3
-$white: lighten(#F3F3F3, 15%)
-$primary: #513F65
-$primary-pop: #513F65
-$secondary: #60712F
-$secondary-pop: #60712F
-$tertiary: #808038
-$tertiary-pop: #808038
-$quaternary: #9E715A
-$quaternary-pop: #9E715A
+$text-white: #ece8ea
+$white: #fefefa
+$light-grey: #ece8ea
+$primary: #2E3138
+$primary-pop: #2E3138
+$secondary: #9068BE
+$secondary-pop: #9068BE
+$tertiary: rgb(220, 51, 77)
+$tertiary-pop: rgb(220, 51, 77)
+$quaternary: #6ED3CF
+$quaternary-pop: #6ED3CF
 $quinary: #F3F3F3
 $quinary-pop: #F3F3F3
 
 $border-color: darken($white, 20%)
 
-$dark-purple: #1B1118
+$dark-purple: #2A1A25
 $purple: #4A3A5C
 $medium-purple: #7B1FA2
 $light-purple: #C3BAD7
@@ -44,9 +45,11 @@ $ease-in: cubic-bezier(0.4, 0.0, 1, 1)
 $sharp: cubic-bezier(0.4, 0.0, 0.6, 1)
 $smooth: cubic-bezier(.25,.8,.25,1)
 
+$border-radius: 43px 26px / 58px 13px
+
 $menu-shadow: 0 -1px 2px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24)
-$gen-shadow: 0 1px 3px rgba(0,0,0,0.22), 0 1px 2px rgba(0,0,0,0.34)
-$gen-shadow-hover: 2px 5px 10px 2px rgba(0, 0, 0, 0.12), 0px 2px 5px 2px rgba(0, 0, 0, 0.24)
+$gen-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)
+$gen-shadow-hover: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)
 
 // Modular Scale
 $ms-base: 20px, 16px !default
@@ -66,7 +69,7 @@ $input-height: ms(1) + (2 * ms(-3)) + ms(-7)
 // Typography
 $font-family: Calibre, sans-serif !default
 
-$border-radius: ms(-6)
+$border-radius: ms(-7)
 
 @mixin target($target)
   @each $candidate in $targets
@@ -90,14 +93,14 @@ body
   left: 0
   height: 100vh
   width: 100vw
-  background-color: $dark-purple
-  color: $white
-  &.body--dark
-    background-color: $dark-purple
-    color: $white
-  &.body--light
-    background-color: $white
-    color: $dark-purple
+  // background-color: $dark-purple
+  // color: $white
+  // &.body--dark
+  //   background-color: $dark-purple
+  //   color: $white
+  // &.body--light
+  background-color: $light-grey
+  color: $dark-purple
 *
   font-family: 'Titillium Web', sans-serif
 
@@ -115,7 +118,6 @@ body
 
 // Move outta here
 .clear-link
-  text-decoration: underline
+  text-decoration: none
   transition: all 100ms ease-in-out
-  &:hover
-    color: $succulent
+  color: $white
