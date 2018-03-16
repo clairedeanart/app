@@ -41,6 +41,22 @@ app.get('/gallery', function(req, res, next) {
   }))
 });
 
+app.get('/lessons', function(req, res, next) {
+  res.render('pages/index',
+    Object.assign(res.metadata, {
+      page: 'lessons',
+    })
+  );
+});
+
+app.get('/tws', function(req, res, next) {
+  res.render('pages/index',
+    Object.assign(res.metadata, {
+      page: 'tws',
+    })
+  );
+});
+
 // app.get('/teaching', function(req, res, next) {
 //   res.render('pages/index',
 //     Object.assign(res.metadata, {

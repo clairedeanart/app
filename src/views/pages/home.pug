@@ -1,20 +1,34 @@
 .js-pages-container
-  ul.page-menu
-    li.page-menu-item(data-menuanchor="top")
-      a(href="#top") Top
-    li.page-menu-item(data-menuanchor="teaching")
-      a(href="#teaching") Teaching
-    li.page-menu-item(data-menuanchor="things")
-      a(href="#things") Contact
-  .page-wrapper.section.page-wrapper--plain.container(href="top")
+  //- ul.page-menu
+  //-   li.page-menu-item(data-menuanchor="top")
+  //-     a(href="#top") Top
+  //-   li.page-menu-item(data-menuanchor="teaching")
+  //-     a(href="#teaching") Teaching
+  //-   li.page-menu-item(data-menuanchor="things")
+  //-     a(href="#things") Contact
+  .page-wrapper.section.page-wrapper--plain.container.page-wrapper--min-full(href="top")
+    .page-wrapper--background
     .hero-header
-      img.heading-image--large(src="/assets/logos/black/png/black-large-stacked.png")
-      //- .center-button-wrapper.container
-      //-   .btn-outlined #[a(href="#teaching") Teaching]
-      //-   .btn-outlined.m-l-xs-1 #[a(href="#contact") Contact]
-  .container.page-wrapper.page-wrapper--secondary.section.normal-scroll-element(href="teaching")
+      img.heading-image--large.m-b-xs-4(src="/assets/logos/black/png/black_large_flat.png")
+      //- Same Buttons
+      //- .row.m-b-xs-1
+      //-   .btn-outlined.js-call-to-action-button(data-name="philosophy" data-scroll="data-scroll") Philosophy
+      //-   .btn-outlined.m-l-xs-1.js-call-to-action-button(data-name="resume" data-scroll="data-scroll") Resume
+      //-   .btn-outlined.m-l-xs-1.js-call-to-action-button(data-name="lessons") Lessons
+      //-   .btn-outlined.m-l-xs-1.js-call-to-action-button(data-name="tws") Teacher Work Sample
+      //-   .btn-outlined.m-l-xs-1.js-call-to-action-button(data-name="contact" data-scroll="data-scroll") Teacher Work Sample
+      
+      //- Large Button
+      .row.m-b-xs-1
+        .btn-outlined.btn--lg.js-call-to-action-button(data-name="philosophy" data-scroll="data-scroll") Philosophy and Resume
+      .row.m-b-xs-1
+        .btn-outlined.js-call-to-action-button(data-name="lessons") Lessons
+        .btn-outlined.m-l-xs-1.js-call-to-action-button(data-name="tws") Teacher Work Sample
+        .btn-outlined.m-l-xs-1.js-call-to-action-button(data-name="contact" data-scroll="data-scroll") Contact
+          
+  .js-page-location__philosophy.container.page-wrapper.page-wrapper--secondary.section.normal-scroll-element.page-wrapper--min-full(href="teaching")
     include ../pages/teaching
-  .container.page-wrapper.section(href="contact")
+  .js-page-location__contact.container.page-wrapper.section(href="contact")
     include ../pages/contact
   //- .page-wrapper.section(href="contactform")
   //-   include ../pages/contact_form

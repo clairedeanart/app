@@ -9,9 +9,11 @@ html(data-server-url=API_URL)
       .barba-container(data-namespace="transitioner")
         +router(page)      
     a.fixed-page-toggler.js-page-toggler
-      p.toggler-text.js-toggler-text.js-toggler-text-gallery Gallery
-      p.toggler-text.js-toggler-text.js-toggler-text-portfolio Portfolio
-      img.js-toggler-image.toggler-text-image(src="/assets/logos/White/Png/claire-dean_logo_white_small-V2.png")
+      p.toggler-text.js-toggler-text(data-path="/") Home
+      p.toggler-text.js-toggler-text(data-path="/gallery") Gallery
+      p.toggler-text.js-toggler-text(data-path="/lessons") Lessons
+      p.toggler-text.js-toggler-text(data-path="/tws") Teacher Work Sample
+      img.js-toggler-image.toggler-text-image(src="/assets/logos/black/png/small-v2.png")
     //- +menu()
   include ../components/foot
     

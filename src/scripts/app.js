@@ -7,6 +7,7 @@ var ScrollReveal = require('scrollreveal');
 window.jQuery = window.$ = $;
 require('velocity-animate');
 require('fullpage.js');
+require('animatescroll.js');
 delete window.jQuery;
 delete window.$;
 
@@ -24,6 +25,7 @@ var togglerWidth = '8.67302em',
   smallToggleBubbleScale = 0.5,
   toggleBubbleScale = 1,
   isAnimating = false,
+  isInitialized = false,
   hasMounted = false,
   fullpage = null,
   velocityDuration = 480,
@@ -48,23 +50,63 @@ var togglerWidth = '8.67302em',
      duration: 300,
      delay: 250
   },
-  FadeTransition = {
+  GrowTransition = {
+    cda_id: 'GrowTransition',
     start: function() {
-      var ig = isGallery()
       Promise
-        .all([this.newContainerLoading, this.fadeOut(), this.wait() ])
-        .then(this.fadeIn.bind(this));
+      .all([this.newContainerLoading, this.fadeOut(), doWait(velocityDuration)])
+      .then(this.fadeIn.bind(this));
     },
-    wait: function() { return new Promise(function(resolve, reject) { setTimeout(resolve(), velocityDuration * 3) })},
-    fadeOut: function() { fadeOut.call(this) },
+    waitThenShowText: waitThenShowText,
     fadeIn: function() { fadeIn.call(this) },
+    fadeOut: function() { fadeOut.call(this) },
+  },
+  FadeTransition = {
+    cda_id: 'FadeTransition',
+    start: function() {
+      Promise
+      .all([this.newContainerLoading, this.opacityOut() ])
+      .then(this.opacityIn.bind(this));
+    },
+    opacityIn: function() { opacityIn.call(this) },
+    opacityOut: function() { opacityOut.call(this) },
   },
   Homepage = {
     namespace: 'transitioner',
-    onEnter: function() { initializePage() },
-    onEnterComplete: function() { isAnimating = true; },
-    onLeaveComplete: function() { isAnimating = false; },
+    onEnter: function() {
+      console.log('args', Barba.HistoryManager.history[0])
+      console.log('args', Barba.HistoryManager.history[0])
+      var h = Barba.HistoryManager.history
+      // alert('enter')
+      initializePage();
+    },
+    onLeave: function() {
+      // alert('leave')
+    },
+    onEnterComplete: function() {
+      isAnimating = true;
+      // setCurrentActiveTransition(getTransitionObject(getPath()))
+    },
+    onLeaveComplete: function() {
+      // console.log('onLeaveComplete', onLeaveComplete)
+      isAnimating = false;
+      // setCurrentActiveTransition(getTransitionObject(getNextPath(getPath())))
+    },
   };
+
+// function
+
+  // console.log('&&&&&&&&&&&&&&&&&&&&&&&&&& initStateChange', getPath())
+  // // console.log('currentStatus, oldStatus, container', currentStatus, oldStatus, container)
+  // if (currentStatus) {
+  //   var currentRoute = currentStatus.url;
+  //   var nextRoute = getPath();
+  //   // console.log('')
+  //   if (typeof nextRoute === 'undefined') return getTransitionObject('/' + getRouteFromUrl(currentRoute))
+  //   return setCurrentActiveTransition(getTransitionObject(getRouteFromUrl(currentRoute), getRouteFromUrl(nextRoute)))
+  // } else {
+  // }
+  // return setCurrentActiveTransition(getTransitionObject(getPath(), getPath()))
 
 function getScreenDimensions() {
   return {
@@ -81,43 +123,127 @@ function isGallery() {
   return window.location.pathname === '/gallery'
 }
 
+function getPath() {
+  return window.location.pathname;
+}
+
 function isSmallDevice() {
   return window.innerWidth < 650
 }
 
 function getPageTogglerPath() {
-  return isGallery() ? '/' :  '/gallery'
+  // return isGallery() ? '/' :  '/gallery'
 }
 
-function updatePageToggler() {
+function getNextPath(path) {
+  return path ? '/' + path : (getPath() === '/' ? '/gallery' : '/');
+}
+
+function updatePageToggler(path) {
+  // console.log('updatePageToggler', path)
   if (isAnimating) return;
-  Barba.Pjax.goTo(getPageTogglerPath());
+  // console.log('getNextPath(path)', getNextPath(path))
+  Barba.Pjax.goTo(getNextPath(path));
 }
 
-function showPageToggler() {
-  var $pageTogglerBubble = $('.js-page-toggler');
+function showGallery() {
   var $gallery = $('.js-toggler-text-gallery');
   var $portfolio = $('.js-toggler-text-portfolio');
+  $gallery.velocity({
+    translateY: '30px',
+    opacity: 1,
+  });
+  $portfolio.velocity({
+    translateY: '50px',
+    opacity: 0,
+  });
+}
+
+function showPortfolio() {
+  var $gallery = $('.js-toggler-text-gallery');
+  var $portfolio = $('.js-toggler-text-portfolio');
+  $portfolio.velocity({
+    translateY: '30px',
+    opacity: 1,
+  });
+  $gallery.velocity({
+    translateY: '50px',
+    opacity: 0,
+  });
+}
+
+function handleShowTogglerText(active, rest) {
+  // console.log('handleShowTogglerText')
+  // var $gallery = $('.js-toggler-text-gallery');
+  // var $portfolio = $('.js-toggler-text-portfolio');
+  var show = { translateY: '30px', opacity: 1 };
+  var hide = { translateY: '80px', opacity: 0 };
+  $(active).velocity(show);
+  rest.forEach(function(r) {
+    $(r).velocity(hide)
+  })
+}
+
+function setCurrentActiveTransition(nextTransition) {
+  Barba.Pjax.getTransition = function() {
+    console.log('nextTransition', nextTransition)
+    return nextTransition || FadeTransition;
+  };
+}
+
+function getRouteFromUrl(url) {
+  // console.log('url?!', url)
+  if (!url) return getPath();
+  var pa = url.split('/');
+  var i = 3;
+  return pa[i] || '/';
+}
+
+function getTransitionObject(curr, next) {
+  // console.log('************** curr, next ***********************', curr, next)
+  // var t = GrowTransition;
+  // var currHome = (curr === '/' || curr === 'gallery');
+  // var nextHome = (next === '/' || next === 'gallery');
+  // console.log('----------------- getTransitionObject ----------------', currHome, nextHome)
+  // if (!next)
+  //   t = (currHome) ? GrowTransition : FadeTransition;
+  // else
+  // t = (currHome && nextHome) ? GrowTransition : FadeTransition;
+  // if (currHome && nextHome) { t = GrowTransition }
+  // else if (currHome && !nextHome) { FadeTransition }
+  // else { t = FadeTransition }
+
+  // switch (path) {
+  //   case '/':
+  //   case '/gallery':
+  //   // case '/lessons':
+  //     t =  GrowTransition;
+  //     break;
+  //   case '/lessons':
+  //      t = FadeTransition;
+  //      break;
+  // }
+  // console.log('ttt', t.cda_id)
+  var t = GrowTransition;
+  return Barba.BaseTransition.extend(t);
+}
+
+function showPageToggler(isHovering) {
+  var $pageTogglerBubble = $('.js-page-toggler');
   var $image = $('.js-toggler-image');
-  if (isGallery()) {
-    $gallery.velocity({
-      translateY: '30px',
-      opacity: 1,
-    });
-    $portfolio.velocity({
-      translateY: '50px',
-      opacity: 0,
-    });
-  } else {
-    $portfolio.velocity({
-      translateY: '30px',
-      opacity: 1,
-    });
-    $gallery.velocity({
-      translateY: '50px',
-      opacity: 0,
-    });
-  }
+  var $texts = $('.js-toggler-text');
+  var active = null;
+  var rest = [];
+  $texts.each(function(t, i) {
+    ($(this).data('path') === getPath()) ? active = this : rest.push(this);
+  });
+  handleShowTogglerText(active, rest);
+  // isGallery() ? showGallery() : showPortfolio();
+  // switch (currPath()) {
+  //   case '/': handleShowTogglerText(); break;
+  //   case '/gallery': handleShowTogglerText(); break;
+  //   case '/': handleShowTogglerText(); break;
+  // }
   $image.velocity({translateY: '-10px'});
 }
 
@@ -127,15 +253,22 @@ function renderNextPageTogglerState(ig) {
     scale: isSmallDevice() ? smallToggleBubbleScale : toggleBubbleScale,
     height: togglerHeight,
     width: togglerWidth,
-    right: isSmallDevice() ? smallTogglerLocation : togglerLocation,
+    left: isSmallDevice() ? smallTogglerLocation : togglerLocation,
     top: isSmallDevice() ? smallTogglerLocation : togglerLocation,
   }, velocityDefaults, 'easeInSine');
 }
 
 function initializePageToggler() {
+  // console.log('initializePageToggler')
+  if (isInitialized) return;
   var $pageTogglerBubble = $('.js-page-toggler');
   var $togglerText = $('.js-toggler-text');
-  $pageTogglerBubble.one('click', updatePageToggler);
+  $pageTogglerBubble.on('click', function() {
+    updatePageToggler(null)
+  });
+  isInitialized = true;
+  // $pageTogglerBubble.on('mouseenter', showPageToggler.bind(this, true));
+  // $pageTogglerBubble.on('mouseleave', showPageToggler.bind(this, false));
 }
 
 function initiaizeGallery() {
@@ -147,10 +280,24 @@ function initiaizeGallery() {
 }
 
 function initializeContact() {
-  if (window.location.pathname === '/contact') {
-    contact.setup();
-    // autosize(document.querySelectorAll('textarea'));
-  }
+  contact.setup();
+}
+
+function initializePrimaryCallsToAction() {
+  var $primaryCallToActions = $('.js-call-to-action-button')
+  $primaryCallToActions.on('click', handleCallToAction);
+}
+
+function handleCallToAction(e) {
+  var path = $(e.currentTarget).data('name');
+  if ($(e.currentTarget).data('scroll')) {
+    $('.js-page-location__'+path).animatescroll();
+  } else updatePageToggler(path);
+    // console.log('handleCallToAction', )
+    // var ft = Barba.BaseTransition.extend(FadeTransition);
+    // Barba.Pjax.getTransition = function() { return ft };
+    // Route to path
+    // Barba.Pjax.goTo("/" + path);
 }
 
 function setupPager() {
@@ -168,6 +315,12 @@ function setupScollReveal() {
   sr.reveal('.teaching-card', scrollRevealDefaults);
 }
 
+function setupGalleryScrollReveal() {
+  window.sr = ScrollReveal({ reset: true });
+  // Customizing a reveal set
+  sr.reveal('.heading-image--large', scrollRevealDefaults);
+}
+
 function destroyPager() {
   $.fn.fullpage && isFunction($.fn.fullpage.destroy) && $.fn.fullpage.destroy('all');
 }
@@ -176,23 +329,62 @@ function initializePage() {
   initializePageToggler();
   initiaizeGallery();
   initializeContact();
+  initializePrimaryCallsToAction();
+  waitThenShowText();
   if (!isGallery()) {
     if (hasMounted) destroyPager()
     setupPager()
     setupScollReveal()
   } else if (destroyPager()) {}
+
+  // Setup or reset page transition
+  // setCurrentActiveTransition(getTransitionObject())
 }
 
-function fadeOut() {
+function doWait(time) {
+  return new Promise(function(resolve, reject) { setTimeout(resolve, time) } );
+}
+
+function waitThenShowText() {
+  return doWait(velocityDuration * 0.5).then(showPageToggler)
+}
+
+function opacityIn() {
+  // console.log('opacityIn')
+  var _this = this;
+  var $newContainer = $(this.newContainer);
   var $pageTogglerBubble = $('.js-page-toggler');
-  $pageTogglerBubble.addClass("page-toggler--open");
-  $pageTogglerBubble.velocity({
-    scale: "1.5",
-    height: window.innerHeight,
-    width: window.innerWidth,
-    right: '0px',
-    top: '0px',
-  }, velocityDefaults);
+
+  $newContainer.velocity({
+    opacity: 1,
+    // scale: "1",
+  }, assign({}, velocityDefaults, {
+    complete: function() {
+      if (isFunction(_this.done)) {
+        _this.done();
+      }
+    }
+  }));
+
+  setTimeout(function() {
+    // renderNextPageTogglerState();
+    // $pageTogglerBubble.removeClass("page-toggler--open");
+  }, velocityDuration * 2);
+}
+
+function opacityOut() {
+  console.log('opacityOut')
+  // var $pageTogglerBubble = $('.js-page-toggler');
+  // $pageTogglerBubble.addClass("page-toggler--open");
+  // $pageTogglerBubble.velocity({
+  //   scale: "1.5",
+  //   height: window.innerHeight,
+  //   width: window.innerWidth,
+  //   right: '0px',
+  //   bottom: '0px',
+  // }, velocityDefaults);
+
+  doHideToggler();
 
   return $(this.oldContainer).velocity({
     opacity: 0,
@@ -203,6 +395,8 @@ function fadeIn() {
   var _this = this;
   var $newContainer = $(this.newContainer);
   var $pageTogglerBubble = $('.js-page-toggler');
+
+  doShowToggler();
 
   $newContainer.velocity({
     opacity: 1,
@@ -215,22 +409,70 @@ function fadeIn() {
     }
   }));
 
-  setTimeout(function() { showPageToggler() }, velocityDuration)
-
   setTimeout(function() {
     renderNextPageTogglerState();
     $pageTogglerBubble.removeClass("page-toggler--open");
-  }, velocityDuration * 2)
+  }, velocityDuration * 2);
+}
+
+function fadeOut() {
+  var $pageTogglerBubble = $('.js-page-toggler');
+  $(this.oldContainer).velocity({
+    opacity: 0,
+  }, {duration: velocityDefaults.duration * 0.5})
+
+  $pageTogglerBubble.addClass("page-toggler--open");
+  return $pageTogglerBubble.velocity({
+    scale: "1.5",
+    height: window.innerHeight,
+    width: window.innerWidth,
+    left: '0px',
+    top: '0px',
+  }, velocityDefaults).promise();
+}
+
+function doShowToggler() {
+  var $pageTogglerBubble = $('.js-page-toggler');
+  // $pageTogglerBubble.velocity({
+  //   scale: "1.5",
+  // }, velocityDefaults);
+}
+
+function doHideToggler() {
+  var $pageTogglerBubble = $('.js-page-toggler');
+  $pageTogglerBubble.addClass("page-toggler--hidden");
+  $pageTogglerBubble.velocity({
+    scale: "0",
+  }, velocityDefaults);
 }
 
 function setupPage() {
-  var ft = Barba.BaseTransition.extend(FadeTransition);
   var hp = Barba.BaseView.extend(Homepage);
   initializePage();
   fadeIn();
-  Barba.Pjax.start();
   hp.init();
-  Barba.Pjax.getTransition = function() { return ft };
+  Barba.Pjax.start();
+  setCurrentActiveTransition(getTransitionObject(getPath(), getPath()));
+  // Barba.Dispatcher.on('initStateChange', function(currentStatus) {
+  //
+  //   // alert(Barba.HistoryManager.history[Barba.HistoryManager.history.length - 1].url)
+  //   // // Barba.HistoryManager.history.length - 1
+  //   // alert(Barba.HistoryManager.history[Barba.HistoryManager.history.length - 2].url)
+  //   // console.log('currentStatus, oldStatus, container', currentStatus, oldStatus, container)
+  //   var nextTransition = FadeTransition;
+  //
+  //   if (currentStatus) {
+  //     var h = Barba.HistoryManager.history;
+  //     var currentRoute = h[h.length - 2].url;
+  //     var nextRoute = h[h.length - 1].url;
+  //     // console.log('')
+  //     if (typeof nextRoute === 'undefined') return getTransitionObject('/' + getRouteFromUrl(currentRoute))
+  //     nextTransition = getTransitionObject(getRouteFromUrl(currentRoute), getRouteFromUrl(nextRoute))
+  //   } else nextTransition = getTransitionObject(getPath(), getPath())
+  //   Barba.Pjax.getTransition = function() { return nextTransition }
+  //   // return setCurrentActiveTransition(getTransitionObject(getPath(), getPath()))
+  //
+  // });
 }
 
 document.addEventListener("DOMContentLoaded", function(event) {

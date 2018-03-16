@@ -1,5 +1,6 @@
 $page-height: ms(10)
 $goofy-radius: 43px 26px / 58px 13px
+$diagonalSkew: 3.5deg
 
 .hero-header
   top: 35%
@@ -17,7 +18,6 @@ $goofy-radius: 43px 26px / 58px 13px
 
 .page-wrapper
   position: relative
-  min-height: 100vh
   background-color: $white
   padding: ms(1)
   z-index: 10
@@ -31,14 +31,16 @@ $goofy-radius: 43px 26px / 58px 13px
     height: ms(9)
     margin: ms(2) 0 ms(3) 0
     width: 100%
-    transform: skew(0deg, 3deg)
+    transform: skew(0deg, $diagonalSkew)
     z-index: -1
+  &.page-wrapper--min-full
+    min-height: 100vh
   &.page-wrapper--secondary
     background-color: $secondary-pop
     // color: $white
     &:before
       background: $secondary-pop
-      transform: skew(0deg, -2deg)
+      transform: skew(0deg, -$diagonalSkew)
   &.page-wrapper--tertiary
     // background-color: $tertiary-pop
   &.page-wrapper--quaternary
@@ -46,7 +48,15 @@ $goofy-radius: 43px 26px / 58px 13px
     &:before
       content: none
 
-    // background-color: $tertiary-pop
+.page-wrapper--background
+  background: url('/assets/pencils.jpg')
+  background-size: cover
+  position: absolute
+  top: -(ms(8))
+  left: 0
+  bottom: ms(6)
+  width: 100%
+  height: 120vh
 
 .page-wrapper--wave
   display: inline-block
@@ -56,10 +66,14 @@ $goofy-radius: 43px 26px / 58px 13px
   width: 100%
 
 .heading-image--large
+  // max-width: 90vw
+  // width: 80%
+  max-height: ms(8)
   max-width: 90vw
-  width: 80%
-  // position: relative
-  // left: -(ms(3))
+  // position: absolute
+  // // left: -(ms(3))
+  // top: 10px
+  // left: 10px
 
 .center-button-wrapper
   display: flex
@@ -71,31 +85,47 @@ $goofy-radius: 43px 26px / 58px 13px
 //   +target(lg)
 //     display: block
 
+.resume-image
+  max-width: 100%
+  box-shadow: $gen-shadow
+
 .fixed-page-toggler
+  position: fixed
   display: flex
   align-items: center
   justify-content: center
   height: 100vh
   width: 100vw
-  position: fixed
   right: 0
   bottom: 0
-  background-color: $dark-purple
-  border-radius: ms(100)
-  color: white
+  z-index: 100
+  background-color: $light-grey
+  color: $dark-purple
   cursor: pointer
   transform: scale(1.5)
+  box-shadow: $gen-shadow
   border-radius: $goofy-radius
-  z-index: 1000
+  white-space: nowrap
+  overflow: hidden
+  text-overflow: ellipsis
+  // padding: ms(1)
+  transition: box-shadow 200ms ease-in-out
+  &.page-toggler--open
+    transition: box-shadow 0ms ease-in-out
+    box-shadow: 0 0 0 transparent
+  &:hover
+    box-shadow: $gen-shadow-hover
+    &.page-toggler--open
+      box-shadow: 0 0 0 transparent
   .toggler-text
     position: absolute
     text-align: center
     transform: translateY(30px)
     opacity: 0
-  .toggler-text-image
-    height: ms(5)
-    width: ms(7)
-    transform: translateY(-10px)
+.toggler-text-image
+  height: ms(5)
+  width: ms(7)
+  transform: translateY(0px)
 
 .page-menu
   display: none
@@ -108,24 +138,16 @@ $goofy-radius: 43px 26px / 58px 13px
 
 .page-header
   z-index: 15
-  margin-top: ms(-1)
-  +target(xs)
-    font-size: ms(3)
-    width: 48%
-  +target(md)
-    font-size: ms(4)
-    width: 78%
+  top: -(ms(-4))
+  position: relative
+  &.page-header--light
+    color: $white
 
 .page-body
   position: relative
   padding: ms(1) 0
-  margin-top: ms(1)
-  +target(xs)
-    width: 100%
-  // +target(sm)
-  //   width: 80%
-  +target(md)
-    width: 86%
+  margin-top: ms(3)
+  margin-bottom: ms(3)
 
 .center-button-wrapper
   display: flex
