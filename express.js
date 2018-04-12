@@ -5,7 +5,6 @@ const path = require('path');
 const request = require('superagent');
 const port = process.env.PORT || 4000;
 
-console.log(port)
 Promise = require('bluebird');
 
 app.use(express.static(path.resolve(__dirname, './public')))

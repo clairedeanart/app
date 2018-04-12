@@ -8,12 +8,14 @@ window.jQuery = window.$ = $;
 require('velocity-animate');
 require('fullpage.js');
 require('animatescroll.js');
-delete window.jQuery;
-delete window.$;
+require('scrollNav');
+// delete window.jQuery;
+// delete window.$;
 
 var gallery = require('./gallery');
 var about = require('./about');
 var contact = require('./contact');
+var setupTws = require('./tws');
 var disableScrollPager = true;
 var disableScrollReveal = true;
 var togglerWidth = '8.67302em',
@@ -43,7 +45,7 @@ var togglerWidth = '8.67302em',
     // parallax: true,
 		// parallaxOptions: {type: 'reveal', percentage: 62, property: 'translate'},
     onLeave: function(e) {
-      if (isSmallDevice()) { $('.js-page-toggler').velocity({scale: smallToggleBubbleScale}) }
+      if (isSmallDevice()) { $('.js-page-toggler').velocity() }
     }
   },
   scrollRevealDefaults = {
@@ -74,8 +76,6 @@ var togglerWidth = '8.67302em',
   Homepage = {
     namespace: 'transitioner',
     onEnter: function() {
-      console.log('args', Barba.HistoryManager.history[0])
-      console.log('args', Barba.HistoryManager.history[0])
       var h = Barba.HistoryManager.history
       // alert('enter')
       initializePage();
@@ -85,28 +85,11 @@ var togglerWidth = '8.67302em',
     },
     onEnterComplete: function() {
       isAnimating = true;
-      // setCurrentActiveTransition(getTransitionObject(getPath()))
     },
     onLeaveComplete: function() {
-      // console.log('onLeaveComplete', onLeaveComplete)
       isAnimating = false;
-      // setCurrentActiveTransition(getTransitionObject(getNextPath(getPath())))
     },
   };
-
-// function
-
-  // console.log('&&&&&&&&&&&&&&&&&&&&&&&&&& initStateChange', getPath())
-  // // console.log('currentStatus, oldStatus, container', currentStatus, oldStatus, container)
-  // if (currentStatus) {
-  //   var currentRoute = currentStatus.url;
-  //   var nextRoute = getPath();
-  //   // console.log('')
-  //   if (typeof nextRoute === 'undefined') return getTransitionObject('/' + getRouteFromUrl(currentRoute))
-  //   return setCurrentActiveTransition(getTransitionObject(getRouteFromUrl(currentRoute), getRouteFromUrl(nextRoute)))
-  // } else {
-  // }
-  // return setCurrentActiveTransition(getTransitionObject(getPath(), getPath()))
 
 function getScreenDimensions() {
   return {
@@ -140,9 +123,7 @@ function getNextPath(path) {
 }
 
 function updatePageToggler(path) {
-  // console.log('updatePageToggler', path)
   if (isAnimating) return;
-  // console.log('getNextPath(path)', getNextPath(path))
   Barba.Pjax.goTo(getNextPath(path));
 }
 
@@ -173,9 +154,6 @@ function showPortfolio() {
 }
 
 function handleShowTogglerText(active, rest) {
-  // console.log('handleShowTogglerText')
-  // var $gallery = $('.js-toggler-text-gallery');
-  // var $portfolio = $('.js-toggler-text-portfolio');
   var show = { translateY: '30px', opacity: 1 };
   var hide = { translateY: '80px', opacity: 0 };
   $(active).velocity(show);
@@ -186,13 +164,11 @@ function handleShowTogglerText(active, rest) {
 
 function setCurrentActiveTransition(nextTransition) {
   Barba.Pjax.getTransition = function() {
-    console.log('nextTransition', nextTransition)
     return nextTransition || FadeTransition;
   };
 }
 
 function getRouteFromUrl(url) {
-  // console.log('url?!', url)
   if (!url) return getPath();
   var pa = url.split('/');
   var i = 3;
@@ -200,11 +176,10 @@ function getRouteFromUrl(url) {
 }
 
 function getTransitionObject(curr, next) {
-  // console.log('************** curr, next ***********************', curr, next)
+
   // var t = GrowTransition;
   // var currHome = (curr === '/' || curr === 'gallery');
   // var nextHome = (next === '/' || next === 'gallery');
-  // console.log('----------------- getTransitionObject ----------------', currHome, nextHome)
   // if (!next)
   //   t = (currHome) ? GrowTransition : FadeTransition;
   // else
@@ -273,9 +248,9 @@ function initializePageToggler() {
 
 function initiaizeGallery() {
   var grid = document.querySelector('.gallery__grid');
+  gallery.setupImages();
   if (grid) {
     gallery.loadImages(grid);
-    gallery.setupImages();
   }
 }
 
@@ -329,6 +304,7 @@ function initializePage() {
   initializePageToggler();
   initiaizeGallery();
   initializeContact();
+  setupTws();
   initializePrimaryCallsToAction();
   waitThenShowText();
   if (!isGallery()) {
@@ -373,7 +349,6 @@ function opacityIn() {
 }
 
 function opacityOut() {
-  console.log('opacityOut')
   // var $pageTogglerBubble = $('.js-page-toggler');
   // $pageTogglerBubble.addClass("page-toggler--open");
   // $pageTogglerBubble.velocity({
@@ -400,7 +375,7 @@ function fadeIn() {
 
   $newContainer.velocity({
     opacity: 1,
-    scale: "1",
+    // scale: "1",
   }, assign({}, velocityDefaults, {
     complete: function() {
       if (isFunction(_this.done)) {

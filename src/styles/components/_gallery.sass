@@ -11,6 +11,8 @@
 .gallery__grid
   margin-bottom: 65px
   margin-top: ms(0)
+  &.gallery__grid--sm
+    width: 75%
   .grid-sizer,
   .grid__item
     margin-bottom: 5px
@@ -21,6 +23,17 @@
       width: calc(25% - 5px)
     +target(lg)
       width: calc(25% - 5px)
+    &.grid-item--sm
+      // margin-bottom: 5px
+      // width: calc(100%)
+      // +target(sm)
+      //   width: calc(100% - 5px)
+      // +target(md)
+      //   width: calc(20% - 5px)
+      // +target(lg)
+      //   width: calc(20% - 5px)
+  // .grid-sizer--sm
+  //   width: 80%
 
   .grid__item
     float: left

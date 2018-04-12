@@ -1,3 +1,5 @@
+function noop() {}
+
 function Lightbox(images, event) {
   this.lightbox = null;
   this.lightboxBackdrop = null;
@@ -43,19 +45,19 @@ Lightbox.prototype.layout = function layout() {
     var ratio = this.image.width / this.image.height;
     var width = this.win.height * ratio;
     // Vertical image
-    this.lightboxImage.width = width;
+    width ? this.lightboxImage.width = width : noop();
     this.lightboxImage.height = this.win.height;
   } else if (this.image.height < this.image.width) {
     // Horizontal image
     var ratio = this.image.height / this.image.width;
     var height = this.win.width * ratio;
-    this.lightboxImage.height = height;
+    height ? this.lightboxImage.height = height : noop();
     this.lightboxImage.width = this.win.width;
   } else {
     var ratio = this.image.width / this.image.height;
     var width = this.win.height * ratio;
     // Vertical image
-    this.lightboxImage.width = width;
+    width ? this.lightboxImage.width = width : noop();
     this.lightboxImage.height = this.win.height;
   }
 
@@ -141,7 +143,6 @@ Lightbox.prototype.handleClick = function handleClick(e) {
 Lightbox.prototype.goRight = function goRight(e) {
   this.lightboxImage.style.transform = 'translateX('+ -this.win.width + 'px)';
   this.lightboxImage.style.opacity = 0;
-  console.log('goright')
   var oldImage = this.lightboxImage;
   this.lightboxImage = document.createElement('img');
   var nextImage = this.getNextImage(this.image.locationIndex);

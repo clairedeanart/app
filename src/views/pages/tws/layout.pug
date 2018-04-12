@@ -1,19 +1,239 @@
-.page-body
 
-  .row.m-b-xs-2
-    .col-md-12
-      h1.page-header.center-text-xs Teacher Work Sample
-    .col-md-2.col-xs-12
-    .col-md-10.col-xs-12
-      .col-xs-12
-        .container
-          p Lorem ipsum dolor amet vaporware semiotics ennui, forage readymade sriracha stumptown swag. Neutra swag hot chicken lo-fi, mumblecore etsy DIY pop-up lumbersexual seitan synth green juice shabby chic echo park. Helvetica gentrify disrupt lo-fi tumblr DIY chambray chia kale chips four dollar toast typewriter edison bulb yuccie. Unicorn +1 lyft twee, distillery viral pok pok pickled photo booth neutra. Messenger bag cardigan photo booth, tumeric readymade chillwave live-edge subway tile pour-over. Before they sold out pok pok blue bottle kitsch mlkshk kombucha quinoa brooklyn photo booth.
-          p Offal intelligentsia seitan meditation. Tofu DIY health goth typewriter, cloud bread tumblr hella. Slow-carb actually farm-to-table typewriter direct trade retro green juice. Retro flexitarian occupy deep v swag fam street art air plant unicorn portland keffiyeh wayfarers polaroid. Migas williamsburg put a bird on it readymade church-key, brooklyn cornhole freegan shabby chic.
-      .col-xs-12
-        .container
-          p Lorem ipsum dolor amet vaporware semiotics ennui, forage readymade sriracha stumptown swag. Neutra swag hot chicken lo-fi, mumblecore etsy DIY pop-up lumbersexual seitan synth green juice shabby chic echo park. Helvetica gentrify disrupt lo-fi tumblr DIY chambray chia kale chips four dollar toast typewriter edison bulb yuccie. Unicorn +1 lyft twee, distillery viral pok pok pickled photo booth neutra. Messenger bag cardigan photo booth, tumeric readymade chillwave live-edge subway tile pour-over. Before they sold out pok pok blue bottle kitsch mlkshk kombucha quinoa brooklyn photo booth.
-          p Offal intelligentsia seitan meditation. Tofu DIY health goth typewriter, cloud bread tumblr hella. Slow-carb actually farm-to-table typewriter direct trade retro green juice. Retro flexitarian occupy deep v swag fam street art air plant unicorn portland keffiyeh wayfarers polaroid. Migas williamsburg put a bird on it readymade church-key, brooklyn cornhole freegan shabby chic.          
-      .col-xs-12
-        .container
-          p Lorem ipsum dolor amet vaporware semiotics ennui, forage readymade sriracha stumptown swag. Neutra swag hot chicken lo-fi, mumblecore etsy DIY pop-up lumbersexual seitan synth green juice shabby chic echo park. Helvetica gentrify disrupt lo-fi tumblr DIY chambray chia kale chips four dollar toast typewriter edison bulb yuccie. Unicorn +1 lyft twee, distillery viral pok pok pickled photo booth neutra. Messenger bag cardigan photo booth, tumeric readymade chillwave live-edge subway tile pour-over. Before they sold out pok pok blue bottle kitsch mlkshk kombucha quinoa brooklyn photo booth.
-          p Offal intelligentsia seitan meditation. Tofu DIY health goth typewriter, cloud bread tumblr hella. Slow-carb actually farm-to-table typewriter direct trade retro green juice. Retro flexitarian occupy deep v swag fam street art air plant unicorn portland keffiyeh wayfarers polaroid. Migas williamsburg put a bird on it readymade church-key, brooklyn cornhole freegan shabby chic.
+- var inverse = 'page-break--diagonal__inverse'
+
+mixin rowHeader(title, classes, slug)
+  .page-wrapper.page-wrapper--secondary.page-wrapper--header
+    .row  
+      .col-xs-12.col-md-10.col-md-offset-2.m-t-xs-4
+        h1.page-header.page-header--light #{title}
+      .page-break--diagonal.page-break--diagonal__secondary(class=classes)
+
+mixin rowContent(title, options)
+  - var opts = options || {}
+  - var classes = opts.classes || ''
+  - classes = opts.inverse ? ' d-flex d-flex--row-reverse' : ''
+  - var headerClasses = opts.headerClasses || ''
+  - headerClasses += ' m-b-xs-1'
+  if !opts.flat
+    - classes += ' m-b-xs-4'
+  .row(class=classes)
+    if opts.day
+      if opts.inverse
+        if !block
+          .col-md-8.col-xs-12.end-xs
+            h2(class=headerClasses) #{title}
+        else 
+          .col-md-3.col-xs-12
+            h4(class=headerClasses) #{title}
+          .col-md-7.col-xs-12.col-md-offset-2
+            block
+      else
+        if !block
+          .col-md-8.col-xs-12.col-md-offset-2.start-xs
+            h2(class=headerClasses) #{title}
+        else 
+          .col-md-3.col-xs-12.col-md-offset-2
+            h4(class=headerClasses) #{title}
+          .col-md-7.col-xs-12
+            block
+        
+    else
+      if title
+        if opts.inverse
+          .col-md-3.col-xs-12
+            h3(class=headerClasses) #{title}
+          .col-md-7.col-xs-12.col-md-offset-2
+            block
+        else
+          .col-md-3.col-xs-12.col-md-offset-2
+            h3(class=headerClasses) #{title}
+          .col-md-7.col-xs-12
+            block
+      else
+        if opts.thin
+          .col-md-7.col-xs-12.col-md-offset-2.d-flex.d-flex--align-middle
+            block
+        else
+          .col-md-10.col-xs-12.col-md-offset-2.d-flex.d-flex--align-middle
+            block
+
+mixin rowSubcontent(content)
+  .row
+    .col-md-7.col-xs-12.col-md-offset-5.m-b-xs-4
+      p.fade #{content}
+
+#tws_page-nav(style="overflow:hidden")
+  +rowHeader('Overview', '', 'overview')
+  .page-wrapper
+    .page-wrapper--background
+    .page-body
+        +rowContent('Unit of Study')
+          p 
+            span #[b Object Narrative]
+            |  - Learning to tell stories about ourselves in new ways. 
+        +rowContent('Big Idea / Essential Question')
+          p How do the objects we own tell a story about us? 
+        +rowContent('Unit Standard and GLE')
+          p 3rd Grade: Relate and connect to Transfer - 1. Visual arts are valuable for a variety of art and non-art related lifelong endeavors.
+        +rowContent('Unit Objective')
+          p "I can tell a story about an object that is important to me."
+        +rowContent('Brief Summary of the Unit')
+          p.paragraph-text This unit is about telling the story of an object that is important to us which, in turn, chronicles a small history of us as individuals. I wanted students to be able to relate the ideas behind their work to their outside lives so that they would invest, fully engage in the project, and realize a deeper connection between art and their realities (Dewey, 1916). The use of backwards design (Wiggins & McTighe, 2011) is prevalent in this unit because I chose the big idea at the beginning of the work which naturally evolved into the creation of the art later on. I also thought a lot about forming a “junior version” (Perkins, 2009) of my original idea for this lesson, which primarily involved getting to the main point of the assignment and altering its activities to fit a younger demographic. The unit consisted of 11 days, 6 of which are shown in this work sample. It began with talking about how contemporary artist Mary Mattingly told the story and researched the creation of a plethora of objects that she owned in order to understand their worth in a greater context. We talked about why telling the story of objects is important to further understand the people who own them and what it took to make them. Students started the project with a quick exercise where they sketched multiple thumbnails to tell the story of a random object that I placed in front of them. Following this, students began to think about an object in their own lives that told a story about themselves and that held deep significance. They were given a handout with six thumbnails to create a story about their object which could include how it came into their lives, why it was important to them, or a combination of the two. We talked about comic books, graphic novels, picture books and other forms of visual narratives to understand how composition helps to enhance a story. Students made accordion books and then transferred their finalized thumbnail images and text inside of them. After they added color to the pages, we talked about the essential elements of book covers and how they depict the story inside. Evidence of learning occurred in each session through individual discussions, sketching, ideation, a rubric, and a final critique where students discussed their books. Throughout this unit, I discovered rare information about each learner as a person outside of the school environment and I shared parts of myself that were external to my role as a teacher which helped me develop deeply-rooted relationships with my students.
+          
+  +rowHeader('Part A', inverse)
+  .page-wrapper
+    .page-body
+        +rowContent('', {thin: true})
+          p.indent Peck Elementary is a school where community and positive relationships between people are fundamental. Their mission is that “all students learn every day, creating a successful future” and alongside this statement, Peck has several definitions for what that entails. Some of the characteristics of that vision include: inclusivity and safety of all individuals, risk-taking to promote a love of exploration, student autonomy, and learning that extends beyond the boundaries of the classroom. This mission is translated into action by the students through their positive attitudes towards learning and willingness to cooperate as members of the tightknit community they have formed. It is clear that the students here respect their teachers which stems from a reciprocal appreciation of one another and the learning environment. This accommodating relationship allows students to build independence in their education and to explore and question further.
+        +rowContent('', {thin: true})
+          p.indent Peck’s 2016-17 demographics demonstrate that the school consists of roughly 61% white students, 34% Latino, 3% two or more races, and 1% Black students. 57% of the school is free/reduced lunch, 16% of the student population has a disability, and 4.8% are English Language Learners. This diverse population further exemplifies a focus of a comprehensive learning atmosphere where students are encouraged to express themselves as individuals. Peck is unique in the sense that its solid community base originates from a long line of generations attending and teaching at the school. The majority of Mr. Rubino’s students have been with him since he began working at the school and have had him as their art teacher from the start. Alongside the growing relationship he has formed with each student, many of the other teachers and parents attended the school themselves which has contributed to its rich history. Last year was Peck’s 50th anniversary and it seems it will continue to remain a desirable and effective school as long as the teachers and parents continue to promote strong bonds and a family-based environment.
+        +rowContent('', {thin: true})
+          p.indent The organization of the art room is structured starting with the tables. Each one is assigned a number and there is a different colored dot that hangs above every chair. Mr. Rubino uses these visual cues to ask students to hand out sketch books or to get their materials at different times. The tables are also used as a behavioral tool to dismiss students from the class when everyone is quiet and attentive. The colored dots above each chair indicate which student will be handing out sketchbooks to their tablemates so that chaos in the classroom can be avoided. When there is a demo, announcement, or it is time to clean up, he has a wind chime that he rings as an auditory cue that everyone needs to pause and pay attention. These routines and norms help keep balance in the classroom and set the pace for each day. My classroom management strategy is to keep these norms in place as I begin to take over as their teacher to help keep expectations consistent in terms of behavior. I have experienced using the students’ typical classroom organization techniques as I have taught them and know that they respond well to what they already know.
+        +rowContent('', {thin: true})
+          p.indent There seems to be an equal balance between teacher instruction and student exploration in the classroom. The expectations are laid out, questions are answered, and the students are then allowed full control of their work via individual passions and interests. All of the projects ask the students to relate the work to their own lives and explore new media to convey the messages they wish to. The work is often individual, however, cooperative pair shares and discussions when being introduced the assignments allow for the students to think collaboratively in many aspects. I have seen the pair shares be an effective method of getting students to engage with the big ideas and see new perspectives, so I plan on using this strategy, and ones like it, to enhance the work that we will be doing. I may push the boundaries of the collective work they have done in the past by having them further explore ideas or create works of art, leading up to the main project, in teams. Collaboration will come naturally and work well in this classroom because of the deep ties to community within the school’s culture.
+        +rowContent('', {thin: true})
+          p.indent I want my teacher work sample to emphasize the importance of something within the individual lives of the students outside of the school environment. This degree of personal connection to the history or story of something outside of school life will be crucial in the unit because I want to connect to my students on a deeper level. My hope is that they will share something about themselves that is unique to them; projecting a special narrative that only they can tell. The mini lessons and main assignment will emphasize the importance of understanding multiple stories and perspectives because, as Emily Style (1996) notes in her discussion of curriculum as window and mirror, “The delightful truth is that sometimes when we hear another out, glancing through the window of their humanity, we can see our own image reflected in the glass of their window. The window becomes a mirror!” (pp.1-2).
+        +rowContent('', {thin: true})
+          a(href="google.com") View Original
+  +rowHeader('Instructional Aids')
+  .page-wrapper
+    .page-body
+      +rowContent('Example Storyboard')
+        img.js-image.image-shadow(src="https://s3-us-west-2.amazonaws.com/claire-dean-art/instructional-aids/thumbnail.jpg")
+      +rowContent('Images for Presentation', {flat: true})
+      +rowContent()
+        .presentation-carousel.main-carousel
+          .carousel-cell.js-image(src="https://s3-us-west-2.amazonaws.com/claire-dean-art/instructional-aids/presentation/accordion-book-1.jpg")
+            img.js-image(height="300" src="https://s3-us-west-2.amazonaws.com/claire-dean-art/instructional-aids/presentation/accordion-book-1.jpg")
+          .carousel-cell.js-image(src="https://s3-us-west-2.amazonaws.com/claire-dean-art/instructional-aids/presentation/accordion-book-2.jpg")
+            img.js-image(height="300" src="https://s3-us-west-2.amazonaws.com/claire-dean-art/instructional-aids/presentation/accordion-book-2.jpg")
+          .carousel-cell.js-image(src="https://s3-us-west-2.amazonaws.com/claire-dean-art/instructional-aids/presentation/accordion-book-3.jpeg")
+            img.js-image(height="300" src="https://s3-us-west-2.amazonaws.com/claire-dean-art/instructional-aids/presentation/accordion-book-3.jpeg")
+          .carousel-cell.js-image(src="https://s3-us-west-2.amazonaws.com/claire-dean-art/instructional-aids/presentation/pull-M.Mattingly.jpg")
+            img.js-image(height="300" src="https://s3-us-west-2.amazonaws.com/claire-dean-art/instructional-aids/presentation/pull-M.Mattingly.jpg")
+          .carousel-cell.js-image(src="https://s3-us-west-2.amazonaws.com/claire-dean-art/instructional-aids/presentation/ss1.png")
+            img.js-image(height="300" src="https://s3-us-west-2.amazonaws.com/claire-dean-art/instructional-aids/presentation/ss1.png")
+          .carousel-cell.js-image(src="https://s3-us-west-2.amazonaws.com/claire-dean-art/instructional-aids/presentation/ss2.png")
+            img.js-image(height="300" src="https://s3-us-west-2.amazonaws.com/claire-dean-art/instructional-aids/presentation/ss2.png")
+          .carousel-cell.js-image(src="https://s3-us-west-2.amazonaws.com/claire-dean-art/instructional-aids/presentation/ss3.png")
+            img.js-image(height="300" src="https://s3-us-west-2.amazonaws.com/claire-dean-art/instructional-aids/presentation/ss3.png")
+      +rowContent('Books', {flat: true})
+      +rowContent()
+        .books-carousel.main-carousel
+          .carousel-cell.js-image(src="https://s3-us-west-2.amazonaws.com/claire-dean-art/instructional-aids/cover/book1.jpg")
+            img.js-image(height="300" src="https://s3-us-west-2.amazonaws.com/claire-dean-art/instructional-aids/cover/book1.jpg")
+          .carousel-cell.js-image(src="https://s3-us-west-2.amazonaws.com/claire-dean-art/instructional-aids/cover/book2.jpg")
+            img.js-image(height="300" src="https://s3-us-west-2.amazonaws.com/claire-dean-art/instructional-aids/cover/book2.jpg")
+          .carousel-cell.js-image(src="https://s3-us-west-2.amazonaws.com/claire-dean-art/instructional-aids/cover/book3.jpg")
+            img.js-image(height="300" src="https://s3-us-west-2.amazonaws.com/claire-dean-art/instructional-aids/cover/book3.jpg")
+          .carousel-cell.js-image(src="https://s3-us-west-2.amazonaws.com/claire-dean-art/instructional-aids/cover/book4.jpg")
+            img.js-image(height="300" src="https://s3-us-west-2.amazonaws.com/claire-dean-art/instructional-aids/cover/book4.jpg")
+          .carousel-cell.js-image(src="https://s3-us-west-2.amazonaws.com/claire-dean-art/instructional-aids/cover/book5.jpg")
+            img.js-image(height="300" src="https://s3-us-west-2.amazonaws.com/claire-dean-art/instructional-aids/cover/book5.jpg")
+          .carousel-cell.js-image(src="https://s3-us-west-2.amazonaws.com/claire-dean-art/instructional-aids/cover/book6.jpg")
+            img.js-image(height="300" src="https://s3-us-west-2.amazonaws.com/claire-dean-art/instructional-aids/cover/book6.jpg")
+          .carousel-cell.js-image(src="https://s3-us-west-2.amazonaws.com/claire-dean-art/instructional-aids/cover/book7.gif")
+            img.js-image(height="300" src="https://s3-us-west-2.amazonaws.com/claire-dean-art/instructional-aids/cover/book7.gif")
+          .carousel-cell.js-image(src="https://s3-us-west-2.amazonaws.com/claire-dean-art/instructional-aids/cover/book8.jpg")
+            img.js-image(height="300" src="https://s3-us-west-2.amazonaws.com/claire-dean-art/instructional-aids/cover/book8.jpg")
+          .carousel-cell.js-image(src="https://s3-us-west-2.amazonaws.com/claire-dean-art/instructional-aids/cover/example1.jpg")
+            img.js-image(height="300" src="https://s3-us-west-2.amazonaws.com/claire-dean-art/instructional-aids/cover/example1.jpg")
+  +rowHeader('Reflections', inverse)
+  .page-wrapper.pane
+    .page-body
+      +rowContent('Intended Student Outcomes')
+        p My hope is that students connect this experience to something in their lives outside of the school environment. How can telling the story of an object in our lives (or wondering about the stories of objects in our lives) give them deeper meaning? Does it encourage us to wonder, question, search for answers? My intention is for students to begin to express the meaning behind personal sacred objects and explain their significance through a variety of methods (color, writing, drawing, explaining, discussing, etc.).
+      +rowContent('Learning Target')
+        p “I can tell the story of an object that is important to me.” We will discuss how other artists tell the story of objects in their lives and how the composition of an image and text within a thumbnail conveys different meanings based on the artist’s choice (the student’s choice). We will work together to make accordion books, discuss how graphic novels tell stories, and talk about how to make decisions about the cover and back cover of a book. At the end of the unit, students will share their books with each other, talk about why they chose the object for their story, and we will have (hopefully) learned a new piece of information about everyone that we didn’t know before.
+      +rowSubcontent("* I gave this lesson to three separate groups of 3rd grade classes because of the way my cooperating teacher’s schedule worked. In these reflections, I may explain what I ended up changing and how it worked differently.")
+        p
+      .row.end-xs
+        .line-break
+      +rowContent('Day 1 • Jan. 22nd, 2018', {day: true, inverse: true})
+      +rowContent()
+        p I explained that our next project was going to be about telling the story of an object in their lives that has significant meaning. I gave a presentation about the artist Mary Mattingly and her project called “Own It”. I explained that this piece was about archiving a large amount of what she owned and documenting where each object came from, both in terms of when it came into her possession and how it was made/created. We talked about why it is important to know where things come from and to know the story behind the things we hold dear. There was a bit of confusion as to what an “object” was, so we clarified that by stating that it was something that was not living or something that doesn’t move. A few students shared what an important object in their life was and what they might use for the project.
+      +rowContent('Practice / Formative Assessment', {day: true, headerClasses: 'fade', inverse: true})
+        p I gave the students a quick practice activity to prep them for the larger assignment. I passed out a handout I created with 6 thumbnail boxes on the page and a space to write what their object was. I then gave each table an object (seashell, basket, shoe, mask, coral, etc.) and asked them to come up with a story, using their thumbnails, as to how they think that object came into the classroom. I gave some examples of what a story I would create might sound like and told them they could use both text and drawings to describe their narratives. As they worked on their stories, I told them to think of the thumbnails like a comic strip, where each box tells a part of the story. This analogy seemed to help them move along in the process. Some students created a story about the object immediately, others struggled to make up a story and so I tried to ask them questions about the object that would prompt ideas: where do you think it was made? Who owned it before it came into this art classroom? How old do you think it is? For students who finished quickly, I offered them the option to color them in or add more details OR I gave them another thumbnail handout and told them to come up with another possible story. Overall, I was surprised with how well they handled and how much they enjoyed Mattingly’s work in the presentation because it was more conceptual than interesting to look at. I wasn’t sure it would work and was pleasantly surprised with how much they seemed to grasp an understanding of why I used her work to explain the project.
+      +rowContent('What would/did you change?', {day: true, headerClasses: 'fade', inverse: true})
+        p I gave the students a quick practice activity to prep them for the larger assignment. I passed out a handout I created with 6 thumbnail boxes on the page and a space to write what their object was. I then gave each table an object (seashell, basket, shoe, mask, coral, etc.) and asked them to come up with a story, using their thumbnails, as to how they think that object came into the classroom. I gave some examples of what a story I would create might sound like and told them they could use both text and drawings to describe their narratives. As they worked on their stories, I told them to think of the thumbnails like a comic strip, where each box tells a part of the story. This analogy seemed to help them move along in the process. Some students created a story about the object immediately, others struggled to make up a story and so I tried to ask them questions about the object that would prompt ideas: where do you think it was made? Who owned it before it came into this art classroom? How old do you think it is? For students who finished quickly, I offered them the option to color them in or add more details OR I gave them another thumbnail handout and told them to come up with another possible story. Overall, I was surprised with how well they handled and how much they enjoyed Mattingly’s work in the presentation because it was more conceptual than interesting to look at. I wasn’t sure it would work and was pleasantly surprised with how much they seemed to grasp an understanding of why I used her work to explain the project.
+      .row.start-xs
+        .line-break.col-xs-offset-2
+      +rowContent('Day 2 • Jan. 23nd, 2018', {day: true})
+      +rowContent()
+        p Today, I planned on giving a demo on making an accordion book, having the students construct their books, and allowing some time to begin sketches on the ideas for the content of the books. Instead, I only got through the demo and the students constructed their books. Overall, I was happy with the results of students structuring and folding them correctly and paying attention to me as I spoke. Nick and I decided that it would be wise for me to begin the class by having them watch me make a book and then have them follow along as I did the demo again. This worked out great because they could first pay attention to just me and then take what they remembered and apply it as they followed along the second time. As I gave the second demo, I realized that some of the students were having a hard time making the correct folds. I realized that I wouldn’t be able to make it to everyone and continue on with the demo, so I asked students who understood to help their peers who were confused; this worked well. During the folding portion, a student (Kanye) began to get upset with his folds and the fact that he needed help. I told him that it was alright, and I would help him, but he became fixated on the fact that he couldn’t do it himself without extra direction. He began crying and throwing a fit. I told him he needed to move on and that if he needed to take a break and step away from the project he could. It continued to escalate, and Nick had to remove him from the class. Meanwhile, there were a few students who, when we came to the gluing portion, glued their covers to the wrong pages of the accordion. I probably should have asked everyone to extend the accordion and mark what pages needed to be glued to the cardboard. Luckily there were only a few who did this. I also didn’t think the demo would take the entire class time and I probably didn’t need to hand out the new thumbnail handouts until next class, so I could make sure the big idea was still intact. I will definitely focus on that tomorrow. I also took some time as people were beginning to sketch (after book making) to talk to the students who were absent the day before about the idea behind the project. I want to focus on making sure they know that this is about an object not a living thing or person (as there seems to be some confusion) tomorrow. Barely got the kids out of class on time today... NEED to watch the clock! *I’m learning to be super flexible with the way that things turn out in this lesson because so many students work so differently and at different paces. What I originally planned out leading up to the creation of the main assignment may actually go faster or longer than anticipated. It’s hard to know what the pace will be on any given day. For example, I wanted them to be sketching for the next class for the entire period, but Nick said some of them may be ready to move on already.
+      .row.end-xs
+        .line-break
+      +rowContent('Day 3 • Jan. 24nd, 2018', {day: true, inverse: true})
+      +rowContent()
+        p I had the students work on their thumbnail sketches to prepare for their object narratives. I wanted them to be able to show me what their idea was in a rough sketch and then demonstrate how it would look in the actual book on a separate thumbnail page (*note: they don’t have to redraw each page, but rather choose one single thumbnail to show in great detail). I did this so that their books don’t end up having quick stick figures to demonstrate their stories and wanted to remind them that they needed to have good craftsmanship alongside their ideas. This ensures that they stay committed to the project and like what they make because they put the effort forth. Before they began sketching we talked about what the composition of a page could look like. We talked about how there could be pages that were zoomed in on with certain features and very detailed on just one aspect and how there could be pages that showed a whole scene with a background. I clarified to them that even if one page of their book was just a floating image, they still needed to color in the background in some way so that there is no white showing. They got to work on their sketches and were constantly checking in with me as I walked around. The majority of them understood what I wanted, and my directions were clear after our discussion at the beginning of class. Clarifying the directions and going over what our objectives for the day were was very helpful to remind students of the overarching goals of the project both in terms of craftsmanship and the big idea (Johnson, 1988). Some of the students were having a hard time drawing the “Why” portion of their books. For example, I would say to them, “I see that this is how you got the object you hold dear, but why is it important to you and how can you translate that idea into a drawing?” It was much easier for students who chose objects that were linked to a person or memory to draw the why, than the students who chose a device they simply liked and didn’t have a reason why. This made me realize that a change to the project could be excluding the option of using an electronic device. SO many of them chose an xbox or ipad and couldn’t give me an explanation as to why it was important to them.
+      +rowContent('What worked', {day: true, headerClasses: 'fade', inverse: true})
+        p Clarifying expectations prior to instruction. Answering any questions.
+      +rowContent("What didn't work", {day: true, headerClasses: 'fade', inverse: true})
+        p Allowing students to choose any object in their life. i.e. not putting boundaries on the option of the object for the assignment so that it was easy to tell the story of why that object is important to them.
+      +rowContent("What would/did you change?", {day: true, headerClasses: 'fade', inverse: true})
+        p Tell students (prior to their sketches and beginning the ideation) that they cannot pick an electronic device as their object. Setting some sort of limitation on the project that assures the object they choose will have a rich story/history. For example, maybe I ask them to find something in their home that has been there for a long time that they don’t know much about. Then they must interview their parents or grandparents about the object to tell its story. I ended up changing this for the second and third group of 3rd graders and the ideas of what objects to choose came much easier for them.
+      .row.start-xs
+        .line-break.col-xs-offset-2
+      +rowContent('Day 4 • Jan. 25nd, 2018', {day: true})
+      +rowContent()
+        p Today I gave a demo on some options the students could use in coloring in their accordion books. None of them had begun transferring their sketches to their books yet, but I felt like it would be a good day to demo this so that students who move fast through the pencil sketch in the book could continue to move along with my permission (they probably won’t get to this until day 5 or later). After the demo, a lot of students moved onto the beginning of making their accordion books. They need to draw each page in pencil first and then after I look over them, they can start on the color portion. I explained that they need to fill all white space and demonstrate plenty of detail when coloring in their books.
+      +rowContent('What worked', {day: true, headerClasses: 'fade'})
+        p Thumbnail sketches prior to drawing them in their accordion books. This allowed students to really think about how to lay it out in their books and make changes or revisions if they wanted to.
+      +rowContent("What didn't work", {day: true, headerClasses: 'fade'})
+        p Keeping all the books in the back closet and retrieving them individually when a student was ready to start in their book. This made a lot of unnecessary back and forth that was unproductive with time that could’ve been spent helping students that needed it.
+      +rowContent("What would/did you change?", {day: true, headerClasses: 'fade'})
+        p Place the books on the back table for students to retrieve their own book to either continue on or begin when ready. The students know that they need to let me know when they are ready to begin the sketch portion and would therefore approach me before starting in their books anyway. I need to give them the control and autonomy and facilitate the rest.
+      .row.end-xs
+        .line-break
+      +rowContent('Day 5 • Jan. 26nd, 2018', {day: true, inverse: true})
+      +rowContent()
+        p Today I opened class by reminding students of the learning target (I can tell the story of an object that is important to me), reminded them to check in with me before beginning their books or coloring, and they got to work. I’m not sure that I reiterated the portion about checking in with me enough, as some students who didn’t show me their thumbnails began their books anyways or began coloring when they should’ve waited. The students who had already put their sketches in their books began using nice sharp crayons if they chose to do the wax resist technique and others began their pencil sketches in the books. I separated Skylar and Angel, James worked well today without any distractions. Nobody started painting today because I wanted those who were using the crayons (most of them) to do all the crayon portion before moving onto the tempera wash (watercolor). Overall, it worked out well. I chose 3 students to pass out the thumbnails for me so that I could help students that had questions. I also put the books out so that I didn’t have to retrieve them individually as students who were ready to move on came to me. Anne observed today.
+      +rowContent('What worked', {day: true, headerClasses: 'fade', inverse: true})
+        p Having students pass out thumbnails instead of me. Having students get their own books instead of me (either to continue working or to begin working). I laid all the materials out on the back table prior to class so that they could get them on their own instead of me trying to retrieve them for them one at a time.
+      +rowContent("What didn't work", {day: true, headerClasses: 'fade', inverse: true})
+        p Laying out their books on the back table also was a negative because some students who didn’t check in with me yet just grabbed their books and began drawing in them. They also added color before checking in with me despite my numerous attempts to remind them to do so.
+      +rowContent("What would/did you change?", {day: true, headerClasses: 'fade', inverse: true})
+        p Only place the books on the table for those who started them already and have the others in a pile so that students would have to check with me before they began drawing in them.
+      .row.start-xs
+        .line-break.col-xs-offset-2
+      +rowContent('Day 8 • Feb. 14nd, 2018', {day: true})
+      +rowContent()
+        p Today was hectic (Valentine’s Day schedule) and I was unable to transfer my images for my presentation onto the iPad before 3rd grade came into the classroom. Because I was crunched on time, I drew an example of what a book cover might include. Before I drew the example, I asked students what things they thought were important to include on their covers. They quickly answered- A name/title, an image that is related to the book, and their name (name of the author). A student suggested I draw an example of my water bottle and I holding hands as the image for my cover (my water bottle has been the example I’ve used from the start as my object for the example book) and I accepted the challenge. Everyone had a good laugh. I then asked everyone to meet me at the back table for a demonstration and showed the students their options for color choices, how to glue the cover on properly, and how to draw on the black paper if they choose that color (using white or light-colored crayons/colored pencils). I then had them go back to their seats and continue their books or glue on their color choice and begin sketching their ideas for a cover image if they were ready for that step. I wanted them to sketch first so that they could try it out before they put it on their books. For those who glued their covers, I didn’t let them start drawing on them yet because I wanted them to dry first.
+      +rowContent('What worked', {day: true, headerClasses: 'fade'})
+        p My impromptu sketch/example of what parts are important to a book cover. Asking students what they think is important to include on a book cover gave them the opportunity to share what they thought should be included. Pre-cutting out the correct size of construction paper so that students could grab two (of the same or different) colors. I thought of this today before my planning time and was glad I could finish them before 3rd grade (it would’ve been a nightmare having kids try to cut out their own papers and getting them to fit on the cardboard correctly).
+      +rowContent("What didn't work", {day: true, headerClasses: 'fade'})
+        p Not being prepared for the presentation I was going to give.
+      +rowContent("What would/did you change?", {day: true, headerClasses: 'fade'})
+        p Having my presentation ready (what I will change). Pre-cutting the paper is what I did change.
+  +rowHeader('Images')
+    .m-b-xs-4
+  .page-wrapper.m-t-xs-4
+    .row.m-t-xs-4
+      .col-xs-12.col-xs-offset-2
+        .gallery__grid.gallery__grid--sm
+          .grid-sizer.grid-sizer--sm
+          - var vals = Array(87)
+          each val, index in vals
+            - var url = "https://s3-us-west-2.amazonaws.com/claire-dean-art/instructional-aids/tws/" + (index + 1) + '.jpg'
+            img.grid__item.grid-item--sm.js-image(src=url)
+  //- .page-wrapper
+  //-   .page-body
+  //-     +rowContent('Example Storyboard')
+  //-       img.image-shadow(src="https://s3-us-west-2.amazonaws.com/claire-dean-art/instructional-aids/thumbnail.jpg")
+  //-     +rowContent('Images for Presentation', {flat: true})
+  //-     +rowContent()
+  //-       .presentation-carousel.main-carousel
+  //-         .carousel-cell
+  //-           img(height="300" src="https://s3-us-west-2.amazonaws.com/claire-dean-art/instructional-aids/presentation/accordion-book-1.jpg")
+  //-         .carousel-cell
+  //-           img(height="300" src="https://s3-us-west-2.amazonaws.com/claire-dean-art/instructional-aids/presentation/accordion-book-2.jpg")
+  //-         .carousel-cell
+  //-           img(height="300" src="https://s3-us-west-2.amazonaws.com/claire-dean-art/instructional-aids/presentation/accordion-book-3.jpeg")
+  //-         .carousel-cell
+  //-           img(height="300" src="https://s3-us-west-2.amazonaws.com/claire-dean-art/instructional-aids/presentation/pull-M.Mattingly.jpg")
+  //-         .carousel-cell
+  //-           img(height="300" src="https://s3-us-west-2.amazonaws.com/claire-dean-art/instructional-aids/presentation/ss1.png")
+  //-         .carousel-cell
+  //-           img(height="300" src="https://s3-us-west-2.amazonaws.com/claire-dean-art/instructional-aids/presentation/ss2.png")
+  //-         .carousel-cell
+  //-           img(height="300" src="https://s3-us-west-2.amazonaws.com/claire-dean-art/instructional-aids/presentation/ss3.png")      

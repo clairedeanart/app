@@ -14,7 +14,7 @@ $targets: xs 10, sm 12, md 14, lg 16, xl 18
 
 $text-color: #080507
 $text-white: #ece8ea
-$white: #fefefa
+$white: #ffffff
 $light-grey: #ece8ea
 $primary: #2E3138
 $primary-pop: #2E3138
@@ -45,8 +45,6 @@ $ease-in: cubic-bezier(0.4, 0.0, 1, 1)
 $sharp: cubic-bezier(0.4, 0.0, 0.6, 1)
 $smooth: cubic-bezier(.25,.8,.25,1)
 
-$border-radius: 43px 26px / 58px 13px
-
 $menu-shadow: 0 -1px 2px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24)
 $gen-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)
 $gen-shadow-hover: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)
@@ -69,7 +67,7 @@ $input-height: ms(1) + (2 * ms(-3)) + ms(-7)
 // Typography
 $font-family: Calibre, sans-serif !default
 
-$border-radius: ms(-7)
+$border-radius: ms(-10)
 
 @mixin target($target)
   @each $candidate in $targets
@@ -92,17 +90,19 @@ body
   right: 0
   left: 0
   height: 100vh
-  width: 100vw
+  // width: 100vw
+  // max-width:
   // background-color: $dark-purple
   // color: $white
   // &.body--dark
   //   background-color: $dark-purple
   //   color: $white
   // &.body--light
-  background-color: $light-grey
+  background-color: $white
   color: $dark-purple
 *
   font-family: 'Titillium Web', sans-serif
+  white-space: normal
 
 @import standard/base/grid
 @import standard/base/reset
@@ -115,9 +115,110 @@ body
 @import components/forms
 @import components/page
 
-
 // Move outta here
 .clear-link
   text-decoration: none
   transition: all 100ms ease-in-out
   color: $white
+
+.container
+  max-width: $container-width
+  margin-right: auto
+  margin-left: auto
+  padding: 0 ms(0)
+
+.indent
+  text-indent: 4%
+
+.line-break
+  width: 35%
+  height: 2px
+  position: relative
+  right: 0
+  top: 0
+  margin-bottom: ms(3)
+  background-color: $border-color
+  border-color: $border-color
+
+// FIXME: move this outta here
+.main-carousel
+  width: 100%
+  height: ms(11)
+  padding-left: ms(2)
+  padding-right: ms(2)
+  position: relative
+  // max-height: 160px
+  // margin-right: 10px
+.carousel-cell
+  height: ms(11)
+  margin-right: 10px
+  border-radius: 5px
+  transition: transform 300ms ease-in-out
+  &.is-selected
+    transform: scale(1.1)
+    z-index: 100
+    &:before
+      background: rgba(0, 0, 0, 0.0)
+  &:before
+    content: ""
+    position: absolute
+    height: 100%
+    width: 100%
+    background: rgba(0, 0, 0, 0.6)
+    transition: background 300ms ease-in-out
+  img
+    margin-right: 10px
+
+//
+// .flickity-page-dots
+//   bottom: -22px
+//
+// .flickity-page-dots .dot
+//   height: 4px
+//   width: 40px
+//   margin: 0
+//   border-radius: 0
+
+.flickity-viewport
+  overflow: hidden
+  position: relative
+  padding: ms(1)
+  padding-left: ms(2)
+
+.flickity-prev-next-button
+  position: absolute
+  height: ms(5)
+  width: ms(5)
+  border-radius: 100%
+  overflow: hidden
+  display: flex
+  align-items: center
+  justify-content: center
+  background-color: $primary
+  cursor: pointer
+  border: solid 0px transparent
+  &:disabled
+    opacity: 0.3
+  &.previous
+    left: 0
+  &.next
+    right: 0
+  svg
+    fill: $white
+    height: ms(1)
+    display: flex
+    align-self: flex-end
+
+.hide-xs
+  display: none
+  +target(md)
+    display: inherit
+
+.d-flex.d-flex--row-reverse
+  flex-direction: row-reverse
+
+.barba-container
+  overflow: hidden
+
+.js-image
+  cursor: pointer
