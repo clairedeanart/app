@@ -3186,7 +3186,8 @@ b {
       justify-content: center;
   z-index: 100;
   padding: 1em;
-  background-color: #9068BE;
+  background-color: #ffffff;
+  opacity: 0.99;
   transition: all 300ms ease-in-out;
   display: none; }
   @media screen and (min-width: 43.83269em) {
@@ -3213,7 +3214,7 @@ b {
     background-repeat: no-repeat;
     display: inline-block; }
   .scroll-nav__item a {
-    color: #ffffff;
+    color: #2E3138;
     font-size: 1.31em; }
   .scroll-nav__item.scroll-nav__item--active, .scroll-nav__item.active {
     font-weight: 800;
@@ -3471,7 +3472,8 @@ input:focus, textarea:focus {
   .page-wrapper.page-wrapper--min-full {
     min-height: 100vh; }
   .page-wrapper.page-wrapper--secondary {
-    background-color: #9068BE; }
+    background-color: #9068BE;
+    color: #ffffff !important; }
     .page-wrapper.page-wrapper--secondary:before {
       background: #9068BE;
       transform: skew(0deg, -3deg); }
