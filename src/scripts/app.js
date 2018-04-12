@@ -8,7 +8,7 @@ window.jQuery = window.$ = $;
 require('velocity-animate');
 require('fullpage.js');
 require('animatescroll.js');
-require('scrollNav');
+require('scrollnav');
 // delete window.jQuery;
 // delete window.$;
 
