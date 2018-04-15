@@ -21,12 +21,14 @@ module.exports = function setupTws() {
       wrapAround: true,
       prevNextButtons: true,
       pageDots: true,
-    }
+    };
     var books = document.querySelector('.books-carousel');
     var presentation = document.querySelector('.presentation-carousel');
+    // var rubric = document.querySelector('.rubric-carousel');
     // var carousel = document.querySelector('.main-carousel');
     new Flickity( books, options);
     new Flickity( presentation, options);
+    // new Flickity( rubric, options);
   }
 
 };

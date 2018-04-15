@@ -2728,6 +2728,7 @@ h5, h5 *, h6, h6 * {
   font-weight: 600; }
 
 p {
+  padding-top: 0.44482em;
   margin-bottom: 1em; }
   p, p * {
     font-size: 1em;
@@ -3054,6 +3055,18 @@ b {
     color: rgba(46, 49, 56, 0.3);
     background: transparent; }
 
+.btn-link {
+  color: #9068BE;
+  font-size: 1.31em;
+  cursor: pointer;
+  position: relative;
+  border-radius: 0.06719em;
+  padding: 0.25921em 0;
+  transition: all 200ms ease-in-out; }
+  .btn-link:hover {
+    background-color: #9068BE;
+    color: white; }
+
 .main-content__navigation {
   position: relative;
   background-color: #ffffff;
@@ -3212,7 +3225,10 @@ b {
     width: 18px;
     background-size: 18px 18px;
     background-repeat: no-repeat;
-    display: inline-block; }
+    display: inline-block;
+    transform: rotate(116deg); }
+  .scroll-nav__item:nth-of-type(odd):before {
+    transform: rotate(1deg); }
   .scroll-nav__item a {
     color: #2E3138;
     font-size: 1.31em; }
@@ -3288,6 +3304,7 @@ b {
         justify-content: center;
     cursor: pointer; }
     .lightbox .lightbox__close-icon__wrapper .lightbox__close-icon {
+      padding: 0 !important;
       font-size: 26px;
       color: #ece8ea;
       font-family: 'Permanent Marker', cursive;

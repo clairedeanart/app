@@ -156,6 +156,10 @@ $b_size: 18px
     background-size: $b_size $b_size
     background-repeat: no-repeat
     display: inline-block
+    transform: rotate(random(180) * 1deg)
+  &:nth-of-type(odd)
+    &:before
+      transform: rotate(random(180) * 1deg)
   a
     color: $primary
     font-size: ms(1)

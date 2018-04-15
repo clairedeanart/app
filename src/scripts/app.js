@@ -301,6 +301,7 @@ function destroyPager() {
 }
 
 function initializePage() {
+  $(document).scrollTop(0);
   initializePageToggler();
   initiaizeGallery();
   initializeContact();
