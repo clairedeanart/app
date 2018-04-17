@@ -68,14 +68,22 @@ $bounce: cubic-bezier(.96,-.25,0,1.15)
     justify-content: center
     align-items: center
 
-    .lightbox__image
+  .lightbox__image
+    &.lightbox__image--vertical
+    &.lightbox__image--horizontal
+      // min-height: 100%
+      min-width: 100vw
+      height: auto
+      +target(md)
+        position: absolute
+        top: 0
+        left: 0
+        right: 0
+        bottom: 0
+        margin: auto
+        height: 110%
+        min-width: 50%
+        min-height: 50%
 
   .lightbox__new-image
-    // position: fixed
-    // top: 0
-    // right: 0
-    // bottom: 0
-    // left: 0
-    // height: 100%
-    // width: 100%
     transition: all 500ms ease-out

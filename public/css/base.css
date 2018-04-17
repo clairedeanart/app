@@ -3226,9 +3226,9 @@ b {
     background-size: 18px 18px;
     background-repeat: no-repeat;
     display: inline-block;
-    transform: rotate(116deg); }
+    transform: rotate(112deg); }
   .scroll-nav__item:nth-of-type(odd):before {
-    transform: rotate(1deg); }
+    transform: rotate(117deg); }
   .scroll-nav__item a {
     color: #2E3138;
     font-size: 1.31em; }
@@ -3348,6 +3348,20 @@ b {
         justify-content: center;
     -ms-flex-align: center;
         align-items: center; }
+  .lightbox .lightbox__image.lightbox__image--horizontal {
+    min-width: 100vw;
+    height: auto; }
+    @media screen and (min-width: 43.83269em) {
+      .lightbox .lightbox__image.lightbox__image--horizontal {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        height: 110%;
+        min-width: 50%;
+        min-height: 50%; } }
   .lightbox .lightbox__new-image {
     transition: all 500ms ease-out; }
 
@@ -3469,7 +3483,6 @@ input:focus, textarea:focus {
   z-index: 1; }
 
 .page-wrapper--header {
-  width: 100vw;
   padding-top: 6.62063em !important; }
   @media screen and (min-width: 43.83269em) {
     .page-wrapper--header {
@@ -3479,6 +3492,8 @@ input:focus, textarea:focus {
   position: relative;
   background-color: #ffffff;
   padding: 1.31em; }
+  .page-wrapper:not(.page-wrapper--header) {
+    min-height: 100vh; }
   .page-wrapper.page-wrapper--centered {
     display: -ms-flexbox;
     display: flex;
@@ -3500,23 +3515,60 @@ input:focus, textarea:focus {
     content: none; }
 
 .page-wrapper--background {
-  background: url("/assets/cda-bg_temp.jpg");
-  background-size: 300% 104%;
-  position: absolute;
-  left: 0;
-  bottom: -15px;
-  width: 100%;
-  height: 103vh; }
-  @media screen and (min-width: 43.83269em) {
-    .page-wrapper--background {
-      background-size: 100% 102%; } }
-  .page-wrapper--background:before {
-    content: "";
-    position: absolute;
-    top: 0;
-    height: 20%;
+  background: url("/assets/backgrounds/corner.jpg");
+  background-repeat: no-repeat;
+  position: absolute; }
+  .page-wrapper--background.background--corner {
+    background: url("/assets/backgrounds/corner.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    right: 0;
+    bottom: -50%;
+    height: 100vh;
+    width: 100vw;
+    background-size: 100% 50%; }
+    @media screen and (min-width: 43.83269em) {
+      .page-wrapper--background.background--corner {
+        right: 0;
+        height: 103vh;
+        width: 100vw;
+        bottom: -0.25921em;
+        background-size: 100% 100%; } }
+    @media screen and (min-width: 75.22128em) {
+      .page-wrapper--background.background--corner {
+        right: -50%;
+        height: 103vh;
+        width: 100vw;
+        bottom: -0.25921em;
+        background-size: 50% 100%; } }
+    .page-wrapper--background.background--corner.background--t {
+      transform: rotate(180deg);
+      right: initial;
+      top: 0;
+      left: -50%;
+      height: 50vh;
+      background-size: 50% 100%; }
+      @media screen and (min-width: 43.83269em) {
+        .page-wrapper--background.background--corner.background--t {
+          height: 85vh; } }
+  .page-wrapper--background.background--horizontal {
+    background: url("/assets/backgrounds/horizontal.jpg");
+    right: 0;
+    left: 0;
+    bottom: 0;
+    height: 85vh;
     width: 100%;
-    background-color: #ffffff; }
+    position: absolute;
+    background-size: 250% 125%; }
+    @media screen and (min-width: 43.83269em) {
+      .page-wrapper--background.background--horizontal {
+        position: absolute;
+        right: 0;
+        left: 0;
+        bottom: -1.31em;
+        height: 100vh;
+        width: 100%;
+        background-size: 100% 100%; } }
 
 .page-break--diagonal {
   width: 100%;
@@ -3527,10 +3579,10 @@ input:focus, textarea:focus {
     content: '';
     width: 0;
     height: 0;
-    top: 0;
-    right: 0;
+    top: -1.31em;
+    right: -55vw;
     border: 0 solid transparent;
-    border-left-width: 150vw;
+    border-left-width: 180vw;
     border-right-width: 0px;
     border-top: 120px solid #9068BE;
     background: transparent !important;
@@ -3546,8 +3598,7 @@ input:focus, textarea:focus {
     content: '';
     width: 0;
     height: 0;
-    top: 0;
-    right: -20vw;
+    right: -55vw;
     border: 0 solid transparent;
     border-right-width: 180vw;
     border-left-width: 0px;

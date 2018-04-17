@@ -18,16 +18,16 @@ $inverseDiagonalSkew: -3deg
   z-index: 1
 
 .page-wrapper--header
-  width: 100vw
   padding-top: ms(7) !important
   +target(md)
     padding-top: 0 !important
-  // min-height: ms(5)
 
 .page-wrapper
   position: relative
   background-color: $white
   padding: ms(1)
+  &:not(.page-wrapper--header)
+    min-height: 100vh
   &.page-wrapper--centered
     display: flex
     align-items: center
@@ -49,22 +49,68 @@ $inverseDiagonalSkew: -3deg
       content: none
 
 .page-wrapper--background
-  background: url('/assets/cda-bg_temp.jpg')
-  background-size: 300% 104%
+  background: url('/assets/backgrounds/corner.jpg')
+  // background-size: 50% 100%
+  background-repeat: no-repeat
   position: absolute
-  left: 0
-  bottom: -15px
-  width: 100%
-  height: 103vh
-  +target(md)
-    background-size: 100% 102%
-  &:before
-    content: ""
-    position: absolute
-    top: 0
-    height: 20%
+  // // left: 0
+  // right: -50%
+  // width: 100%
+  // +target(md)
+  //   background-size: 100% 102%
+  &.background--corner
+    background: url('/assets/backgrounds/corner.jpg')
+    background-size: cover
+    background-repeat: no-repeat
+    right: 0
+    bottom: -50%
+    height: 100vh
+    width: 100vw
+    background-size: 100% 50%
+    +target(md)
+      right: 0
+      height: 103vh
+      width: 100vw
+      bottom: -(ms(-5))
+      background-size: 100% 100%
+    +target(lg)
+      right: -50%
+      height: 103vh
+      width: 100vw
+      bottom: -(ms(-5))
+      background-size: 50% 100%
+    &.background--t
+      transform: rotate(180deg)
+      right: initial
+      top: 0
+      left: -50%
+      height: 50vh
+      background-size: 50% 100%
+      +target(md)
+        height: 85vh
+
+    .background--r
+    .background--b
+    .background--l
+  &.background--horizontal
+    background: url('/assets/backgrounds/horizontal.jpg')
+    right: 0
+    left: 0
+    bottom: 0
+    height: 85vh
     width: 100%
-    background-color: $white
+    position: absolute
+    // bottom: -(ms(1))
+    background-size: 250% 125%
+    +target(md)
+      position: absolute
+      right: 0
+      left: 0
+      bottom: -(ms(1))
+      height: 100vh
+      width: 100%
+      // bottom: -(ms(1))
+      background-size: 100% 100%
 
 .page-break--diagonal
   // height: 130px
@@ -76,10 +122,10 @@ $inverseDiagonalSkew: -3deg
     content: ''
     width: 0
     height: 0
-    top: 0
-    right: 0
+    top: -(ms(1))
+    right: -55vw
     border: 0 solid transparent
-    border-left-width: 150vw
+    border-left-width: 180vw
     border-right-width: 0px
     border-top: 120px solid $secondary
     background: transparent !important
@@ -97,8 +143,7 @@ $inverseDiagonalSkew: -3deg
       content: ''
       width: 0
       height: 0
-      top: 0
-      right: -20vw
+      right: -55vw
       border: 0 solid transparent
       border-right-width: 180vw
       border-left-width: 0px

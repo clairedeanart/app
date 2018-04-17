@@ -47,12 +47,14 @@ Lightbox.prototype.layout = function layout() {
     // Vertical image
     width ? this.lightboxImage.width = width : noop();
     this.lightboxImage.height = this.win.height;
+    this.lightboxImage.className += " lightbox__image--vertical";
   } else if (this.image.height < this.image.width) {
     // Horizontal image
     var ratio = this.image.height / this.image.width;
-    var height = this.win.width * ratio;
+    var height = this.win.height * ratio
     height ? this.lightboxImage.height = height : noop();
     this.lightboxImage.width = this.win.width;
+    this.lightboxImage.className += " lightbox__image--horizontal";
   } else {
     var ratio = this.image.width / this.image.height;
     var width = this.win.height * ratio;
@@ -61,7 +63,7 @@ Lightbox.prototype.layout = function layout() {
     this.lightboxImage.height = this.win.height;
   }
 
-  var below = Math.max(this.win.height, this.lightboxImage.height);
+  var below = Math.max(this.win.height + 200, this.lightboxImage.height);
   this.lightboxImage.style.transform = 'translateY('+ below + 'px';
   this.lightboxImage.src = this.image.getAttribute('src');
 
@@ -94,7 +96,7 @@ Lightbox.prototype.animateImage = function animateImage(direction) {
     this.lightboxImage.style.transform = 'translateY(0px)';
   }
   else {
-    this.lightboxImage.style.transform = 'translateY('+ this.win.height + 'px)';
+    this.lightboxImage.style.transform = 'translateY('+ (this.win.height + 200) + 'px)';
   }
 }
 
@@ -103,7 +105,7 @@ Lightbox.prototype.animateMetaData = function animateMetaData(direction) {
     this.metaDataWrapper.style.transform = 'translateY(0px)';
   }
   else {
-    this.metaDataWrapper.style.transform = 'translateY('+ this.win.height + 'px)';
+    this.metaDataWrapper.style.transform = 'translateY('+ (this.win.height + 200) + 'px)';
   }
 }
 
