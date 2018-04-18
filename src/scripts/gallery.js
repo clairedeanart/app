@@ -1,4 +1,5 @@
 var Lightbox = require('./lightbox');
+var imagesLoaded = require('imagesloaded');
 
 function loadImages(grid) {
   // FIXME: Create loading state and limit query to only display 5-10 images

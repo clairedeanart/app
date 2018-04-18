@@ -1,0 +1,79 @@
+- var inverse = 'page-break--diagonal__inverse'
+
+mixin rowHeader(title, classes, slug)
+  .page-wrapper.page-wrapper--secondary.page-wrapper--header
+    .row  
+      .col-xs-12.col-md-10.col-md-offset-2.m-t-xs-4
+        h1.page-header.page-header--light #{title}
+      .page-break--diagonal.page-break--diagonal__secondary(class=classes)
+
+mixin rowContentHeader(title)
+  - var opts = options || {}
+  - var classes = opts.classes || ''
+  - classes = opts.inverse ? ' d-flex d-flex--row-reverse' : ''
+  - var headerClasses = opts.headerClasses || ''
+  .row.m-b-xs-2
+    .col-md-3.col-xs-12.col-md-offset-2
+      h2(class=headerClasses) #{title}
+    .col-md-7.col-xs-12
+      block
+
+mixin rowContent(title, options)
+  - var opts = options || {}
+  - var classes = opts.classes || ''
+  - classes = opts.inverse ? ' d-flex d-flex--row-reverse' : ''
+  - var headerClasses = opts.headerClasses || ''
+  if !opts.headerFlat  
+    - headerClasses += ' m-b-xs-1'
+  if !opts.flat
+    - classes += ' m-b-xs-4'
+  .row(class=classes)
+    if opts.day
+      if opts.inverse
+        if !block
+          .col-md-8.col-xs-12.end-xs
+            h2(class=headerClasses) #{title}
+        else 
+          .col-md-3.col-xs-12
+            h4(class=headerClasses) #{title}
+          .col-md-7.col-xs-12.col-md-offset-2
+            block
+      else
+        if !block
+          .col-md-8.col-xs-12.col-md-offset-2.start-xs
+            h2(class=headerClasses) #{title}
+        else 
+          .col-md-3.col-xs-12.col-md-offset-2
+            h4(class=headerClasses) #{title}
+          .col-md-7.col-xs-12
+            block
+    else
+      if title
+        if opts.inverse
+          .col-md-3.col-xs-12
+            if opts.subheader
+              h4(class=headerClasses) #{title}
+            else
+              h3(class=headerClasses) #{title}
+          .col-md-7.col-xs-12.col-md-offset-2
+            block
+        else
+          .col-md-3.col-xs-12.col-md-offset-2
+            if opts.subheader
+              h4(class=headerClasses) #{title}
+            else
+              h3(class=headerClasses) #{title}
+          .col-md-7.col-xs-12
+            block
+      else
+        if opts.thin
+          .col-md-7.col-xs-12.col-md-offset-2.d-flex.d-flex--align-middle
+            block
+        else
+          .col-md-10.col-xs-12.col-md-offset-2.d-flex.d-flex--align-middle
+            block
+
+mixin rowSubcontent(content)
+  .row
+    .col-md-7.col-xs-12.col-md-offset-5.m-b-xs-4
+      p.fade #{content}

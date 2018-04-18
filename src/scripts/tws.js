@@ -1,5 +1,6 @@
 var Sticky = require('sticky-js');
-var Flickity  = require('flickity');
+var Flickity  = require('flickity-imagesloaded');
+// require('flickity-imagesloaded');
 
 module.exports = function setupTws() {
   // setup tws page
@@ -14,13 +15,13 @@ module.exports = function setupTws() {
       showTopLink: false,
     });
 
-
     var options = {
       cellAlign: 'center',
       contain: true,
       wrapAround: true,
       prevNextButtons: true,
       pageDots: true,
+      imagesLoaded: true,
     };
     var books = document.querySelector('.books-carousel');
     var presentation = document.querySelector('.presentation-carousel');

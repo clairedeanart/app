@@ -1,37 +1,29 @@
 .js-pages-container
-  //- ul.page-menu
-  //-   li.page-menu-item(data-menuanchor="top")
-  //-     a(href="#top") Top
-  //-   li.page-menu-item(data-menuanchor="teaching")
-  //-     a(href="#teaching") Teaching
-  //-   li.page-menu-item(data-menuanchor="things")
-  //-     a(href="#things") Contact
   .page-wrapper.section.page-wrapper--plain.page-wrapper--min-full.page-wrapper--centered(href="top")
     .page-wrapper--background.background--corner
     .hero-header
       img.heading-image--large.m-b-xs-4(src="/assets/logos/black/png/black_large_flat.png")
-      .row.m-b-xs-1
-        .col-xs-12
-          .btn-outlined.btn--lg.js-call-to-action-button(data-name="philosophy" data-scroll="data-scroll") Philosophy and Resume
       .container.row
         .col-md-8.col-md-offset-2.col-xs-12
           .row.m-b-xs-1.center-xs
             .col-md-4.col-xs-12.m-b-xs-1
+              .btn-link.js-call-to-action-button(data-name="lessons") Lessons
+            .col-md-4.col-xs-12.m-b-xs-1
               .btn-link.js-call-to-action-button(data-name="tws") Teacher Work Sample
             .col-md-4.col-xs-12.m-b-xs-1
               .btn-link.js-call-to-action-button(data-name="gallery") Gallery
-            .col-md-4.col-xs-12.m-b-xs-1
+          .row.m-b-xs-1.center-xs
+            .col-md-3.col-xs-12.m-b-xs-1
+              .btn-link.js-call-to-action-button(data-name="resume" data-scroll="data-scroll") Resume
+            .col-md-3.col-xs-12.m-b-xs-1
+              .btn-link.js-call-to-action-button(data-name="philosophy" data-scroll="data-scroll") Philosophy
+            .col-md-3.col-xs-12.m-b-xs-1
               .btn-link.js-call-to-action-button(data-name="contact" data-scroll="data-scroll") Contact
-        //- .btn-outlined.m-l-xs-1.m-r-xs-1.m-b-xs-1.js-call-to-action-button(data-name="lessons") Lessons
-        //- .btn-outlined.m-l-xs-1.m-r-xs-1.m-b-xs-1.js-call-to-action-button(data-name="tws") Teacher Work Sample
-        //- .btn-outlined.m-l-xs-1.m-r-xs-1.m-b-xs-1.js-call-to-action-button(data-name="contact" data-scroll="data-scroll") Contact
           
-  .js-page-location__philosophy.page-wrapper.page-wrapper--secondary.section.normal-scroll-element.page-wrapper--min-full(href="teaching")
+  .page-wrapper.page-wrapper--secondary.section.normal-scroll-element.page-wrapper--min-full(href="teaching")
     include ../pages/teaching
   .page-break--diagonal.page-break--diagonal__secondary
   .js-page-location__contact.page-wrapper.m-t-4.m-b-4.section(href="contact")
     .page-wrapper--background.background--horizontal
     include ../pages/contact
-  //- .page-wrapper.section(href="contactform")
-  //-   include ../pages/contact_form
       

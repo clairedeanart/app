@@ -4,6 +4,8 @@ var Barba = require('barba.js');
 var $ = require('jquery');
 var assign = require('object-assign');
 var ScrollReveal = require('scrollreveal');
+var Flickity  = require('flickity-imagesloaded');
+// require('flickity-imagesloaded');
 window.jQuery = window.$ = $;
 require('velocity-animate');
 require('fullpage.js');
@@ -38,12 +40,7 @@ var togglerWidth = '8.67302em',
     anchors:['top', 'teaching', 'contact'],
     scrollingSpeed: 800,
     menu: '.page-menu',
-    // continuousVertical: true,
-    // normalScrollElements: ['.normal-scroll-element'],
-    // dragAndMove: true,
     easingcss3: 'ease-in-out',
-    // parallax: true,
-		// parallaxOptions: {type: 'reveal', percentage: 62, property: 'translate'},
     onLeave: function(e) {
       if (isSmallDevice()) { $('.js-page-toggler').velocity() }
     }
@@ -213,12 +210,6 @@ function showPageToggler(isHovering) {
     ($(this).data('path') === getPath()) ? active = this : rest.push(this);
   });
   handleShowTogglerText(active, rest);
-  // isGallery() ? showGallery() : showPortfolio();
-  // switch (currPath()) {
-  //   case '/': handleShowTogglerText(); break;
-  //   case '/gallery': handleShowTogglerText(); break;
-  //   case '/': handleShowTogglerText(); break;
-  // }
   $image.velocity({translateY: '-10px'});
 }
 
@@ -252,6 +243,15 @@ function initiaizeGallery() {
   if (grid) {
     gallery.loadImages(grid);
   }
+}
+
+function initializeLessons() {
+  var wildthings = document.querySelector('.js-gallery-wildthings')
+  if (wildthings) gallery.loadImages(wildthings)
+  var popup = document.querySelector('.js-gallery-popup')
+  if (popup) gallery.loadImages(popup)
+  var constructed = document.querySelector('.js-gallery-constructed')
+  if (constructed) gallery.loadImages(constructed)
 }
 
 function initializeContact() {
@@ -306,8 +306,10 @@ function initializePage() {
   initiaizeGallery();
   initializeContact();
   setupTws();
+  initializeLessons();
   initializePrimaryCallsToAction();
   waitThenShowText();
+
   if (!isGallery()) {
     if (hasMounted) destroyPager()
     setupPager()

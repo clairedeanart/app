@@ -1,19 +1,68 @@
-.page-body
+- var inverse = 'page-break--diagonal__inverse'
 
-  .row.m-b-xs-2
-    .col-md-12
-      h1.page-header.center-text-xs Lessons
-    .col-md-2.col-xs-12
-    .col-md-10.col-xs-12
-      .col-xs-12
-        .container
-          p Lorem ipsum dolor amet vaporware semiotics ennui, forage readymade sriracha stumptown swag. Neutra swag hot chicken lo-fi, mumblecore etsy DIY pop-up lumbersexual seitan synth green juice shabby chic echo park. Helvetica gentrify disrupt lo-fi tumblr DIY chambray chia kale chips four dollar toast typewriter edison bulb yuccie. Unicorn +1 lyft twee, distillery viral pok pok pickled photo booth neutra. Messenger bag cardigan photo booth, tumeric readymade chillwave live-edge subway tile pour-over. Before they sold out pok pok blue bottle kitsch mlkshk kombucha quinoa brooklyn photo booth.
-          p Offal intelligentsia seitan meditation. Tofu DIY health goth typewriter, cloud bread tumblr hella. Slow-carb actually farm-to-table typewriter direct trade retro green juice. Retro flexitarian occupy deep v swag fam street art air plant unicorn portland keffiyeh wayfarers polaroid. Migas williamsburg put a bird on it readymade church-key, brooklyn cornhole freegan shabby chic.
-      .col-xs-12
-        .container
-          p Lorem ipsum dolor amet vaporware semiotics ennui, forage readymade sriracha stumptown swag. Neutra swag hot chicken lo-fi, mumblecore etsy DIY pop-up lumbersexual seitan synth green juice shabby chic echo park. Helvetica gentrify disrupt lo-fi tumblr DIY chambray chia kale chips four dollar toast typewriter edison bulb yuccie. Unicorn +1 lyft twee, distillery viral pok pok pickled photo booth neutra. Messenger bag cardigan photo booth, tumeric readymade chillwave live-edge subway tile pour-over. Before they sold out pok pok blue bottle kitsch mlkshk kombucha quinoa brooklyn photo booth.
-          p Offal intelligentsia seitan meditation. Tofu DIY health goth typewriter, cloud bread tumblr hella. Slow-carb actually farm-to-table typewriter direct trade retro green juice. Retro flexitarian occupy deep v swag fam street art air plant unicorn portland keffiyeh wayfarers polaroid. Migas williamsburg put a bird on it readymade church-key, brooklyn cornhole freegan shabby chic.          
-      .col-xs-12
-        .container
-          p Lorem ipsum dolor amet vaporware semiotics ennui, forage readymade sriracha stumptown swag. Neutra swag hot chicken lo-fi, mumblecore etsy DIY pop-up lumbersexual seitan synth green juice shabby chic echo park. Helvetica gentrify disrupt lo-fi tumblr DIY chambray chia kale chips four dollar toast typewriter edison bulb yuccie. Unicorn +1 lyft twee, distillery viral pok pok pickled photo booth neutra. Messenger bag cardigan photo booth, tumeric readymade chillwave live-edge subway tile pour-over. Before they sold out pok pok blue bottle kitsch mlkshk kombucha quinoa brooklyn photo booth.
-          p Offal intelligentsia seitan meditation. Tofu DIY health goth typewriter, cloud bread tumblr hella. Slow-carb actually farm-to-table typewriter direct trade retro green juice. Retro flexitarian occupy deep v swag fam street art air plant unicorn portland keffiyeh wayfarers polaroid. Migas williamsburg put a bird on it readymade church-key, brooklyn cornhole freegan shabby chic.
+mixin rowHeader(title, classes, slug)
+  .page-wrapper.page-wrapper--secondary.page-wrapper--header
+    .row  
+      .col-xs-12.col-md-10.col-md-offset-2.m-t-xs-4
+        h1.page-header.page-header--light #{title}
+      .page-break--diagonal.page-break--diagonal__secondary(class=classes)
+
+mixin rowContentHeader(title)
+  - var opts = options || {}
+  - var classes = opts.classes || ''
+  - classes = opts.inverse ? ' d-flex d-flex--row-reverse' : ''
+  - var headerClasses = opts.headerClasses || ''
+  .row
+    .col-md-5.col-xs-12.col-md-offset-2.start-xs
+      h1(class=headerClasses) #{title}
+    .col-md-5.col-xs-12.end-xs
+      block
+
+mixin rowContent(title, options)
+  - var opts = options || {}
+  - var classes = ''
+  .row(class=classes)
+    if title
+      .col-md-3.col-xs-12.col-md-offset-2
+        h2 #{title}
+      .col-md-7.col-xs-12
+        block
+    else
+      .col-md-10.col-xs-12.col-md-offset-2.d-flex.d-flex--align-middle
+        block
+
+mixin rowSubcontent(content)
+  .row
+    .col-md-7.col-xs-12.col-md-offset-5.m-b-xs-4
+      p.fade #{content}
+
++rowHeader('Lessons', inverse)
+.page-wrapper
+  .page-body
+    +rowContent('Wild Things')
+      p 1st Grade - Students read “Where the Wild Things Are” and learned about hybridization. They then created their own Wild Things using collage and created a home for them.
+    +rowContent()
+      .gallery__grid.gallery__grid--md.js-gallery-wildthings
+        .grid-sizer.grid-sizer--md
+          - var vals = Array(7)
+          each val, index in vals
+            - var url = "https://s3-us-west-2.amazonaws.com/claire-dean-art/wild_things/" + (index + 17) + ".jpg"
+            img.grid__item.grid-item--md.js-image(src=url)
+    +rowContent('Pop Up Landscape')
+      p 2nd Grade - Students learned about the elements of a landscape (foreground, middle ground, background and horizon line) by walking outside and looking at the surrounding land. Using this new knowledge, they made a 3-D pop-up landscape of their choosing that was either real or imagined.
+    +rowContent()
+      .gallery__grid.gallery__grid--md.js-gallery-popup
+        .grid-sizer.grid-sizer--md
+          - var vals = Array(7)
+          each val, index in vals
+            - var url = "https://s3-us-west-2.amazonaws.com/claire-dean-art/popup_landscape/" + (index + 1) + ".jpg"
+            img.grid__item.grid-item--md.js-image(src=url)
+    +rowContent('Constructed Landscapes')
+      p 3rd Grade - Students discussed landscapes and examined the ways in which natural and unnatural lines could be blurred. Students scavenged for elements in nature, created their own props using paint and recyclables, and had access to several unnatural objects as well. Each student created a unique landscape by combining all elements and taking a photo of the scenery.
+    +rowContent()
+      .gallery__grid.gallery__grid--md.js-gallery-constructed
+        .grid-sizer.grid-sizer--md
+          - var vals = Array(7)
+          each val, index in vals
+            - var url = "https://s3-us-west-2.amazonaws.com/claire-dean-art/constructed_landscape/" + (index + 1) + ".jpg"
+            img.grid__item.grid-item--md.js-image(src=url)
