@@ -58,11 +58,20 @@ mixin rowSubcontent(content)
             - var url = "https://s3-us-west-2.amazonaws.com/claire-dean-art/popup_landscape/" + (index + 1) + ".jpg"
             img.grid__item.grid-item--md.js-image(src=url)
     +rowContent('Constructed Landscapes')
-      p 3rd Grade - Students discussed landscapes and examined the ways in which natural and unnatural lines could be blurred. Students scavenged for elements in nature, created their own props using paint and recyclables, and had access to several unnatural objects as well. Each student created a unique landscape by combining all elements and taking a photo of the scenery.
+      p 3rd Grade - Students discussed Paula McCartney’s ideation of the “Constructed Landscape” where a scenery is made using natural and unnatural parts and a photo is taken of the scene to convey a landscape. They then scavenged for things that were in nature and created props and backgrounds to add to their landscapes. Once assembled, we took zoomed in photos of each student’s work to convey the feel of a real landscape made up of unreal elements. 
     +rowContent()
       .gallery__grid.gallery__grid--md.js-gallery-constructed
         .grid-sizer.grid-sizer--md
           - var vals = Array(7)
           each val, index in vals
             - var url = "https://s3-us-west-2.amazonaws.com/claire-dean-art/constructed_landscape/" + (index + 1) + ".jpg"
+            img.grid__item.grid-item--md.js-image(src=url)
+    +rowContent('Animal Alter Ego')
+      p High School - Students explored their own personality traits and decided what characteristics would make up their alter ego (either opposing elements of their personalities or highlighting key features of those traits). They then found an animal that mimicked those features in some way and created a self-portrait of their animal alter ego. Prior to the creation of their portraits, students examined ways in which they could combine human and animal elements through collage.
+    +rowContent()
+      .gallery__grid.gallery__grid--md.js-gallery-alter
+        .grid-sizer.grid-sizer--md
+          - var vals = Array(10)
+          each val, index in vals
+            - var url = "https://s3-us-west-2.amazonaws.com/claire-dean-art/alter_ego/" + (index + 1) + ".jpg"
             img.grid__item.grid-item--md.js-image(src=url)

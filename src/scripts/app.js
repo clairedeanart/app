@@ -252,6 +252,8 @@ function initializeLessons() {
   if (popup) gallery.loadImages(popup)
   var constructed = document.querySelector('.js-gallery-constructed')
   if (constructed) gallery.loadImages(constructed)
+  var alter = document.querySelector('.js-gallery-alter')
+  if (alter) gallery.loadImages(alter)
 }
 
 function initializeContact() {
